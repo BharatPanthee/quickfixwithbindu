@@ -2624,4 +2624,7 @@ All 452 oEmbed requests returned HTTP 404. This uniform result, combined with un
 
 **/recipes-sitemap.xml**: 200; 462 location entries.
 
-Recipe 
+Recipe sitemap contains 10 of the orphan recipe URLs.
+
+**/post-archive-sitemap.xml**: 200; 1 location entries.
+
