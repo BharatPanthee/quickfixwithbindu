@@ -1,0 +1,6 @@
+#noptin-wrapper .notice:not(.noptin-notice),
+#noptin-wrapper div.error:not(.noptin-notice),
+#noptin-wrapper div.updated:not(.noptin-notice) {
+    display: none !important
+}
+

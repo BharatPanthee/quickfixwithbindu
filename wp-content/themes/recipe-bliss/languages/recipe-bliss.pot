@@ -1,0 +1,69 @@
+# <!=Copyright (C) 2024 WP Delicious
+# This file is distributed under the GNU General Public License v3 or later.=!>
+msgid ""
+msgstr ""
+"Project-Id-Version: Recipe Bliss 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/recipe-bliss\n"
+"POT-Creation-Date: 2024-10-25 04:17:20+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: functions.php:413
+msgid " Recipe Bliss | Developed By "
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP Delicious"
+msgstr ""
+
+#: functions.php:416
+#. translators: %s is replaced with WordPress URL
+msgid " Powered by %s. "
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Recipe Bliss"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://wpdelicious.com/wordpress-themes/recipe-bliss/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Recipe Bliss is a free recipe WordPress theme designed to help build "
+"elegant food blogs and recipe websites. This theme is SEO-ready and "
+"speed-optimized from the start, helping your site load faster and rank "
+"higher in search results. The theme also helps improve your recipe rankings "
+"in search results due to its mobile-responsive features. The theme also "
+"includes a pre-designed Instagram section, allowing you to present your "
+"feed on your website with ease. It integrates seamlessly with the WP "
+"Delicious plugin, which enhances your site with new features. With access "
+"to 1600+ Google Fonts and limitless color choices, you can customize your "
+"website to reflect your brand's identity. If you ever need it, detailed "
+"documentation and support are readily available to help you along the way. "
+"Recipe Bliss makes your website accessible worldwide with support for both "
+"translation and RTL languages. Check out the demo at "
+"https://demo.wpdelicious.com/recipe-bliss/, and get support at "
+"https://wpdelicious.com/support-ticket/."
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wpdelicious.com/"
+msgstr ""

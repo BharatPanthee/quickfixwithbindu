@@ -1,0 +1,129 @@
+.wprm-setting-input {
+    .ql-editor p {
+        margin-bottom: 10px;
+    }
+
+    .cm-editor {
+        height: 200px;
+        border: 1px solid #ddd;
+    }
+
+    &[type="number"] {
+        max-width: 100px;
+    }
+}
+
+textarea.wprm-setting-input {
+    width: 100%;
+}
+
+.wprm-setting-jupiter-access-token {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .wprm-setting-jupiter-access-token-notice {
+        padding: 8px 10px;
+        border-left: 4px solid #dba617;
+        background: #fff8e5;
+    }
+
+    .wprm-setting-jupiter-access-token-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px 20px;
+    }
+
+    .wprm-setting-jupiter-access-token-endpoint,
+    .wprm-setting-jupiter-access-token-generated {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .wprm-setting-jupiter-access-token-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    textarea {
+        font-family: monospace;
+    }
+}
+
+.wprm-setting-kitchen-connection {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .wprm-setting-kitchen-status {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        padding: 12px;
+        border-left: 4px solid #787c82;
+        background: #f6f7f7;
+    }
+
+    .wprm-setting-kitchen-status-connected {
+        border-left-color: #00a32a;
+    }
+
+    .wprm-setting-kitchen-status-error {
+        border-left-color: #d63638;
+    }
+
+    .wprm-setting-kitchen-status-awaiting-kitchen,
+    .wprm-setting-kitchen-status-awaiting-approval,
+    .wprm-setting-kitchen-status-callback-received {
+        border-left-color: #dba617;
+    }
+
+    .wprm-setting-kitchen-notice,
+    .wprm-setting-kitchen-message {
+        padding: 8px 10px;
+        background: #fff8e5;
+    }
+
+    .wprm-setting-kitchen-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+.wprm-setting-amazon-queue {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .wprm-setting-amazon-queue-status {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .wprm-setting-amazon-queue-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+}
+
+.wprm-setting-unit-conversion-units {
+    width: 100%;
+
+    th {
+        text-align: left;
+    }
+
+    input {
+        width: 95%;
+
+        &.wprm-setting-unit-conversion-units-singular,
+        &.wprm-setting-unit-conversion-units-plural {
+            max-width: 100px;
+        }
+    }
+}

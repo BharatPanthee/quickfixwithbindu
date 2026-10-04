@@ -1,0 +1,473 @@
+<?php
+/**
+ * API for the recipe modal.
+ *
+ * @link       https://bootstrapped.ventures
+ * @since      5.0.0
+ *
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ */
+
+/**
+ * API for the recipe modal.
+ *
+ * @since      5.0.0
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ * @author     Brecht Vandersmissen <brecht@bootstrapped.ventures>
+ */
+class WPRM_Api_Modal {
+
+	/**
+	 * Register actions and filters.
+	 *
+	 * @since    5.0.0
+	 */
+	public static function init() {
+		add_action( 'rest_api_init', array( __CLASS__, 'api_register_data' ) );
+	}
+
+	/**
+	 * Register data for the REST API.
+	 *
+	 * @since    5.0.0
+	 */
+	public static function api_register_data() {
+		if ( function_exists( 'register_rest_field' ) ) { // Prevent issue with Jetpack.
+			register_rest_route( 'wp-recipe-maker/v1', '/modal/suggest', array(
+				'callback' => array( __CLASS__, 'api_modal_suggest' ),
+				'methods' => 'POST',
+				'permission_callback' => array( __CLASS__, 'api_required_permissions' ),
+			));
+		register_rest_route( 'wp-recipe-maker/v1', '/modal/ingredient/parse', array(
+			'callback' => array( __CLASS__, 'api_modal_parse_ingredients' ),
+			'methods' => 'POST',
+			'permission_callback' => array( __CLASS__, 'api_required_permissions' ),
+		));
+		register_rest_route( 'wp-recipe-maker/v1', '/modal/ingredient-unit/connector', array(
+			'callback' => array( __CLASS__, 'api_modal_ingredient_unit_connector' ),
+			'methods' => 'POST',
+			'permission_callback' => array( __CLASS__, 'api_required_permissions' ),
+		));
+		register_rest_route( 'wp-recipe-maker/v1', '/modal/categories', array(
+			'callback' => array( __CLASS__, 'api_modal_categories' ),
+			'methods' => 'POST',
+			'permission_callback' => array( __CLASS__, 'api_required_permissions' ),
+		));
+		}
+	}
+
+	/**
+	 * Required permissions for the API.
+	 *
+	 * @since 5.0.0
+	 */
+	public static function api_required_permissions() {
+		return current_user_can( 'edit_posts' );
+	}
+
+	/**
+	 * Handle suggest call to the REST API.
+	 *
+	 * @since 5.0.0
+	 * @param WP_REST_Request $request Current request.
+	 */
+	public static function api_modal_suggest( $request ) {
+		// Parameters.
+		$params = $request->get_params();
+
+		$type = isset( $params['type'] ) ? $params['type'] : 'ingredient';
+		$search = isset( $params['search'] ) ? $params['search'] : '';
+		$search = trim( strip_tags( $search ) );
+
+		// ' is stored differently in the database. Make sure picks up.
+		$search = str_replace( '&#39;', '&#039;', $search );
+
+		// Get taxonomy.
+		switch ( $type ) {
+			case 'ingredient-unit':
+				$taxonomy = 'wprm_ingredient_unit';
+				break;
+			case 'equipment':
+				$taxonomy = 'wprm_equipment';
+				break;
+			default:
+				$taxonomy = 'wprm_ingredient';
+				break;
+		}
+
+		$language = ! empty( $params['language'] ) ? sanitize_key( $params['language'] ) : '';
+
+		// Regular search.
+		$args = array(
+			'taxonomy' => $taxonomy,
+			'lang' => 'wprm_ingredient' === $taxonomy && $language ? $language : null,
+			'hide_empty' => false,
+			'number' => 10,
+			'offset' => 0,
+			'count' => true,
+			'orderby' => 'count',
+			'order' => 'DESC',
+			'search' => $search,
+		);
+
+		$query = new WP_Term_Query( $args );
+		$terms = $query->get_terms();
+		$suggestions = array();
+
+		// Search plural for ingredients and ingredient units.
+		if ( 'wprm_ingredient' === $taxonomy || 'wprm_ingredient_unit' === $taxonomy ) {
+			$plural_key = $taxonomy . '_plural';
+
+			$args = array(
+				'taxonomy' => $taxonomy,
+				'lang' => 'wprm_ingredient' === $taxonomy && $language ? $language : null,
+				'hide_empty' => false,
+				'number' => 10,
+				'offset' => 0,
+				'count' => true,
+				'orderby' => 'count',
+				'order' => 'DESC',
+				'meta_query' => array(
+					array(
+						'key' => $plural_key,
+						'compare' => 'LIKE',
+						'value' => $search,
+					),
+				),
+			);
+
+			$query = new WP_Term_Query( $args );
+			$plural_terms = $query->get_terms();
+
+			if ( $plural_terms && is_array( $plural_terms ) ) {
+				foreach ( $plural_terms as $plural_term ) {
+					$plural = get_term_meta( $plural_term->term_id, $plural_key, true );
+
+					if ( $plural ) {
+						$suggestions[ 'wprm_ingredient' === $taxonomy ? $plural_term->term_id . ':' . $plural : $plural ] = array(
+							'id' => (int) $plural_term->term_id,
+							'name' => $plural,
+							'count' => $plural_term->count,
+						);
+					}
+				}
+			}
+
+			if ( 'wprm_ingredient' === $taxonomy ) {
+				$alias_keys = array(
+					'wprm_ingredient_unit_system_1_singular',
+					'wprm_ingredient_unit_system_1_plural',
+					'wprm_ingredient_unit_system_2_singular',
+					'wprm_ingredient_unit_system_2_plural',
+				);
+
+				foreach ( $alias_keys as $alias_key ) {
+					$args = array(
+						'taxonomy' => $taxonomy,
+						'lang' => 'wprm_ingredient' === $taxonomy && $language ? $language : null,
+						'hide_empty' => false,
+						'number' => 10,
+						'offset' => 0,
+						'count' => true,
+						'orderby' => 'count',
+						'order' => 'DESC',
+						'meta_query' => array(
+							array(
+								'key' => $alias_key,
+								'compare' => 'LIKE',
+								'value' => $search,
+							),
+						),
+					);
+
+					$query = new WP_Term_Query( $args );
+					$alias_terms = $query->get_terms();
+
+					if ( $alias_terms && is_array( $alias_terms ) ) {
+						foreach ( $alias_terms as $alias_term ) {
+							$alias = get_term_meta( $alias_term->term_id, $alias_key, true );
+
+							if ( $alias && ! array_key_exists( $alias_term->term_id . ':' . $alias, $suggestions ) ) {
+								$suggestions[ $alias_term->term_id . ':' . $alias ] = array(
+									'id' => (int) $alias_term->term_id,
+									'name' => $alias,
+									'count' => $alias_term->count,
+								);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		// Get suggestions from terms.
+		if ( $terms && is_array( $terms ) ) {
+			foreach ( $terms as $term ) {
+				$key = 'wprm_ingredient' === $taxonomy ? $term->term_id . ':' . $term->name : $term->name;
+				if ( ! array_key_exists( $key, $suggestions ) ) {
+					$suggestions[ $key ] = array(
+						'id' => (int) $term->term_id,
+						'name' => $term->name,
+						'count' => $term->count,
+					);
+				}
+			}
+		}
+
+		$suggestions = array_values( $suggestions);
+
+		// Reorder based on count.
+		usort( $suggestions, function($a, $b) {
+			if ( $a['count'] == $b['count'] ) {
+				return 0;
+			}
+			return $a['count'] > $b['count'] ? -1 : 1;
+		} );
+
+		if ( 'wprm_ingredient' === $taxonomy ) {
+			foreach ( $suggestions as &$suggestion ) {
+				$suggestion['selection_token'] = wp_create_nonce( 'wprm_ingredient_selection_' . $suggestion['id'] );
+			}
+			unset( $suggestion );
+		}
+
+		$data = array(
+			'suggestions' => array_slice( $suggestions, 0, 10 ),
+		);
+
+		return rest_ensure_response( $data );
+	}
+
+	/**
+	 * Handle parse ingredients call to the REST API.
+	 *
+	 * @since 5.0.0
+	 * @param WP_REST_Request $request Current request.
+	 */
+	public static function api_modal_parse_ingredients( $request ) {
+		// Parameters.
+		$params = $request->get_params();
+
+		$ingredients = isset( $params['ingredients'] ) ? $params['ingredients'] : '';
+		$parsed = array();
+
+		foreach ( $ingredients as $index => $ingredient ) {
+			$parsed[ $index ] = WPRM_Recipe_Parser::parse_ingredient( $ingredient );
+		}
+
+		$data = array(
+			'parsed' => $parsed,
+		);
+
+		return rest_ensure_response( $data );
+	}
+
+	/**
+	 * Handle ingredient unit connector call to the REST API.
+	 *
+	 * @since 10.3.0
+	 * @param WP_REST_Request $request Current request.
+	 */
+	public static function api_modal_ingredient_unit_connector( $request ) {
+		// Parameters.
+		$params = $request->get_params();
+
+		$unit = isset( $params['unit'] ) ? sanitize_text_field( wp_strip_all_tags( $params['unit'] ) ) : '';
+		$create = isset( $params['create'] ) ? rest_sanitize_boolean( $params['create'] ) : false;
+
+		if ( ! $unit ) {
+			return rest_ensure_response( array(
+				'term_id' => 0,
+				'found' => false,
+			) );
+		}
+
+		$term_id = $create ? WPRM_Recipe_Sanitizer::get_ingredient_unit_id( $unit ) : self::get_existing_ingredient_unit_id( $unit );
+
+		if ( ! $term_id ) {
+			return rest_ensure_response( array(
+				'term_id' => 0,
+				'found' => false,
+			) );
+		}
+
+		$term = get_term( $term_id, 'wprm_ingredient_unit' );
+
+		if ( ! $term || is_wp_error( $term ) ) {
+			return rest_ensure_response( array(
+				'term_id' => 0,
+				'found' => false,
+			) );
+		}
+
+		$connector_data = WPRM_Ingredient_Display::get_unit_connector_data( $term_id );
+		$plural = get_term_meta( $term_id, 'wprm_ingredient_unit_plural', true );
+
+		return rest_ensure_response( array(
+			'term_id' => intval( $term_id ),
+			'found' => true,
+			'name' => $term->name,
+			'singular' => $term->name,
+			'plural' => $plural,
+			'connector' => $connector_data['connector'],
+			'connector_spacing' => $connector_data['connector_spacing'],
+			'connector_pluralizes_ingredient' => $connector_data['connector_pluralizes_ingredient'],
+		) );
+	}
+
+	/**
+	 * Get existing ingredient unit ID by unit text.
+	 *
+	 * @since 10.3.0
+	 * @param string $unit Unit text.
+	 */
+	private static function get_existing_ingredient_unit_id( $unit ) {
+		$unit = WPRM_Recipe_Sanitizer::sanitize_html( $unit );
+
+		if ( ! $unit ) {
+			return 0;
+		}
+
+		$args = array(
+			'hide_empty' => false,
+			'meta_query' => array(
+				array(
+					'key' => 'wprm_ingredient_unit_plural',
+					'value' => $unit,
+					'compare' => '=',
+				),
+			),
+			'taxonomy' => 'wprm_ingredient_unit',
+			'fields' => 'ids',
+			'number' => 1,
+		);
+		$terms = get_terms( $args );
+
+		if ( ! is_wp_error( $terms ) && isset( $terms[0] ) && $terms[0] ) {
+			return intval( $terms[0] );
+		}
+
+		$term = term_exists( $unit, 'wprm_ingredient_unit' ); // @codingStandardsIgnoreLine
+
+		if ( is_array( $term ) && isset( $term['term_id'] ) ) {
+			return intval( $term['term_id'] );
+		}
+
+		return is_numeric( $term ) ? intval( $term ) : 0;
+	}
+
+	/** Add editor-only language details without modifying the cached term objects. */
+	public static function category_editor_terms( $terms ) {
+		return array_map( function( $term ) {
+			$data = (array) $term;
+			if ( function_exists( 'pll_get_term_language' ) ) {
+				$data['language'] = pll_get_term_language( $term->term_id, 'slug' );
+			}
+			return $data;
+		}, array_values( (array) $terms ) );
+	}
+
+	/**
+	 * Handle categories call to the REST API.
+	 *
+	 * @since 8.10.0
+	 * @param WP_REST_Request $request Current request.
+	 */
+	public static function api_modal_categories( $request ) {
+		// Parameters.
+		$params = $request->get_params();
+
+		$taxonomy_key = isset( $params['taxonomy'] ) ? sanitize_text_field( $params['taxonomy'] ) : '';
+		$search = isset( $params['search'] ) ? sanitize_text_field( $params['search'] ) : '';
+
+		// Limit search string length to prevent abuse.
+		if ( strlen( $search ) > 100 ) {
+			$search = substr( $search, 0, 100 );
+		}
+		$term_ids = isset( $params['term_ids'] ) && is_array( $params['term_ids'] ) ? array_map( 'absint', $params['term_ids'] ) : array();
+
+		if ( ! $taxonomy_key ) {
+			return new WP_Error( 'missing_taxonomy', __( 'Taxonomy parameter is required.', 'wp-recipe-maker' ), array( 'status' => 400 ) );
+		}
+
+		// Get full taxonomy name.
+		$taxonomy = 'wprm_' . $taxonomy_key;
+		$wprm_taxonomies = WPRM_Taxonomies::get_taxonomies();
+
+		if ( ! isset( $wprm_taxonomies[ $taxonomy ] ) ) {
+			return new WP_Error( 'invalid_taxonomy', __( 'Invalid taxonomy.', 'wp-recipe-maker' ), array( 'status' => 400 ) );
+		}
+
+		// Limit term_ids array size to prevent DoS attacks or performance issues.
+		// 100 is a reasonable limit for selected terms when editing a recipe.
+		if ( count( $term_ids ) > 100 ) {
+			$term_ids = array_slice( $term_ids, 0, 100 );
+		}
+
+		// Remove any zero or invalid IDs after sanitization.
+		$term_ids = array_filter( $term_ids, function( $id ) {
+			return $id > 0;
+		} );
+
+		$terms = array();
+
+		// If specific term IDs are requested (for selected values), fetch those first.
+		if ( ! empty( $term_ids ) ) {
+			$args = array(
+				'taxonomy' => $taxonomy,
+				'lang' => '',
+				'include' => $term_ids,
+				'hide_empty' => false,
+				'count' => true,
+			);
+
+			$query = new WP_Term_Query( $args );
+			$fetched_terms = $query->get_terms();
+
+			if ( $fetched_terms && is_array( $fetched_terms ) ) {
+				foreach ( $fetched_terms as $term ) {
+					$terms[ $term->term_id ] = $term;
+				}
+			}
+		}
+
+		// If search is provided, fetch matching terms.
+		if ( $search ) {
+			$args = array(
+				'taxonomy' => $taxonomy,
+				'lang' => '',
+				'hide_empty' => false,
+				'number' => 50, // Limit results to prevent large queries.
+				'count' => true,
+				'search' => $search,
+				'orderby' => 'name',
+				'order' => 'ASC',
+			);
+
+			$query = new WP_Term_Query( $args );
+			$search_terms = $query->get_terms();
+
+			if ( $search_terms && is_array( $search_terms ) ) {
+				foreach ( $search_terms as $term ) {
+					// Don't duplicate if already fetched.
+					if ( ! isset( $terms[ $term->term_id ] ) ) {
+						$terms[ $term->term_id ] = $term;
+					}
+				}
+			}
+		}
+
+		// Convert to array format expected by frontend.
+		$terms_array = self::category_editor_terms( $terms );
+
+		$data = array(
+			'terms' => $terms_array,
+		);
+
+		return rest_ensure_response( $data );
+	}
+}
+
+WPRM_Api_Modal::init();

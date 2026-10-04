@@ -1,0 +1,62 @@
+.yummy-mg-bt-0 {
+  margin-bottom: 0 !important;
+}
+
+.yummy-pad-32-42 {
+  padding: 42px 32px !important;
+}
+
+.widget_title {
+  border-bottom: 2px dashed rgba(var(--yummy-secondary-color-rgb), 0.1);
+  padding-bottom: 16px;
+  width: 100%;
+}
+
+.bg-primary-color-op-5 {
+  background: rgba(var(--yummy-secondary-color-rgb), 0.05);
+}
+
+:is(.yummy-btn-secondary .wp-block-button__link,
+.btn-cta.btn-2,
+.site .btn-secondary) {
+  color: var(--yummy-primary-color);
+  background-color: transparent;
+  text-decoration: none;
+  padding: 0;
+  transition: all 0.35s ease;
+  border: none;
+}
+:is(.yummy-btn-secondary .wp-block-button__link,
+.btn-cta.btn-2,
+.site .btn-secondary)::after {
+  content: "";
+  background-color: currentColor;
+  display: inline-block;
+  width: 15px;
+  height: 10.5px;
+  margin-left: 5.5px;
+  transition: all 0.2s ease 0s;
+}
+:is(.yummy-btn-secondary .wp-block-button__link,
+.btn-cta.btn-2,
+.site .btn-secondary):hover {
+  background-color: transparent;
+  color: var(--yummy-secondary-color);
+}
+:is(.yummy-btn-secondary .wp-block-button__link,
+.btn-cta.btn-2,
+.site .btn-secondary):hover::after {
+  margin-left: 10px;
+}
+
+.yummy-max-width-790 {
+  max-width: 790px;
+}
+
+@media only screen and (max-widht: 768px) {
+  .yummy-mobile-height {
+    height: 45px !important;
+  }
+}
+
+/*# sourceMappingURL=pattern-style.css.map */

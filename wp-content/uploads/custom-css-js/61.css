@@ -1,0 +1,36 @@
+<!-- start Simple Custom CSS and JS -->
+<style type="text/css">
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 20px 0;
+}
+
+.video-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+}
+
+.video-card h4 {
+    padding: 15px;
+    margin: 0;
+    color: #333;
+    font-size: 1.1rem;
+    line-height: 1.4;
+}
+
+.video-card img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}</style>
+<!-- end Simple Custom CSS and JS -->

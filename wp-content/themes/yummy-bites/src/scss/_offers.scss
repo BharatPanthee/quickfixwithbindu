@@ -1,0 +1,116 @@
+.cw-dashboard {
+    .offers-wrapper {
+        p {
+            color: $secondary-font-color;
+        }
+
+        .featured-offers {
+            background-color: #DDEDE9;
+            display: flex;
+            align-items: center;
+            border-radius: 16px;
+            margin-bottom: 24px;
+
+            ul li {
+                display: flex;
+                align-items: center;
+                gap: 16px;
+                padding: 0;
+                margin: 0;
+                font-weight: 500;
+
+                &:not(:last-child) {
+                    margin-bottom: 12px;
+                }
+
+                svg {
+                    color: #2DB68D;
+                }
+            }
+
+            .btn-primary {
+                background: #2DB68D;
+                border-color: #2DB68D;
+
+                &:hover {
+                    color: #fff;
+                    opacity: 0.6;
+                }
+            }
+
+            .content-wrapper {
+                padding: 48px 100px 48px 80px;
+                flex: 1;
+
+                @media screen and (max-width: 1440px) {
+                    padding: 48px;
+                }
+
+                >*:not(:last-child) {
+                    margin-bottom: 16px;
+                }
+            }
+
+            .image-wrapper {
+                padding-top: 48px;
+            }
+        }
+
+        .offers {
+            display: flex;
+            gap: 24px;
+
+            .inner-wrapper {
+                padding: 32px 40px 24px;
+                border-radius: 16px;
+
+                @media screen and (max-width: 1440px) {
+                    padding: 32px 32px 24px;
+                }
+
+                h2,
+                p {
+                    margin-bottom: 16px;
+                }
+
+                .image-wrapper {
+                    display: flex;
+                    justify-content: center;
+                }
+
+                &:first-child {
+                    background-color: #D7EDF8;
+
+                    .btn-primary {
+                        background: #0692D3;
+                        border-color: #0692D3;
+
+                        &:hover {
+                            color: #fff;
+                            opacity: 0.6;
+                        }
+                    }
+                }
+
+                &:nth-child(2) {
+                    background-color: #F1DEC2;
+
+                    .btn-primary {
+                        background: #FAAB36;
+                        border-color: #FAAB36;
+
+                        &:hover {
+                            color: #fff;
+                            opacity: 0.6;
+                        }
+                    }
+                }
+            }
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 700;
+        }
+    }
+}

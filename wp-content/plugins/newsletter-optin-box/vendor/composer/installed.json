@@ -1,0 +1,264 @@
+{
+    "packages": [
+        {
+            "name": "hizzle/store",
+            "version": "0.2.25",
+            "version_normalized": "0.2.25.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hizzle-co/datastore.git",
+                "reference": "bd8a5591dd30f185b19ae646e2ee6f2a07b859fc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hizzle-co/datastore/zipball/bd8a5591dd30f185b19ae646e2ee6f2a07b859fc",
+                "reference": "bd8a5591dd30f185b19ae646e2ee6f2a07b859fc",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2026-08-18T10:06:31+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Hizzle\\Store\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-3.0+"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Mutende",
+                    "email": "picocodes@gmail.com",
+                    "homepage": "http://github.com/picocodes/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A standardized way of creating data stores for your projects",
+            "homepage": "http://github.com/hizzle-co/datastore/",
+            "keywords": [
+                "hizzle",
+                "store",
+                "wordpress"
+            ],
+            "support": {
+                "issues": "https://github.com/hizzle-co/datastore/issues",
+                "source": "https://github.com/hizzle-co/datastore/tree/0.2.25"
+            },
+            "install-path": "../hizzle/store"
+        },
+        {
+            "name": "hizzle/wp",
+            "version": "1.5.2",
+            "version_normalized": "1.5.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/hizzle-co/hizzle.git",
+                "reference": "d7e6d49316a593c1a01062448f8e902b98b12129"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/hizzle-co/hizzle/zipball/d7e6d49316a593c1a01062448f8e902b98b12129",
+                "reference": "d7e6d49316a593c1a01062448f8e902b98b12129",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "time": "2026-09-11T18:19:19+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/ScriptManager.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Brian Mutende",
+                    "email": "picocodes@gmail.com",
+                    "homepage": "http://github.com/picocodes/",
+                    "role": "Developer"
+                }
+            ],
+            "description": "WordPress compatibility layer for Hizzle JS packages",
+            "homepage": "https://github.com/hizzle-co/hizzle/",
+            "keywords": [
+                "hizzle",
+                "wordpress",
+                "wp"
+            ],
+            "support": {
+                "issues": "https://github.com/hizzle-co/hizzle/issues",
+                "source": "https://github.com/hizzle-co/hizzle/tree/v1.5.2"
+            },
+            "install-path": "../hizzle/wp"
+        },
+        {
+            "name": "symfony/css-selector",
+            "version": "v5.4.45",
+            "version_normalized": "5.4.45.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/css-selector.git",
+                "reference": "4f7f3c35fba88146b56d0025d20ace3f3901f097"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/css-selector/zipball/4f7f3c35fba88146b56d0025d20ace3f3901f097",
+                "reference": "4f7f3c35fba88146b56d0025d20ace3f3901f097",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2.5",
+                "symfony/polyfill-php80": "^1.16"
+            },
+            "time": "2024-09-25T14:11:13+00:00",
+            "type": "library",
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\CssSelector\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Jean-François Simon",
+                    "email": "jeanfrancois.simon@sensiolabs.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Converts CSS selectors to XPath expressions",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/css-selector/tree/v5.4.45"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../symfony/css-selector"
+        },
+        {
+            "name": "symfony/polyfill-php80",
+            "version": "v1.37.0",
+            "version_normalized": "1.37.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/polyfill-php80.git",
+                "reference": "dfb55726c3a76ea3b6459fcfda1ec2d80a682411"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/polyfill-php80/zipball/dfb55726c3a76ea3b6459fcfda1ec2d80a682411",
+                "reference": "dfb55726c3a76ea3b6459fcfda1ec2d80a682411",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "time": "2026-04-10T16:19:22+00:00",
+            "type": "library",
+            "extra": {
+                "thanks": {
+                    "url": "https://github.com/symfony/polyfill",
+                    "name": "symfony/polyfill"
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "bootstrap.php"
+                ],
+                "psr-4": {
+                    "Symfony\\Polyfill\\Php80\\": ""
+                },
+                "classmap": [
+                    "Resources/stubs"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ion Bazan",
+                    "email": "ion.bazan@gmail.com"
+                },
+                {
+                    "name": "Nicolas Grekas",
+                    "email": "p@tchwork.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony polyfill backporting some PHP 8.0+ features to lower PHP versions",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "compatibility",
+                "polyfill",
+                "portable",
+                "shim"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/polyfill-php80/tree/v1.37.0"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "install-path": "../symfony/polyfill-php80"
+        }
+    ],
+    "dev": true,
+    "dev-package-names": []
+}

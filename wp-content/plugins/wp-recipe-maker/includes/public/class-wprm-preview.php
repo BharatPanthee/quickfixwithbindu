@@ -1,0 +1,352 @@
+<?php
+/**
+ * Handle the recipe preview.
+ *
+ * @link       https://bootstrapped.ventures
+ * @since      9.6.0
+ *
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ */
+
+/**
+ * Handle the recipe preview.
+ *
+ * @since      9.6.0
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ * @author     Brecht Vandersmissen <brecht@bootstrapped.ventures>
+ */
+class WPRM_Preview {
+
+	private static $previewing_id = false;
+
+	/**
+	 * Register actions and filters.
+	 *
+	 * @since	9.6.0
+	 */
+	public static function init() {
+		add_action( 'init', array( __CLASS__, 'check_for_preview' ) );
+		add_action( 'template_redirect', array( __CLASS__, 'template_redirect' ), 1 );
+	}
+
+	/**
+	 * Check if we're in preview mode.
+	 *
+	 * @since	9.6.0
+	 */
+	public static function is_preview() {
+		return false !== self::$previewing_id;
+	}
+
+	/**
+	 * Check if we're trying to preview a recipe.
+	 *
+	 * @since	9.6.0
+	 */
+	public static function check_for_preview() {
+		$slug = 'wprm-recipe-preview';
+		$request_uri = isset( $_SERVER['REQUEST_URI'] ) ? sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) ) : '';
+		preg_match( '/[\/\?]' . $slug . '[\/=](.+?)(\/)?$/', $request_uri, $preview_url ); // Input var okay.
+		$previewing_id = isset( $preview_url[1] ) ? $preview_url[1] : false;
+
+		if ( false !== $previewing_id ) {
+			$user_is_allowed_access = false;
+			if ( 'new' === $previewing_id ) {
+				$user_is_allowed_access = current_user_can( 'edit_posts' );
+			} else {
+				$preview_id = intval( $previewing_id );
+				$user_is_allowed_access = current_user_can( 'edit_post', $preview_id );
+			}
+
+			if ( $user_is_allowed_access ) {
+				self::$previewing_id = $previewing_id;
+			}
+		}
+	}
+
+	/**
+	 * Maybe set up a fake post and redirect the template.
+	 *
+	 * @since	9.6.0
+	 */
+	public static function template_redirect() {
+		if ( ! self::is_preview() ) {
+			return;
+		}
+
+		global $wp, $wp_query;
+
+		self::prevent_preview_caching();
+
+		$post_id = self::get_fake_post_id(); // Negative ID to avoid collisions with real posts.
+
+		// Create fake post.
+		$post = new stdClass();
+		$post->ID = $post_id;
+		$post->post_author = 1;
+		$post->post_date = current_time( 'mysql' );
+		$post->post_date_gmt = current_time( 'mysql', 1 );
+		$post->post_title = 'WP Recipe Maker';
+		$post->post_status = 'publish';
+		$post->comment_status = 'closed';
+		$post->ping_status = 'closed';
+		$post->post_name = 'wprm-recipe-preview-' . self::$previewing_id;
+		$post->post_type = 'post';
+		$post->filter = 'raw'; // important!
+
+		// Set up post content.
+		$post_content = '';
+		$post_content .= '<p>';
+		$post_content .= 'new' === self::$previewing_id ? __( 'Previewing a new recipe', 'wp-recipe-maker' ) : __( 'Previewing recipe ID:', 'wp-recipe-maker' ) . ' ' . self::$previewing_id;
+		$post_content .= '</p>';
+		$post_content .= '<p>[wprm-recipe preview="' . esc_attr( self::$previewing_id ) . '"]</p>';
+
+		$post->post_content = $post_content;
+
+		// Convert to WP_Post object
+		$wp_post = new WP_Post( $post );
+
+		// Add the fake post to the cache for this request, overwriting any stale object cache entry.
+		wp_cache_set( $post_id, $wp_post, 'posts' );
+
+		// Update the main query
+		$wp_query->post = $wp_post;
+		$wp_query->posts = array( $wp_post );
+		$wp_query->queried_object = $wp_post;
+		$wp_query->queried_object_id = $post_id;
+		$wp_query->found_posts = 1;
+		$wp_query->post_count = 1;
+		$wp_query->max_num_pages = 1; 
+		$wp_query->is_page = true;
+		$wp_query->is_singular = true; 
+		$wp_query->is_single = false; 
+		$wp_query->is_attachment = false;
+		$wp_query->is_archive = false; 
+		$wp_query->is_category = false;
+		$wp_query->is_tag = false; 
+		$wp_query->is_tax = false;
+		$wp_query->is_author = false;
+		$wp_query->is_date = false;
+		$wp_query->is_year = false;
+		$wp_query->is_month = false;
+		$wp_query->is_day = false;
+		$wp_query->is_time = false;
+		$wp_query->is_search = false;
+		$wp_query->is_feed = false;
+		$wp_query->is_comment_feed = false;
+		$wp_query->is_trackback = false;
+		$wp_query->is_home = false;
+		$wp_query->is_embed = false;
+		$wp_query->is_404 = false; 
+		$wp_query->is_paged = false;
+		$wp_query->is_admin = false; 
+		$wp_query->is_preview = false; 
+		$wp_query->is_robots = false; 
+		$wp_query->is_posts_page = false;
+		$wp_query->is_post_type_archive = false;
+
+		$GLOBALS['wp_query'] = $wp_query;
+  		$wp->register_globals();
+	}
+
+	/**
+	 * Get a deterministic fake post ID for the current preview.
+	 *
+	 * @since	9.6.0
+	 */
+	private static function get_fake_post_id() {
+		if ( 'new' === self::$previewing_id ) {
+			return -4273189;
+		}
+
+		return -4273189 - absint( self::$previewing_id );
+	}
+
+	/**
+	 * Prevent cache plugins from storing recipe preview pages.
+	 *
+	 * @since	9.6.0
+	 */
+	private static function prevent_preview_caching() {
+		if ( ! defined( 'DONOTCACHEPAGE' ) ) {
+			define( 'DONOTCACHEPAGE', true );
+		}
+
+		nocache_headers();
+	}
+
+	/**
+	 * Get the preview recipe.
+	 *
+	 * @since	9.6.0
+	 * @param	int $preview_id ID of the preview recipe.
+	 */
+	public static function get_preview_recipe( $preview_id ) {
+		$recipe = false;
+		$stored_preview = get_transient( 'wprm_recipe_preview_' . $preview_id );
+		$json = false;
+		$allow_unfiltered_html = false;
+
+		$is_versioned_preview = is_array( $stored_preview )
+			&& isset( $stored_preview['wprm_preview_version'], $stored_preview['recipe'] )
+			&& 2 === $stored_preview['wprm_preview_version']
+			&& is_array( $stored_preview['recipe'] );
+
+		if ( $is_versioned_preview ) {
+			$json = $stored_preview['recipe'];
+			$stored_allow_unfiltered_html = ! empty( $stored_preview['allow_unfiltered_html'] );
+			$expected_signature = self::get_preview_signature( $json, $stored_allow_unfiltered_html );
+			if ( isset( $stored_preview['signature'] ) && is_string( $stored_preview['signature'] ) && hash_equals( $expected_signature, $stored_preview['signature'] ) ) {
+				$allow_unfiltered_html = $stored_allow_unfiltered_html;
+			}
+		} elseif ( is_array( $stored_preview ) ) {
+			// Legacy transients do not record who supplied their HTML. Always treat
+			// them as filtered so an old payload cannot become trusted after updating.
+			$json = $stored_preview;
+		}
+
+		if ( $json ) {
+			$sanitized_recipe = WPRM_Recipe_Sanitizer::sanitize_with_html_permissions( $json, $allow_unfiltered_html );
+
+			// Fix technical fields.
+			$sanitized_recipe['id'] = 'preview';
+			$sanitized_recipe['parent_url'] = '#';
+			$sanitized_recipe['image_url'] = $json['image_url'];
+			$sanitized_recipe['pin_image_url'] = $json['pin_image_url'];
+			$sanitized_recipe['ingredients_flat'] = self::flatten_sanitized_groups( $sanitized_recipe, 'ingredients', 'ingredient' );
+			$sanitized_recipe['instructions_flat'] = self::flatten_sanitized_groups( $sanitized_recipe, 'instructions', 'instruction' );
+
+			// Fix tags.
+			$sanitized_recipe['tags'] = array();
+			if ( isset( $json['tags'] ) ) {
+				foreach ( $json['tags'] as $taxonomy => $terms ) {
+					$sanitized_recipe['tags'][ $taxonomy ] = array();
+
+					foreach ( $terms as $term ) {
+						if ( is_array( $term ) || is_object( $term ) ) {
+							$term = (array) $term;
+							$term = isset( $term['name'] ) ? $term['name'] : '';
+						}
+
+						$term = sanitize_text_field( $term );
+						if ( '' !== $term ) {
+							$sanitized_recipe['tags'][ $taxonomy ][] = $term;
+						}
+					}
+				}
+			}
+
+			// Set some additional fields.
+			if ( isset( $json['rating'] ) ) { $sanitized_recipe['rating'] = $json['rating']; }
+			$sanitized_recipe['permalink'] = home_url() . '/?wprm-recipe-preview=' . $preview_id;
+
+			$recipe = new WPRM_Recipe_Shell( $sanitized_recipe );
+			WPRM_Template_Shortcodes::set_current_recipe_shell( $recipe );
+
+			// Set frontend data.
+			$recipe_data = array(
+				'recipe-preview' => $recipe->get_data_frontend(),
+			);
+			echo '<script>window.wprm_recipes = ' . wp_json_encode( $recipe_data ) . '</script>';
+
+			// Prevent other frontend data.
+			add_filter( 'wprm_recipes_on_page', '__return_false', 999 );
+		} else {
+			echo '<script>alert("' . esc_attr( __( 'Something went wrong. The preview could not be loaded.', 'wp-recipe-maker' ) ) . '");</script>';
+		}
+
+		return $recipe;
+	}
+
+	/**
+	 * Set a recipe for previewing.
+	 *
+	 * @since	9.6.0
+	 */
+	public static function set_recipe_for_preview_and_get_url( $recipe ) {
+		$preview_id = isset( $recipe['id'] ) ? intval( $recipe['id'] ) : 'new';
+		$allow_unfiltered_html = current_user_can( 'unfiltered_html' );
+		$stored_preview = array(
+			'wprm_preview_version' => 2,
+			'recipe' => $recipe,
+			'allow_unfiltered_html' => $allow_unfiltered_html,
+			'signature' => self::get_preview_signature( $recipe, $allow_unfiltered_html ),
+		);
+
+		// Store recipe as transient.
+		delete_transient( 'wprm_recipe_preview_' . $preview_id );
+		set_transient( 'wprm_recipe_preview_' . $preview_id, $stored_preview, HOUR_IN_SECONDS );
+
+		// Get URL to use for previewing this recipe.
+		$home_url = WPRM_Compatibility::get_home_url();
+		$query_params = false;
+
+		if ( false !== strpos( $home_url, '?' ) ) {
+			$home_url_parts = explode( '?', $home_url, 2 );
+
+			$home_url = trailingslashit( $home_url_parts[0] );
+			$query_params = $home_url_parts[1];
+		}
+
+		$preview_url = $home_url . '?wprm-recipe-preview=' . $preview_id;
+
+		if ( $query_params ) {
+			$print_url .= '&' . $query_params;
+		}
+
+		return $preview_url;		
+	}
+
+	/**
+	 * Sign the preview payload and captured HTML capability.
+	 *
+	 * This distinguishes preview metadata created by the plugin from a legacy
+	 * recipe payload containing attacker-controlled keys with the same names.
+	 *
+	 * @since 10.8.2
+	 * @param array   $recipe Recipe data.
+	 * @param boolean $allow_unfiltered_html Whether unfiltered HTML is allowed.
+	 * @return string Preview payload signature.
+	 */
+	private static function get_preview_signature( $recipe, $allow_unfiltered_html ) {
+		$data = maybe_serialize( $recipe ) . '|' . ( $allow_unfiltered_html ? '1' : '0' );
+		return hash_hmac( 'sha256', $data, wp_salt( 'auth' ) );
+	}
+
+	/**
+	 * Flatten sanitized recipe groups without restoring the submitted raw fields.
+	 *
+	 * @since 10.8.2
+	 * @param array  $recipe Sanitized recipe data.
+	 * @param string $group_key Group and item collection key.
+	 * @param string $item_type Default item type.
+	 * @return array Flattened sanitized items.
+	 */
+	private static function flatten_sanitized_groups( $recipe, $group_key, $item_type ) {
+		$groups = isset( $recipe[ $group_key ] ) && is_array( $recipe[ $group_key ] ) ? $recipe[ $group_key ] : array();
+		$flat = array();
+
+		foreach ( $groups as $group_index => $group ) {
+			$items = isset( $group[ $group_key ] ) && is_array( $group[ $group_key ] ) ? $group[ $group_key ] : array();
+
+			if ( 0 !== $group_index || ! empty( $group['name'] ) ) {
+				unset( $group[ $group_key ] );
+				$group['type'] = 'group';
+				$flat[] = $group;
+			}
+
+			foreach ( $items as $item ) {
+				if ( 'instruction' !== $item_type || ! isset( $item['type'] ) || 'tip' !== $item['type'] ) {
+					$item['type'] = $item_type;
+				}
+				$flat[] = $item;
+			}
+		}
+
+		return $flat;
+	}
+}
+
+WPRM_Preview::init();

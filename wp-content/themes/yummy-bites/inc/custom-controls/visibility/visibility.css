@@ -1,0 +1,53 @@
+.customize-control-yummy-bites-visibility ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px;
+    gap: 0.5rem;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.customize-control-yummy-bites-visibility ul li {
+    margin: 0;
+    flex: 1;
+}
+
+.customize-control-yummy-bites-visibility ul li label {
+    padding: 10px 6px;
+    transition: background-color 0.3s;
+    display: block;
+    cursor: pointer;
+}
+
+.customize-control-yummy-bites-visibility ul li label:hover {
+    background-color: white;
+}
+
+.customize-control-yummy-bites-visibility ul li label:has(input:checked) {
+    background-color: white;
+    color: #3498DE;
+}
+
+
+.customize-control-yummy-bites-visibility .yn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.customize-control-yummy-bites-visibility .yn-icon > svg {
+    display: block;
+}
+
+.customize-control-yummy-bites-visibility :is(.yn-icon>span, input[type="checkbox"]) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}

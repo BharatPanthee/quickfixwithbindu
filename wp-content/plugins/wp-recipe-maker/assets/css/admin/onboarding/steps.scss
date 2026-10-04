@@ -1,0 +1,213 @@
+// Steps.
+.wprm-admin-onboarding-step-welcome {
+    .wprm-admin-onboarding-step-welcome-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        
+        a {
+            flex-basis: 100%;
+            display: block;
+            margin-top: 5px;
+            font-size: 11px;
+            text-align: center;
+        }
+    }
+
+    & + .footer-buttons {
+        display: none;
+    }
+}
+
+.wprm-admin-onboarding-first-recipe {
+    display: flex;
+    gap: 28px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    padding: 28px;
+    border: 1px solid #72aee6;
+    border-left: 5px solid #2271b1;
+    border-radius: 4px;
+    background: #f0f6fc;
+
+    > div {
+        max-width: 610px;
+    }
+
+    span {
+        color: #50575e;
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+    }
+
+    h2 {
+        margin: 6px 0 8px !important;
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    p {
+        margin: 0 !important;
+        color: #3c434a;
+        line-height: 1.55;
+    }
+
+    .button {
+        flex: 0 0 auto;
+        white-space: nowrap;
+    }
+}
+
+.wprm-admin-onboarding-resources-note {
+    margin-bottom: 30px !important;
+}
+
+.wprm-admin-onboarding-step-creating {
+    .wprm-admin-onboarding-editor-guidance {
+        margin-bottom: 18px;
+        padding: 14px 16px;
+        border-left: 4px solid #2271b1;
+        background: #f0f6fc;
+
+        p {
+            margin: 0 !important;
+
+            & + p {
+                margin-top: 6px !important;
+            }
+        }
+    }
+
+    .wprm-admin-onboarding-editor-uncertain {
+        margin-top: 14px !important;
+    }
+
+    & + .footer-buttons {
+        display: none;
+    }
+}
+
+.wprm-admin-onboarding-step-snippet,
+.wprm-admin-onboarding-step-template {
+    .wprm-admin-onboarding-step-template-preview {
+        background-color: white;
+        padding: 20px;
+
+        font-size: 16px;
+        margin-bottom: 40px;
+
+        & > p {
+            &:first-child {
+                margin-top: 0 !important;
+            }
+            &:last-child {
+                margin-bottom: 0 !important;
+            }
+        }
+    }
+
+    & + .footer-buttons {
+        display: none;
+    }
+}
+
+// Progress bar.
+#wprm-admin-onboarding-steps ol.progtrckr {
+    text-align: center;
+    list-style-type: none;
+    padding: 0;
+    margin-bottom: 20px;
+    
+    li {
+        display: inline-block;
+        text-align: center;
+        line-height: 2.5rem;
+        position: relative;
+
+        span {
+            padding: 0 1.5rem;
+        }
+
+        &:before {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            margin-left: -10px;
+            margin-bottom: -10px;
+            line-height: 1.2em;
+            border-radius: 1.2em;
+        }
+
+        &.progtrckr-todo {
+            color: silver;
+            border-bottom: 4px solid #CCCCCC;
+        }
+        &.progtrckr-doing {
+            color: black;
+            border-bottom: 4px solid #CCCCCC;
+
+            &:before {
+                content: "\2022";
+                color: white;
+                background-color: #CCCCCC;
+                width: 1.2em;
+            }
+        }
+        &.progtrckr-done {
+            color: black;
+            border-bottom: 4px solid #0073aa;
+
+            &:before {
+                content: "\2713";
+                color: white;
+                background-color: #0073aa;
+                width: 1.2em;
+                line-height: 1.2em;
+                border-radius: 1.2em;
+            }
+        }
+    }
+
+    em {
+        display: none;
+        font-weight: 700;
+        padding: 0 10px;
+    }
+}
+
+@media (max-width: 650px) {
+    .wprm-admin-onboarding-first-recipe {
+        display: block;
+        padding: 22px;
+
+        .button {
+            margin-top: 18px;
+            white-space: normal;
+        }
+    }
+
+    #wprm-admin-onboarding-steps ol.progtrckr {
+        li span {
+            display: none;
+        }
+
+        em {
+            display: inline;
+        }
+    }
+}
+
+// Buttons.
+#wprm-admin-onboarding-steps .footer-buttons {
+    margin-top: 20px;
+    text-align: center;
+
+    button {
+        margin: 0 5px;
+    }
+}

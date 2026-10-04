@@ -1,0 +1,279 @@
+[
+  {
+    "id": "74ed817",
+    "elType": "container",
+    "settings": {
+      "flex_direction": "column",
+      "padding": {
+        "unit": "rem",
+        "top": "2.25",
+        "right": "0",
+        "bottom": "2.25",
+        "left": "0",
+        "isLinked": false
+      },
+      "padding_tablet": {
+        "unit": "rem",
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": "",
+        "isLinked": true
+      },
+      "padding_mobile": {
+        "unit": "rem",
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": "",
+        "isLinked": true
+      }
+    },
+    "elements": [
+      {
+        "id": "ef04a76",
+        "elType": "container",
+        "settings": {
+          "flex_direction": "row",
+          "container_type": "grid",
+          "grid_columns_grid": {
+            "unit": "fr",
+            "size": 2,
+            "sizes": []
+          },
+          "grid_rows_grid": {
+            "unit": "fr",
+            "size": 1,
+            "sizes": []
+          },
+          "padding": {
+            "unit": "custom",
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": "",
+            "isLinked": true
+          },
+          "presetTitle": "Grid",
+          "presetIcon": "eicon-container-grid",
+          "css_classes": "hostinger-ai-contact-form-3",
+          "padding_tablet": {
+            "unit": "custom",
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": "",
+            "isLinked": true
+          },
+          "padding_mobile": {
+            "unit": "custom",
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": "",
+            "isLinked": false
+          },
+          "content_width": "full"
+        },
+        "elements": [
+          {
+            "id": "9eb5a6e",
+            "elType": "container",
+            "settings": {
+              "content_width": "full",
+              "flex_justify_content": "center",
+              "padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": true
+              }
+            },
+            "elements": [
+              {
+                "id": "066164e",
+                "elType": "widget",
+                "settings": {
+                  "title": "Heading",
+                  "typography_typography": "custom",
+                  "typography_font_size": {
+                    "unit": "rem",
+                    "size": 1,
+                    "sizes": []
+                  },
+                  "typography_font_weight": "700",
+                  "_css_classes": "hostinger-ai-title",
+                  "__globals__": {
+                    "title_color": "globals/colors?id=09cc561"
+                  },
+                  "typography_font_size_tablet": {
+                    "unit": "rem",
+                    "size": "",
+                    "sizes": []
+                  },
+                  "typography_font_size_mobile": {
+                    "unit": "rem",
+                    "size": "",
+                    "sizes": []
+                  }
+                },
+                "elements": [],
+                "widgetType": "heading"
+              },
+              {
+                "id": "efef6ce",
+                "elType": "widget",
+                "settings": {
+                  "_css_classes": "hostinger-ai-description",
+                  "__globals__": {
+                    "text_color": "globals/colors?id=09cc561",
+                    "link_color": "globals/colors?id=09cc561"
+                  },
+                  "typography_typography": "custom",
+                  "typography_font_size": {
+                    "unit": "rem",
+                    "size": 1,
+                    "sizes": []
+                  },
+                  "typography_font_size_tablet": {
+                    "unit": "rem",
+                    "size": "",
+                    "sizes": []
+                  },
+                  "typography_font_size_mobile": {
+                    "unit": "rem",
+                    "size": "",
+                    "sizes": []
+                  },
+                  "typography_font_weight": "400"
+                },
+                "elements": [],
+                "widgetType": "text-editor"
+              },
+              {
+                "id": "7345513",
+                "elType": "widget",
+                "settings": {
+                  "editor": "<p>email@email.com<br />(123) 123 123</p>",
+                  "_margin": {
+                    "unit": "px",
+                    "top": "35",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                    "isLinked": false
+                  },
+                  "__globals__": {
+                    "text_color": "globals/colors?id=09cc561",
+                    "link_color": "globals/colors?id=09cc561"
+                  },
+                  "typography_typography": "custom",
+                  "typography_font_size": {
+                    "unit": "rem",
+                    "size": 1,
+                    "sizes": []
+                  },
+                  "typography_font_size_tablet": {
+                    "unit": "rem",
+                    "size": "",
+                    "sizes": []
+                  },
+                  "typography_font_size_mobile": {
+                    "unit": "rem",
+                    "size": "",
+                    "sizes": []
+                  },
+                  "typography_font_weight": "400",
+                  "_margin_mobile": {
+                    "unit": "rem",
+                    "top": "0",
+                    "right": "0",
+                    "bottom": "0",
+                    "left": "0",
+                    "isLinked": false
+                  }
+                },
+                "elements": [],
+                "widgetType": "text-editor"
+              },
+              {
+                "id": "a2f8327",
+                "elType": "widget",
+                "settings": {
+                  "social_icon_list": [
+                    {
+                      "social_icon": {
+                        "value": "fab fa-facebook",
+                        "library": "fa-brands"
+                      },
+                      "_id": "d8d3e91"
+                    },
+                    {
+                      "social_icon": {
+                        "value": "fab fa-twitter",
+                        "library": "fa-brands"
+                      },
+                      "_id": "2d119b6"
+                    },
+                    {
+                      "social_icon": {
+                        "value": "fab fa-youtube",
+                        "library": "fa-brands"
+                      },
+                      "_id": "7e2fa31"
+                    }
+                  ],
+                  "shape": "circle",
+                  "align": "left"
+                },
+                "elements": [],
+                "widgetType": "social-icons"
+              }
+            ],
+            "isInner": true
+          },
+          {
+            "id": "dbc60e1",
+            "elType": "container",
+            "settings": {
+              "content_width": "full",
+              "padding": {
+                "unit": "px",
+                "top": "0",
+                "right": "0",
+                "bottom": "0",
+                "left": "0",
+                "isLinked": true
+              }
+            },
+            "elements": [
+              {
+                "id": "974d9e9",
+                "elType": "widget",
+                "settings": {
+                  "title": "trans-contact_title",
+                  "description": "trans-contact_description",
+                  "button_text": "trans-button_text",
+                  "recipient_email": "",
+                  "name_label": "trans-name_label",
+                  "name_placeholder": "trans-name_placeholder",
+                  "email_label": "trans-email_label",
+                  "email_placeholder": "trans-email_placeholder",
+                  "message_label": "trans-message_label",
+                  "message_placeholder": "trans-message_placeholder"
+                },
+                "elements": [],
+                "widgetType": "hostinger-contact-form"
+              }
+            ],
+            "isInner": true
+          }
+        ],
+        "isInner": true
+      }
+    ],
+    "isInner": false
+  }
+]

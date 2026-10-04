@@ -1,0 +1,57 @@
+/*
+Theme Name: Recipe Quest
+Theme URI: https://wpdelicious.com/wordpress-themes/recipe-quest/
+Description: Recipe Quest is a free recipe WordPress theme that helps you build professional food blogs and recipe websites with ease. With access to over 1600 Google Fonts and unlimited color options, you can customize your site to perfectly match your brand identity. It integrates with the WP Delicious plugin seamlessly, bringing extra features and functionalities that enhance your site. Optimized for both SEO and speed, Recipe Quest helps your website load quickly and rank higher in search results. The theme's mobile-responsive design ensures your recipes look great on all devices and rank well in search engines. The theme includes a pre-built Instagram section, allowing you to showcase your latest culinary creations directly on your site and grow your social media following. Recipe Quest also supports translation and right-to-left languages, making your content accessible to a global audience. Detailed documentation and support are available to help you every step of the way when making your website. Experience Recipe Quest at https://demo.wpdelicious.com/recipe-quest/, and get support at https://wpdelicious.com/support-ticket/.
+Author: WP Delicious
+Author URI: https://wpdelicious.com/
+Template: yummy-bites
+Version: 1.0.1
+Requires at least: 6.2
+Requires PHP: 7.3
+Tested up to: 6.7
+License: GNU General Public License v3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: blog, one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, e-commerce, food-and-drink
+Text Domain: recipe-quest
+*/
+@media screen and (min-width: 1200px) {
+  .site-header.style-nine .search-form {
+    max-width: 192px;
+  }
+}
+.site-header.style-nine > .header-top {
+  display: none;
+}
+.site-header.style-nine > .header-top .container {
+  justify-content: space-between;
+}
+@media screen and (min-width: 1200px) {
+  .site-header.style-nine > .header-top .container {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+}
+.site-header.style-nine > .header-top .container .header-left {
+  grid-gap: 0;
+}
+.site-header.style-nine > .header-top .container .header-right input[type=search] {
+  height: 44px;
+}
+.site-header.style-nine > .header-top .container .yummy-networks + .secondary-nav {
+  margin-left: 16px;
+  padding-left: 16px;
+  border-left: 1px solid #E9E9E9;
+}
+@media screen and (min-width: 1200px) {
+  .site-header.style-nine > .header-top {
+    display: block;
+  }
+}
+.site-header.style-nine > .header-main {
+  padding: 32px 0;
+}
+.site-header.style-nine > .header-main .header-right {
+  grid-gap: 0;
+}
+
+/*# sourceMappingURL=style.css.map */

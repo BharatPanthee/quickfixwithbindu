@@ -1,0 +1,431 @@
+<?php
+
+/**
+ * Noptin
+ *
+ * Simple WordPress optin form
+ *
+ *
+ * Plugin Name:     Noptin
+ * Plugin URI:      https://noptin.com
+ * Description:     A very fast and lightweight WordPress marketing automation plugin
+ * Author:          Noptin Newsletter
+ * Author URI:      https://github.com/picocodes
+ * Version:         4.3.10
+ * Text Domain:     newsletter-optin-box
+ * License:         GPLv3
+ * License URI:     http://www.gnu.org/licenses/gpl-3.0.txt
+ * Domain Path:     /languages
+ *
+ * @since           1.0.0
+ * @author          Picocodes
+ * @author          Kaz
+ * @license         GNU General Public License, version 3
+ * @copyright       Picocodes
+ */
+
+// Exit if accessed directly.
+defined( 'ABSPATH' ) || exit;
+
+if ( ! defined( 'NOPTIN_VERIFY_NONCE' ) ) {
+	define( 'NOPTIN_VERIFY_NONCE', false );
+}
+
+define( 'MINIMUM_SUPPORTED_NOPTIN_ADDONS_PACK_VERSION', '3.0.0' );
+
+/**
+ * Plugin main class
+ *
+ * @since 1.0.0
+ */
+class Noptin {
+
+	/**
+	 * The current plugin version.
+	 *
+	 * @var   string Plugin version
+	 * @since 1.0.0
+	 */
+	public $version = '4.3.10';
+
+	/**
+	 * The current database version.
+	 *
+	 * @var         int Plugin db version
+	 * @since       1.0.0
+	 */
+	public $db_version = 7;
+
+	/**
+	 * Stores the main Noptin instance.
+	 *
+	 * @access      private
+	 * @var         Noptin $instance The one true noptin
+	 * @since       1.0.0
+	 */
+	private static $instance = null;
+
+	/**
+	 * The main plugin file.
+	 *
+	 * @access      public
+	 * @var         string Main plugin file;
+	 * @since       1.0.0
+	 */
+	public static $file = __FILE__;
+
+	/**
+	 * Local path to this plugins root directory
+	 *
+	 * @access      public
+	 * @var         string|null the local plugin path.
+	 * @since       1.0.0
+	 */
+	public $plugin_path = null;
+
+	/**
+	 * Web path to this plugins root directory.
+	 *
+	 * @var         string|null the plugin url path.
+	 * @access      public
+	 * @since       1.0.0
+	 */
+	public $plugin_url = null;
+
+	/**
+	 * If this is a test site.
+	 */
+	public $is_test = false;
+
+	/**
+	 * White Label
+	 *
+	 * @var Noptin_White_Label
+	 * @access      public
+	 * @since       1.7.7
+	 */
+	public $white_label = null;
+
+	/**
+	 * New post notifications.
+	 *
+	 * @var Noptin_New_Post_Notify
+	 * @access      public
+	 * @since       1.2.3
+	 */
+	public $post_notifications = null;
+
+	/**
+	 * A state of the art email sender.
+	 *
+	 * @var Noptin_Mailer
+	 * @since 1.2.8
+	 */
+	public $mailer = null;
+
+	/**
+	 * Automation Rules.
+	 *
+	 * @var Noptin_Automation_Rules
+	 * @since       1.2.8
+	 */
+	public $automation_rules;
+
+	/**
+	 * The class responsible for registering various hooks and filters.
+	 *
+	 * @var Noptin_Hooks
+	 * @since       1.2.9
+	 */
+	public $hooks;
+
+	/**
+	 * The main admin class..
+	 *
+	 * @var \Hizzle\Noptin\Admin\Main
+	 * @since       1.2.9
+	 */
+	public $admin;
+
+	/**
+	 * The main emails class.
+	 *
+	 * @var Noptin_Email_Manager
+	 * @since       1.7.0
+	 */
+	public $emails;
+
+	/**
+	 * The main integrations class.
+	 *
+	 * @var Noptin_Integrations
+	 * @since       1.7.0
+	 */
+	public $integrations;
+
+	/**
+	 * New integrations class.
+	 *
+	 * @var \Hizzle\Noptin\Integrations\Main
+	 */
+	public $integrations_new;
+
+	/**
+	 * Actions page.
+	 *
+	 * @var Noptin_Page
+	 * @since       1.7.0
+	 */
+	public $actions_page;
+
+	/**
+	 * Get active instance
+	 *
+	 * @access      public
+	 * @since       1.0.0
+	 * @return      Noptin The one true Noptin
+	 */
+	public static function instance() {
+
+		if ( empty( self::$instance ) ) {
+			self::$instance = new self();
+		}
+
+		return self::$instance;
+	}
+
+	/**
+	 * Class Constructor.
+	 *
+	 * @since 1.0.0
+	 */
+	private function __construct() {
+
+		// Prevent double initialization.
+		if ( function_exists( 'noptin' ) ) {
+			return;
+		}
+
+		// Load files / register the autoloader.
+		$this->load_files();
+
+		// Set up globals.
+		$this->setup_globals();
+
+		// Set up hooks.
+		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ), 5 );
+	}
+
+	/**
+	 * Includes files.
+	 *
+	 * @access      public
+	 * @since       1.2.3
+	 * @return      void
+	 */
+	private function load_files() {
+
+		$plugin_path = plugin_dir_path( __FILE__ );
+
+		// Register autoloader.
+		try {
+			spl_autoload_register( array( $this, 'autoload' ), true );
+		} catch ( Exception $e ) {
+			log_noptin_message( $e->getMessage() );
+		}
+
+		// Non-class files.
+		require_once $plugin_path . 'vendor/autoload.php';
+		require_once $plugin_path . 'includes/emails/class-manager.php';
+		require_once $plugin_path . 'includes/libraries/noptin-com/class-noptin-com.php';
+	}
+
+	/**
+	 * Sets up globals.
+	 *
+	 * @access      public
+	 * @since       1.2.3
+	 * @return      void
+	 */
+	private function setup_globals() {
+
+		// Set up globals;
+		$this->plugin_path = plugin_dir_path( __FILE__ );
+		$this->plugin_url  = plugins_url( '/', __FILE__ );
+		$this->is_test     = 'production' !== wp_get_environment_type();
+
+		// Email manager.
+		$this->emails = new Noptin_Email_Manager();
+	}
+
+	/**
+	 * Load integrations after plugins are loaded.
+	 *
+	 * @access public
+	 * @since  1.3.3
+	 */
+	public function plugins_loaded() {
+
+		// Remove addons pack if version is less than 2.0.0
+		if ( defined( 'NOPTIN_ADDONS_PACK_VERSION' ) && version_compare( NOPTIN_ADDONS_PACK_VERSION, MINIMUM_SUPPORTED_NOPTIN_ADDONS_PACK_VERSION, '<' ) ) {
+			remove_action( 'noptin_integrations_load', 'noptin_addons_pack_load' );
+		}
+
+		do_action( 'before_noptin_load', $this );
+
+		// Integrations.
+		$this->integrations_new = new \Hizzle\Noptin\Integrations\Main();
+		$this->integrations     = new Noptin_Integrations();
+
+		// DB.
+		$this->db();
+
+		if ( empty( $this->white_label ) ) {
+			$this->white_label = new Noptin_White_Label();
+		}
+
+		// Init scripts.
+		Noptin_Scripts::init();
+
+		// Users.
+		add_action( 'noptin_init', '\Hizzle\Noptin\Objects\Users::add_default', 1 );
+
+		// Init the plugin after WP inits
+		add_action( 'init', array( $this, 'init' ), 5 );
+
+		// Set up localisation.
+		add_action( 'init', array( $this, 'load_plugin_textdomain' ), 1 );
+
+		// css body class.
+		add_filter( 'body_class', array( $this, 'body_class' ) );
+
+		// Post types.
+		add_action( 'init', '\Hizzle\Noptin\Objects\Generic_Post_Type::register', 999 );
+
+		/**
+		 * Fires after Noptin loads.
+		 *
+		 * @param Noptin $noptin The Noptin instance.
+		 * @since 1.0.7
+		 */
+		do_action( 'noptin_load', $this );
+	}
+
+	/**
+	 * Init the plugin after WordPress inits.
+	 *
+	 * @access      public
+	 * @since       1.0.5
+	 * @return      void
+	 */
+	public function init() {
+
+		/**
+		 * Fires after WordPress inits but before Noptin inits
+		 *
+		 * @param Noptin $noptin The Noptin instance.
+		 * @since 1.0.0
+		 */
+		do_action( 'before_noptin_init', $this );
+
+		// Actions page controller.
+		$this->actions_page = new Noptin_Page();
+
+		// Automation tasks.
+		$this->automation_rules   = new Noptin_Automation_Rules();
+
+		/**
+		 * Fires after Noptin inits
+		 *
+		 * @param Noptin $noptin The Noptin instance.
+		 * @since 1.0.0
+		 */
+		do_action( 'noptin_init', $this );
+	}
+
+	/**
+	 * Class autoloader
+	 *
+	 * @param       string $class_name The name of the class to load.
+	 * @access      public
+	 * @since       1.2.3
+	 * @return      void
+	 */
+	public function autoload( $class_name ) {
+
+		// Normalize the class name...
+		$class_name  = strtolower( $class_name );
+
+		// ... and make sure it is our class.
+		if ( false === strpos( $class_name, 'noptin' ) ) {
+			return;
+		}
+
+		// Next, prepare the file name from the class.
+		$file_name = 'class-' . str_replace( '_', '-', $class_name ) . '.php';
+
+		// Base path of the classes.
+		$plugin_path = untrailingslashit( plugin_dir_path( __FILE__ ) );
+
+		// And an array of possible locations in order of importance;
+		$locations = array(
+			"$plugin_path/includes",
+			"$plugin_path/includes/integrations",
+			"$plugin_path/includes/automation-rules",
+			"$plugin_path/includes/automation-rules/actions",
+			"$plugin_path/includes/automation-rules/triggers",
+		);
+
+		foreach ( apply_filters( 'noptin_autoload_locations', $locations ) as $location ) {
+			if ( file_exists( trailingslashit( $location ) . $file_name ) ) {
+				include trailingslashit( $location ) . $file_name;
+				break;
+			}
+		}
+	}
+
+	/**
+	 * Filters the body classes
+	 *
+	 * @access      public
+	 * @param       array $classes Array of existing class names.
+	 * @since       1.1.1
+	 * @return      array
+	 */
+	public function body_class( $classes ) {
+		$classes['noptin'] = 'noptin';
+		return $classes;
+	}
+
+	/**
+     * Returns the new DB manager.
+     *
+     * @return \Hizzle\Store\Main
+     */
+	public function db() {
+		return \Hizzle\Store\Main::instance( 'noptin', 'subscribers' );
+	}
+
+	/**
+	 * Load Localisation files.
+	 *
+	 * Note: the first-loaded translation file overrides any following ones if the same translation is present.
+	 *
+	 * Locales found in:
+	 *      - WP_LANG_DIR/plugins/newsletter-optin-box-LOCALE.mo
+	 *      - WP_PLUGIN_DIR/newsletter-optin-box/languages/newsletter-optin-box-LOCALE.mo
+	 *
+	 * @since 1.1.9
+	 */
+	public function load_plugin_textdomain() {
+
+		load_plugin_textdomain(
+			'newsletter-optin-box',
+			false,
+			plugin_basename( __DIR__ ) . '/languages/'
+		);
+	}
+}
+
+// Kickstart everything.
+Noptin::instance();

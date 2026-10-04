@@ -1,0 +1,1045 @@
+<?php
+/**
+ * Responsible for the plugin settings.
+ *
+ * @link       https://bootstrapped.ventures
+ * @since      1.2.0
+ *
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ */
+
+/**
+ * Responsible for the plugin settings.
+ *
+ * @since      1.2.0
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ * @author     Brecht Vandersmissen <brecht@bootstrapped.ventures>
+ */
+class WPRM_Settings {
+	/**
+	 * Cached version of the settings structure.
+	 *
+	 * @since    3.0.0
+	 * @access   private
+	 * @var      array    $structure    Array containing the settings structure.
+	 */
+	private static $structure = array();
+
+	/**
+	 * Cached version of the plugin settings.
+	 *
+	 * @since    1.2.0
+	 * @access   private
+	 * @var      array    $settings    Array containing the plugin settings.
+	 */
+	private static $settings = array();
+
+	/**
+	 * Cached version of the settings defaults.
+	 *
+	 * @since    1.2.0
+	 * @access   private
+	 * @var      array    $defaults    Default values for unset settings.
+	 */
+	private static $defaults = array();
+
+	/**
+	 * Cached version of the settings details.
+	 *
+	 * @since    10.6.1
+	 * @access   private
+	 * @var      array    $details    Details for all registered settings.
+	 */
+	private static $details = array();
+
+	/**
+	 * Filter signature used for the cached settings details.
+	 *
+	 * @since    10.6.1
+	 * @access   private
+	 * @var      mixed    $details_filter_signature    Signature of registered settings structure filters.
+	 */
+	private static $details_filter_signature = false;
+
+	/**
+	 * Cached recipe type usage.
+	 *
+	 * @since    10.5.0
+	 * @access   private
+	 * @var      array    $recipe_type_usage    Array containing whether a recipe type is used.
+	 */
+	private static $recipe_type_usage = array();
+
+	/**
+	 * Register actions and filters.
+	 *
+	 * @since    1.2.0
+	 */
+	public static function init() {
+		add_action( 'admin_menu', array( __CLASS__, 'add_submenu_page' ), 20 );
+
+		if ( defined( 'WPRM_POST_TYPE' ) ) {
+			add_action( 'save_post_' . WPRM_POST_TYPE, array( __CLASS__, 'clear_recipe_type_usage_cache' ), 10, 0 );
+			add_action( 'trashed_post', array( __CLASS__, 'clear_recipe_type_usage_cache_for_post' ), 10, 2 );
+			add_action( 'untrashed_post', array( __CLASS__, 'clear_recipe_type_usage_cache_for_post' ), 10, 2 );
+			add_action( 'deleted_post', array( __CLASS__, 'clear_recipe_type_usage_cache_for_post' ), 10, 2 );
+		}
+	}
+
+	/**
+	 * Add the settings submenu to the WPRM menu.
+	 *
+	 * @since    1.2.0
+	 */
+	public static function add_submenu_page() {
+		add_submenu_page( 'wprecipemaker', __( 'WPRM Settings', 'wp-recipe-maker' ), __( 'Settings', 'wp-recipe-maker' ), 'manage_options', 'wprm_settings', array( __CLASS__, 'settings_page_template' ) );
+
+		if ( WPRM_KITCHEN_UI_ENABLED ) {
+			add_submenu_page( 'wprecipemaker', __( 'WPRM Kitchen', 'wp-recipe-maker' ), __( 'WPRM Kitchen', 'wp-recipe-maker' ), 'manage_options', 'wprm_kitchen', array( __CLASS__, 'kitchen_page_template' ) );
+		}
+	}
+
+	/**
+	 * Get the template for the settings page.
+	 *
+	 * @since    1.2.0
+	 */
+	public static function settings_page_template() {
+		wp_localize_script( 'wprm-admin', 'wprm_settings', array(
+			'structure' => array_values( self::get_structure() ),
+			'settings' => self::get_settings_with_defaults(),
+			'defaults' => self::get_defaults(),
+		) );
+
+		require_once( WPRM_DIR . 'templates/admin/settings.php' );
+	}
+
+	/**
+	 * Get the dedicated WPRM Kitchen settings page.
+	 *
+	 * @since 10.9.0
+	 */
+	public static function kitchen_page_template() {
+		require_once( WPRM_DIR . 'templates/admin/kitchen.php' );
+	}
+
+	/**
+	 * Get the value for a specific setting.
+	 *
+	 * @since	1.2.0
+	 * @param	mixed $setting Setting to get the value for.
+	 */
+	public static function get( $setting ) {
+		$settings = self::get_settings();
+
+		if ( isset( $settings[ $setting ] ) ) {
+			$value = $settings[ $setting ];
+
+			if ( is_string( $value ) && has_filter( 'wpml_translate_single_string' ) && self::is_translatable_setting( $setting ) ) {
+				return apply_filters( 'wpml_translate_single_string', $value, 'wp-recipe-maker', 'Setting - ' . $setting, null );
+			} else {
+				return $value;
+			}
+		} else {
+			return self::get_default( $setting );
+		}
+	}
+
+	/**
+	 * Check if a specific setting should be translated by WPML.
+	 *
+	 * @since	10.6.0
+	 * @param	mixed $setting Setting to check.
+	 */
+	private static function is_translatable_setting( $setting ) {
+		$translatable_settings = self::get_translatable_settings();
+
+		return in_array( $setting, $translatable_settings, true );
+	}
+
+	/**
+	 * Get the dependency to use for recipe type template settings.
+	 *
+	 * @since    10.5.0
+	 * @param	 mixed  $type         Recipe type to get the dependency for.
+	 * @param	 array  $dependencies Optional dependencies that also need to be met.
+	 */
+	public static function get_recipe_type_template_dependency( $type, $dependencies = array() ) {
+		if ( empty( $dependencies ) ) {
+			$dependencies = array();
+		} elseif ( isset( $dependencies['id'] ) ) {
+			$dependencies = array( $dependencies );
+		}
+
+		if ( ! self::has_recipes_of_type( $type ) ) {
+			$dependencies[] = array(
+				'id' => 'recipe_template_show_types',
+				'value' => true,
+			);
+		}
+
+		if ( 1 === count( $dependencies ) ) {
+			return $dependencies[0];
+		}
+
+		return $dependencies;
+	}
+
+	/**
+	 * Whether to show the manual recipe type template setting.
+	 *
+	 * @since    10.5.0
+	 */
+	public static function show_recipe_type_template_toggle() {
+		return ! self::has_recipes_of_type( 'howto' ) || ! self::has_recipes_of_type( 'other' );
+	}
+
+	/**
+	 * Check whether recipes of a specific type exist.
+	 *
+	 * @since    10.5.0
+	 * @param	 mixed $type Recipe type to check.
+	 */
+	private static function has_recipes_of_type( $type ) {
+		if ( ! in_array( $type, array( 'howto', 'other' ), true ) ) {
+			return false;
+		}
+
+		if ( ! self::can_check_recipe_type_usage() ) {
+			return false;
+		}
+
+		if ( ! self::$recipe_type_usage ) {
+			self::$recipe_type_usage = get_transient( 'wprm_recipe_type_usage' );
+
+			if ( ! is_array( self::$recipe_type_usage ) || ! array_key_exists( 'howto', self::$recipe_type_usage ) || ! array_key_exists( 'other', self::$recipe_type_usage ) ) {
+				self::$recipe_type_usage = self::query_recipe_type_usage();
+				set_transient( 'wprm_recipe_type_usage', self::$recipe_type_usage, DAY_IN_SECONDS );
+			}
+		}
+
+		return ! empty( self::$recipe_type_usage[ $type ] );
+	}
+
+	/**
+	 * Check whether recipe type usage can be detected safely.
+	 *
+	 * @since    10.5.0
+	 */
+	private static function can_check_recipe_type_usage() {
+		global $wpdb;
+
+		return defined( 'WPRM_POST_TYPE' )
+			&& function_exists( 'get_transient' )
+			&& function_exists( 'set_transient' )
+			&& isset( $wpdb, $wpdb->posts, $wpdb->postmeta );
+	}
+
+	/**
+	 * Query whether recipes of non-food types exist.
+	 *
+	 * @since    10.5.0
+	 */
+	private static function query_recipe_type_usage() {
+		global $wpdb;
+
+		$usage = array(
+			'howto' => false,
+			'other' => false,
+		);
+
+		$recipe_types = $wpdb->get_col(
+			$wpdb->prepare(
+				"SELECT DISTINCT pm.meta_value
+				FROM {$wpdb->postmeta} pm
+				INNER JOIN {$wpdb->posts} p ON p.ID = pm.post_id
+				WHERE p.post_type = %s
+				AND p.post_status NOT IN ( 'auto-draft', 'inherit', 'trash' )
+				AND pm.meta_key = 'wprm_type'
+				AND pm.meta_value IN ( 'howto', 'other', 'non-food' )
+				LIMIT 3",
+				WPRM_POST_TYPE
+			)
+		);
+
+		foreach ( $recipe_types as $recipe_type ) {
+			if ( 'howto' === $recipe_type ) {
+				$usage['howto'] = true;
+			} elseif ( in_array( $recipe_type, array( 'other', 'non-food' ), true ) ) {
+				$usage['other'] = true;
+			}
+		}
+
+		return $usage;
+	}
+
+	/**
+	 * Clear cached recipe type usage.
+	 *
+	 * @since    10.5.0
+	 */
+	public static function clear_recipe_type_usage_cache() {
+		self::$recipe_type_usage = array();
+
+		if ( function_exists( 'delete_transient' ) ) {
+			delete_transient( 'wprm_recipe_type_usage' );
+		}
+	}
+
+	/**
+	 * Clear cached recipe type usage for recipe post changes.
+	 *
+	 * @since    10.5.0
+	 * @param	 mixed $post_id Post ID.
+	 * @param	 mixed $post    Post object.
+	 */
+	public static function clear_recipe_type_usage_cache_for_post( $post_id, $post = false ) {
+		if ( ! $post instanceof WP_Post ) {
+			$post = get_post( $post_id );
+		}
+
+		if ( $post && WPRM_POST_TYPE === $post->post_type ) {
+			self::clear_recipe_type_usage_cache();
+		}
+	}
+
+	/**
+	 * Get the settings structure.
+	 *
+	 * @since    3.0.0
+	 */
+	public static function get_structure() {
+		if ( empty( self::$structure ) ) {
+			require_once( WPRM_DIR . 'templates/settings/structure.php' );
+
+			// Associate IDs.
+			$structure = array();
+
+			$index = 1;
+			foreach ( $settings_structure as $group ) {
+				if ( isset( $group['id'] ) ) {
+					$id = $group['id'];
+				} else {
+					$id = 'group_' . $index;
+					$index++;
+				}
+
+				$structure[ $id ] = $group;
+			}
+
+			self::$structure = $structure;
+		}
+
+		return apply_filters( 'wprm_settings_structure', self::$structure );
+	}
+
+	/**
+	 * Check if the settings UI supports a specific special component.
+	 *
+	 * @since    10.6.2
+	 * @param	 mixed $component Component to check.
+	 */
+	public static function supports_settings_component( $component ) {
+		return in_array( $component, array(
+			'amazonQueue',
+			'jupiterAccessToken',
+			'unitConversionUnits',
+		), true );
+	}
+
+	/**
+	 * Get the default for a specific setting.
+	 *
+	 * @since    1.7.0
+	 * @param	 mixed $setting Setting to get the default for.
+	 */
+	public static function get_default( $setting ) {
+		$defaults = self::get_defaults();
+		if ( isset( $defaults[ $setting ] ) ) {
+			return $defaults[ $setting ];
+		} else {
+			// Force defaults cache update.
+			$defaults = self::get_defaults( true );
+			if ( isset( $defaults[ $setting ] ) ) {
+				return $defaults[ $setting ];
+			} else {
+				return false;
+			}
+		}
+	}
+
+	/**
+	 * Get the default settings.
+	 *
+	 * @since   1.5.0
+	 * @param	boolean $force_update Whether to force an update of the cache.
+	 */
+	public static function get_defaults( $force_update = false ) {
+		if ( $force_update || empty( self::$defaults ) ) {
+			$defaults = array();
+			$structure = self::get_structure();
+
+			// Loop over structure to find settings and defaults.
+			foreach ( $structure as $group ) {
+				if ( isset( $group['settings'] ) ) {
+					foreach ( $group['settings'] as $setting ) {
+						if ( isset( $setting['id'] ) && isset( $setting['default'] ) ) {
+							$defaults[ $setting['id'] ] = $setting['default'];
+						}
+					}
+				}
+
+				if ( isset( $group['subGroups'] ) ) {
+					foreach ( $group['subGroups'] as $sub_group ) {
+						if ( isset( $sub_group['settings'] ) ) {
+							foreach ( $sub_group['settings'] as $setting ) {
+								if ( isset( $setting['id'] ) && isset( $setting['default'] ) ) {
+									$defaults[ $setting['id'] ] = $setting['default'];
+								}
+							}
+						}
+					}
+				}
+			}
+
+			self::$defaults = $defaults;
+		}
+
+		return self::$defaults;
+	}
+
+	/**
+	 * Get all the settings.
+	 *
+	 * @since    1.2.0
+	 */
+	public static function get_settings() {
+		// Lazy load settings.
+		if ( empty( self::$settings ) ) {
+			self::load_settings();
+		}
+
+		return self::$settings;
+	}
+
+	/**
+	 * Get all the settings with defaults if not set.
+	 *
+	 * @since    3.0.0
+	 */
+	public static function get_settings_with_defaults() {
+		$settings = self::get_settings();
+		$defaults = self::get_defaults();
+
+		return array_merge( $defaults, $settings );
+	}
+
+	/**
+	 * Load all the plugin settings.
+	 *
+	 * @since    1.2.0
+	 */
+	private static function load_settings() {
+		$settings = get_option( 'wprm_settings', array() );
+		$settings = is_array( $settings ) ? $settings : array();
+
+		self::$settings = apply_filters( 'wprm_settings', $settings );
+	}
+
+	/**
+	 * Update the plugin settings.
+	 *
+	 * @since    1.5.0
+	 * @param		 array $settings_to_update Settings to update.
+	 */
+	public static function update_settings( $settings_to_update, $context = array() ) {
+		$old_settings = self::get_settings();
+
+		if ( is_array( $settings_to_update ) ) {
+			$settings_to_update = self::sanitize_settings( $settings_to_update );
+			$new_settings = array_merge( $old_settings, $settings_to_update );
+
+			$new_settings = apply_filters( 'wprm_settings_update', $new_settings, $old_settings );
+
+			update_option( 'wprm_settings', $new_settings );
+			self::$settings = $new_settings;
+
+			if ( self::should_log_settings_change( $context ) ) {
+				self::maybe_log_settings_change( $old_settings, $new_settings, $context );
+			}
+		}
+
+		return self::get_settings();
+	}
+
+	/**
+	 * Check if a settings update should be logged to the changelog.
+	 *
+	 * @since	10.6.0
+	 * @param	array $context Optional context for the settings update.
+	 */
+	private static function should_log_settings_change( $context ) {
+		return is_array( $context ) && ! empty( $context['log_change'] );
+	}
+
+	/**
+	 * Maybe log a settings update to the changelog.
+	 *
+	 * @since	10.6.0
+	 * @param	array $old_settings Settings before the update.
+	 * @param	array $new_settings Settings after the update.
+	 * @param	array $context      Optional context for the settings update.
+	 */
+	private static function maybe_log_settings_change( $old_settings, $new_settings, $context ) {
+		$changes = self::get_settings_change_log_entries( $old_settings, $new_settings );
+
+		if ( ! $changes ) {
+			return;
+		}
+
+		$source = isset( $context['source'] ) ? sanitize_key( $context['source'] ) : 'unknown';
+
+		WPRM_Changelog::log(
+			'settings_updated',
+			0,
+			array(
+				'changes' => $changes,
+				'object_meta' => array(
+					'type' => 'settings',
+					'name' => __( 'Plugin Settings', 'wp-recipe-maker' ),
+					'source' => $source,
+					'changed_count' => count( $changes ),
+				),
+			)
+		);
+	}
+
+	/**
+	 * Get change log entries for changed settings.
+	 *
+	 * @since	10.6.0
+	 * @param	array $old_settings Settings before the update.
+	 * @param	array $new_settings Settings after the update.
+	 */
+	private static function get_settings_change_log_entries( $old_settings, $new_settings ) {
+		$changes = array();
+		$details = self::get_details();
+		$defaults = self::get_defaults();
+
+		$keys = array_unique(
+			array_merge(
+				array_keys( $details ),
+				array_keys( $old_settings ),
+				array_keys( $new_settings )
+			)
+		);
+
+		foreach ( $keys as $setting_id ) {
+			$old_exists = array_key_exists( $setting_id, $old_settings );
+			$new_exists = array_key_exists( $setting_id, $new_settings );
+
+			if ( ! $old_exists && ! $new_exists ) {
+				continue;
+			}
+
+			$default_exists = array_key_exists( $setting_id, $defaults );
+			$old_value = $old_exists ? $old_settings[ $setting_id ] : ( $default_exists ? $defaults[ $setting_id ] : null );
+			$new_value = $new_exists ? $new_settings[ $setting_id ] : ( $default_exists ? $defaults[ $setting_id ] : null );
+
+			if ( maybe_serialize( $old_value ) === maybe_serialize( $new_value ) ) {
+				continue;
+			}
+
+			$setting_details = isset( $details[ $setting_id ] ) ? $details[ $setting_id ] : array();
+			$masked = self::is_sensitive_setting( $setting_id );
+
+			$changes[] = array(
+				'id' => $setting_id,
+				'label' => self::get_setting_change_label( $setting_id, $setting_details ),
+				'before' => self::summarize_setting_value( $setting_id, $old_value, $setting_details, $masked ),
+				'after' => self::summarize_setting_value( $setting_id, $new_value, $setting_details, $masked ),
+				'masked' => $masked,
+			);
+		}
+
+		return $changes;
+	}
+
+	/**
+	 * Get a human-readable label for a setting.
+	 *
+	 * @since	10.6.0
+	 * @param	string $setting_id      Setting ID.
+	 * @param	array  $setting_details Setting details.
+	 */
+	private static function get_setting_change_label( $setting_id, $setting_details ) {
+		if ( isset( $setting_details['name'] ) && $setting_details['name'] ) {
+			return wp_strip_all_tags( $setting_details['name'] );
+		}
+
+		return sanitize_text_field( $setting_id );
+	}
+
+	/**
+	 * Check if a setting contains sensitive information.
+	 *
+	 * @since	10.6.0
+	 * @param	string $setting_id Setting ID.
+	 */
+	private static function is_sensitive_setting( $setting_id ) {
+		return (bool) preg_match( '/license|token|secret|key|password|email/i', $setting_id );
+	}
+
+	/**
+	 * Prepare a setting value for display.
+	 *
+	 * @since	10.6.0
+	 * @param	string $setting_id Setting ID.
+	 * @param	mixed  $value      Value to prepare.
+	 */
+	private static function prepare_setting_value_for_display( $setting_id, $value ) {
+		if ( 'import_units' === $setting_id && is_array( $value ) ) {
+			return implode( "\n", $value );
+		}
+
+		if ( 'unit_conversion_units' === $setting_id && is_array( $value ) ) {
+			$prepared = array();
+
+			foreach ( $value as $unit => $details ) {
+				$prepared[ $unit ] = $details;
+
+				if ( isset( $details['aliases'] ) && is_array( $details['aliases'] ) ) {
+					$prepared[ $unit ]['aliases'] = implode( ';', $details['aliases'] );
+				}
+			}
+
+			return $prepared;
+		}
+
+		return $value;
+	}
+
+	/**
+	 * Get the label for a setting option.
+	 *
+	 * @since	10.6.0
+	 * @param	array $setting_details Setting details.
+	 * @param	mixed $value           Setting value.
+	 */
+	private static function get_setting_option_label( $setting_details, $value ) {
+		if ( ! isset( $setting_details['options'] ) || ! is_array( $setting_details['options'] ) ) {
+			return false;
+		}
+
+		$option_key = (string) $value;
+
+		if ( array_key_exists( $option_key, $setting_details['options'] ) ) {
+			return wp_strip_all_tags( $setting_details['options'][ $option_key ] );
+		}
+
+		return false;
+	}
+
+	/**
+	 * Shorten a text value for display.
+	 *
+	 * @since	10.6.0
+	 * @param	string $text       Text to shorten.
+	 * @param	int    $max_length Maximum text length.
+	 */
+	private static function truncate_setting_text( $text, $max_length = 36 ) {
+		$text = (string) $text;
+
+		if ( strlen( $text ) <= $max_length ) {
+			return $text;
+		}
+
+		return substr( $text, 0, $max_length - 1 ) . '...';
+	}
+
+	/**
+	 * Summarize a setting value for changelog storage.
+	 *
+	 * @since	10.6.0
+	 * @param	string $setting_id      Setting ID.
+	 * @param	mixed  $value           Setting value.
+	 * @param	array  $setting_details Setting details.
+	 * @param	bool   $masked          Whether this value should be masked.
+	 */
+	private static function summarize_setting_value( $setting_id, $value, $setting_details, $masked = false ) {
+		if ( $masked ) {
+			return __( 'Redacted', 'wp-recipe-maker' );
+		}
+
+		$value = self::prepare_setting_value_for_display( $setting_id, $value );
+		$type = isset( $setting_details['type'] ) ? $setting_details['type'] : '';
+
+		if ( 'toggle' === $type || is_bool( $value ) ) {
+			return $value ? __( 'On', 'wp-recipe-maker' ) : __( 'Off', 'wp-recipe-maker' );
+		}
+
+		if ( 'dropdownRecipe' === $type && is_array( $value ) ) {
+			$recipe_text = isset( $value['text'] ) ? sanitize_text_field( $value['text'] ) : '';
+
+			if ( $recipe_text ) {
+				return '"' . self::truncate_setting_text( $recipe_text ) . '"';
+			}
+
+			$recipe_id = isset( $value['id'] ) ? $value['id'] : '';
+			if ( $recipe_id ) {
+				return sprintf( __( 'Recipe #%s', 'wp-recipe-maker' ), sanitize_text_field( $recipe_id ) );
+			}
+
+			return __( 'Empty', 'wp-recipe-maker' );
+		}
+
+		if ( is_array( $value ) ) {
+			if ( ! $value ) {
+				return __( 'None', 'wp-recipe-maker' );
+			}
+
+			if ( isset( $setting_details['options'] ) && is_array( $setting_details['options'] ) ) {
+				$items = array();
+
+				foreach ( $value as $item ) {
+					$item_label = self::get_setting_option_label( $setting_details, $item );
+					$items[] = $item_label ? $item_label : self::truncate_setting_text( sanitize_text_field( (string) $item ), 20 );
+				}
+
+				if ( count( $items ) > 3 ) {
+					return implode( ', ', array_slice( $items, 0, 3 ) ) . sprintf( ' +%d more', count( $items ) - 3 );
+				}
+
+				return implode( ', ', $items );
+			}
+
+			return sprintf(
+				/* translators: %d: number of items. */
+				_n( '%d item', '%d items', count( $value ), 'wp-recipe-maker' ),
+				count( $value )
+			);
+		}
+
+		if ( is_object( $value ) ) {
+			$value = (array) $value;
+
+			if ( ! $value ) {
+				return __( 'Empty', 'wp-recipe-maker' );
+			}
+
+			return sprintf(
+				/* translators: %d: number of items. */
+				_n( '%d item', '%d items', count( $value ), 'wp-recipe-maker' ),
+				count( $value )
+			);
+		}
+
+		$option_label = self::get_setting_option_label( $setting_details, $value );
+		if ( $option_label ) {
+			return $option_label;
+		}
+
+		if ( null === $value ) {
+			return __( 'Empty', 'wp-recipe-maker' );
+		}
+
+		if ( in_array( $type, array( 'code', 'textarea', 'richTextarea' ), true ) ) {
+			$normalized = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( (string) $value ) ) );
+			return $normalized ? __( 'Content updated', 'wp-recipe-maker' ) : __( 'Empty', 'wp-recipe-maker' );
+		}
+
+		if ( is_string( $value ) ) {
+			$normalized = trim( preg_replace( '/\s+/', ' ', wp_strip_all_tags( $value ) ) );
+
+			if ( ! strlen( $normalized ) ) {
+				return __( 'Empty', 'wp-recipe-maker' );
+			}
+
+			return '"' . self::truncate_setting_text( $normalized ) . '"';
+		}
+
+		if ( is_scalar( $value ) ) {
+			return sanitize_text_field( (string) $value );
+		}
+
+		return __( 'Updated', 'wp-recipe-maker' );
+	}
+
+	/**
+	 * Get the settings details.
+	 *
+	 * @since	3.0.0
+	 */
+	public static function get_details() {
+		$filter_signature = self::get_settings_structure_filter_signature();
+
+		if ( empty( self::$details ) || self::$details_filter_signature !== $filter_signature ) {
+			$details = array();
+			$structure = self::get_structure();
+
+			// Loop over structure to find settings.
+			foreach ( $structure as $group ) {
+				if ( isset( $group['settings'] ) ) {
+					foreach ( $group['settings'] as $setting ) {
+						if ( isset( $setting['id'] ) ) {
+							$details[ $setting['id'] ] = $setting;
+						}
+					}
+				}
+
+				if ( isset( $group['subGroups'] ) ) {
+					foreach ( $group['subGroups'] as $sub_group ) {
+						if ( isset( $sub_group['settings'] ) ) {
+							foreach ( $sub_group['settings'] as $setting ) {
+								if ( isset( $setting['id'] ) ) {
+									$details[ $setting['id'] ] = $setting;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			self::$details = $details;
+			self::$details_filter_signature = $filter_signature;
+		}
+
+		return self::$details;
+	}
+
+	/**
+	 * Get lookup of settings that should be translated.
+	 *
+	 * @since    10.6.1
+	 */
+	private static function get_translatable_settings() {
+		return apply_filters( 'wprm_translatable_settings', array(
+			'cook_mode_closing_screen_message',
+			'default_howto_pdf_template_modern',
+			'default_howto_print_template_modern',
+			'default_howto_recipe_template_modern',
+			'default_other_pdf_template_modern',
+			'default_other_print_template_modern',
+			'default_other_recipe_template_modern',
+			'default_pdf_template_modern',
+			'default_print_template',
+			'default_print_template_admin',
+			'default_print_template_modern',
+			'default_recipe_amp_template',
+			'default_recipe_archive_template',
+			'default_recipe_feed_template',
+			'default_recipe_template',
+			'default_recipe_template_modern',
+			'favorite_recipes_empty_message',
+			'favorite_recipes_link',
+			'favorite_recipes_link_text',
+			'favorite_recipes_loading_message',
+			'favorite_recipes_howto_template_modern',
+			'favorite_recipes_other_template_modern',
+			'favorite_recipes_template_modern',
+			'favorite_recipes_tooltip_active',
+			'favorite_recipes_tooltip_inactive',
+			'howto_recipe_roundup_template',
+			'howto_recipe_snippets_template',
+			'label_author',
+			'label_calories',
+			'label_comment_rating',
+			'label_cook_time',
+			'label_course_tags',
+			'label_cuisine_tags',
+			'label_ingredients',
+			'label_instructions',
+			'label_keyword_tags',
+			'label_notes',
+			'label_prep_time',
+			'label_print_button',
+			'label_servings',
+			'label_total_time',
+			'label_video',
+			'nutrition_default_serving_unit',
+			'nutrition_label_custom_daily_values_disclaimer',
+			'other_recipe_roundup_template',
+			'other_recipe_snippets_template',
+			'pinterest_custom_description',
+			'post_type_archive_output_template',
+			'print_credit',
+			'private_notes_not_logged_in_message',
+			'quick_access_shopping_list_link',
+			'quick_access_shopping_list_loading_message',
+			'rating_details_multiple',
+			'rating_details_one',
+			'rating_details_user_not_voted',
+			'rating_details_user_voted',
+			'rating_details_zero',
+			'recipe_author_custom_default',
+			'recipe_author_same_bio',
+			'recipe_author_same_link',
+			'recipe_author_same_name',
+			'recipe_collections_add_button_not_logged_in_redirect',
+			'recipe_collections_add_button_not_logged_in_tooltip',
+			'recipe_collections_favorites_collection_name',
+			'recipe_collections_inbox_name',
+			'recipe_collections_link',
+			'recipe_collections_loading_message',
+			'recipe_collections_no_access_message',
+			'recipe_collections_howto_template_modern',
+			'recipe_collections_other_template_modern',
+			'recipe_collections_print_howto_recipes_template_modern',
+			'recipe_collections_print_other_recipes_template_modern',
+			'recipe_collections_print_recipes_template',
+			'recipe_collections_print_recipes_template_modern',
+			'recipe_collections_template_legacy',
+			'recipe_collections_template_modern',
+			'recipe_roundup_template',
+			'recipe_snippets_template',
+			'recipe_snippets_text',
+			'recipe_submission_after_redirect',
+			'recipe_submission_after_text',
+			'saved_recipe_collection_loading_message',
+			'unit_conversion_system_1',
+			'unit_conversion_system_2',
+			'user_ratings_comment_suggestion_1',
+			'user_ratings_comment_suggestion_2',
+			'user_ratings_comment_suggestion_3',
+			'user_ratings_comment_suggestion_4',
+			'user_ratings_comment_suggestion_5',
+			'user_ratings_comment_suggestion_6',
+			'user_ratings_comment_suggestion_text_after',
+			'user_ratings_comment_suggestion_text_before',
+			'user_ratings_modal_comment_placeholder',
+			'user_ratings_modal_email_placeholder',
+			'user_ratings_modal_name_placeholder',
+			'user_ratings_modal_submit_comment_button',
+			'user_ratings_modal_submit_no_comment_button',
+			'user_ratings_modal_title',
+			'user_ratings_problem_message',
+			'user_ratings_summary_modal_title',
+			'user_ratings_text_above_comment',
+			'user_ratings_thank_you_message_with_comment',
+			'user_ratings_thank_you_title',
+		) );
+	}
+
+	/**
+	 * Get signature of registered settings structure filters.
+	 *
+	 * @since    10.6.1
+	 */
+	private static function get_settings_structure_filter_signature() {
+		global $wp_filter;
+
+		if ( ! isset( $wp_filter['wprm_settings_structure'] ) || ! is_object( $wp_filter['wprm_settings_structure'] ) || ! isset( $wp_filter['wprm_settings_structure']->callbacks ) ) {
+			return '';
+		}
+
+		$signature = array();
+
+		foreach ( $wp_filter['wprm_settings_structure']->callbacks as $priority => $callbacks ) {
+			foreach ( $callbacks as $callback_id => $callback ) {
+				$signature[] = $priority . ':' . $callback_id . ':' . $callback['accepted_args'];
+			}
+		}
+
+		return implode( '|', $signature );
+	}
+
+	/**
+	 * Sanitize the plugin settings.
+	 *
+	 * @since	3.0.0
+	 * @param	array $settings Settings to sanitize.
+	 */
+	public static function sanitize_settings( $settings ) {
+		$sanitized_settings = array();
+		$settings_details = self::get_details();
+
+		foreach ( $settings as $id => $value ) {
+			if ( array_key_exists( $id, $settings_details ) ) {
+				$details = $settings_details[ $id ];
+
+				$sanitized_value = NULL;
+
+				// Check for custom sanitization function.
+				if ( isset( $details['sanitize'] ) && is_callable( $details['sanitize'] ) ) {
+					$sanitized_value = call_user_func( $details['sanitize'], $value );
+				}
+				
+				// Default sanitization based on type.
+				if ( is_null( $sanitized_value ) && isset( $details['type'] ) ) {	
+					switch ( $details['type'] ) {
+						case 'code':
+							$sanitized_value = WPRM_Recipe_Sanitizer::sanitize_html( $value );
+
+							// Fix for CSS code.
+							$sanitized_value = str_replace( '&gt;', '>', $sanitized_value );
+							break;
+						case 'color':
+							$sanitized_value = sanitize_text_field( $value );
+							break;
+						case 'dropdown':
+							if ( array_key_exists( $value, $details['options'] ) ) {
+								$sanitized_value = $value;
+							}
+							break;
+						case 'dropdownMultiselect':
+							$sanitized_value = array();
+
+							if ( is_array( $value ) ) {
+								foreach ( $value as $option ) {
+									if ( array_key_exists( $option, $details['options'] ) ) {
+										$sanitized_value[] = $option;
+									}
+								}
+							}
+							break;
+						case 'dropdownRecipe':
+							$value_id = is_array( $value ) ? $value['id'] : $value;
+							$value_text = is_array( $value ) ? $value['text'] : $value;
+
+							$sanitized_value = array(
+								'id' => 'demo' === $value_id ? 'demo' : intval( $value_id ),
+								'text' => sanitize_text_field( $value_text ),
+							);
+							break;
+						case 'dropdownTemplateLegacy':
+						case 'dropdownTemplateModern':
+							$sanitized_value = sanitize_text_field( $value );
+							do_action( 'wpml_register_single_string', 'wp-recipe-maker', 'Setting - ' . $id, $sanitized_value );
+							break;
+						case 'email':
+							$sanitized_value = sanitize_email( $value );
+							break;
+						case 'number':
+							$sanitized_value = sanitize_text_field( $value );
+							break;
+						case 'richTextarea':
+							$sanitized_value = wp_kses_post( $value );
+							do_action( 'wpml_register_single_string', 'wp-recipe-maker', 'Setting - ' . $id, $sanitized_value );
+							break;
+						case 'text':
+							$sanitized_value = sanitize_text_field( $value );
+							do_action( 'wpml_register_single_string', 'wp-recipe-maker', 'Setting - ' . $id, $sanitized_value );
+							break;
+						case 'textarea':
+							$sanitized_value = wp_kses_post( $value );
+							do_action( 'wpml_register_single_string', 'wp-recipe-maker', 'Setting - ' . $id, $sanitized_value );
+							break;
+						case 'toggle':
+							$sanitized_value = $value ? true : false;
+							break;
+					}
+				}
+
+				if ( ! is_null( $sanitized_value ) ) {
+					$sanitized_settings[ $id ] = $sanitized_value;
+				}
+			}
+		}
+
+		return $sanitized_settings;
+	}
+}
+
+WPRM_Settings::init();

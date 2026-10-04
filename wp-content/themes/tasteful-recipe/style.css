@@ -1,0 +1,51 @@
+/*
+Theme Name: Tasteful Recipe
+Theme URI: https://wpdelicious.com/wordpress-themes/tasteful-recipe/
+Description: Tasteful Recipe is a free recipe WordPress theme that helps create recipe websites and food blogs with ease. The theme's mobile-friendly design ensures your site looks great on any device. Optimized for SEO and speed, the theme helps your site load quickly and rank higher in search results. It adds features and functionality to your site with seamless integration with WP Delicious. A pre-designed Instagram section allows you to showcase your Instagram feed directly from your website. It adds features and functionality to your site by seamless integration with WP Delicious. The theme is also translation-ready and right-to-left (RTL) compatible, making your website accessible to a global audience. You can even personalize your website to match your brand with over 1600 Google Fonts and unlimited color options. Comprehensive documentation and support are available to guide you through setup and customization.  Discover what Tasteful Recipe has to offer by checking out the demo at https://demo.wpdelicious.com/tasteful-recipe/ and get support at https://wpdelicious.com/support-ticket/.
+Author: WP Delicious
+Author URI: https://wpdelicious.com/
+Template: yummy-bites
+Version: 1.0.1
+Requires at least: 6.2
+Requires PHP: 7.3
+Tested up to: 6.7
+License: GNU General Public License v3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: blog, one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, e-commerce, food-and-drink
+Text Domain: tasteful-recipe
+*/
+@media screen and (min-width: 1200px) {
+  .site-header.style-seven .search-form {
+    max-width: 192px;
+  }
+}
+.site-header.style-seven > .header-top {
+  display: none;
+}
+@media screen and (min-width: 1200px) {
+  .site-header.style-seven > .header-top {
+    display: block;
+    background-color: rgba(var(--yummy-primary-color-rgb), 0.05);
+  }
+}
+.site-header.style-seven > .header-top .container {
+  justify-content: space-between;
+}
+@media screen and (min-width: 1200px) {
+  .site-header.style-seven > .header-top .container {
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+}
+.site-header.style-seven .search-form .search-field {
+  padding: 8px 40px 8px 20px;
+}
+.site-header.style-seven .search-form .search-submit {
+  background-position: center center;
+  cursor: pointer;
+}
+.site-header.style-seven > .header-main {
+  padding: 32px 0;
+}
+
+/*# sourceMappingURL=style.css.map */

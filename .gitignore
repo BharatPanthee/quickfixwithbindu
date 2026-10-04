@@ -1,0 +1,32 @@
+﻿# Local credentials and private application configuration
+/wp-config.php
+/.private/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Local development files
+/local-xdebuginfo.php
+/.agents/
+/.codex/
+/.aws/
+
+# Runtime logs, caches, temporary upgrades, and backups
+*.log
+/.htaccess.bk
+/wp-content/cache/
+/wp-content/litespeed/
+/wp-content/.litespeed_conf.dat
+/wp-content/upgrade/
+/wp-content/upgrade-temp-backup/
+/wp-content/uploads/wpcode-logs/
+/wp-content/uploads/wpcode/cache/
+/wp-content/uploads/wpforms/cache/
+/wp-content/uploads/aioseo/cache/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini

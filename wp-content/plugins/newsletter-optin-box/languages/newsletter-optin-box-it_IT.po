@@ -1,0 +1,7181 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Noptin - Simple Newsletter Subscription Forms 1.1.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/newsletter-optin-box\n"
+"Last-Translator: Brian Mutende\n"
+"Language-Team: Italian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-10-06 05:48+0000\n"
+"PO-Revision-Date: 2024-04-27 14:40+0000\n"
+"Language: it_IT\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.4.0; wp-5.5.1\n"
+
+#: build/Emails/Admin/Main.php:1067
+#: build/Onboarding/Menu.php:200
+#: build/Emails/assets/js/email-editor.js:16
+msgid "\"From\" Email"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1074
+#: build/Onboarding/Menu.php:207
+#: build/Emails/assets/js/email-editor.js:16
+msgid "\"From\" Name"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1058
+#: build/Onboarding/Menu.php:217
+msgid "\"Reply-to\" Email"
+msgstr ""
+
+#. translators: %d is the day number.
+#: build/Emails/Types/Recurring.php:189
+msgid "%1$dnd day"
+msgstr ""
+
+#. translators: %d is the day number.
+#: build/Emails/Types/Recurring.php:195
+msgid "%1$drd day"
+msgstr ""
+
+#. translators: %d is the day number.
+#: build/Emails/Types/Recurring.php:183
+msgid "%1$dst day"
+msgstr ""
+
+#. translators: %d is the day number.
+#: build/Emails/Types/Recurring.php:200
+msgid "%1$dth day"
+msgstr ""
+
+#. translators: %1$s: Object type label, %2$s: Field label.
+#: build/Subscribers/Records.php:236
+msgid "%1$s > %2$s changed"
+msgstr ""
+
+#. translators: %1$s: Object type label, %2$s: Field label.
+#: build/Subscribers/Records.php:273
+#: build/Subscribers/Records.php:1179
+msgid "%1$s > Add to %2$s"
+msgstr ""
+
+#. translators: %1$s: Object type label, %2$s: Field label.
+#: build/Subscribers/Records.php:304
+msgid "%1$s > Removed from %2$s"
+msgstr ""
+
+#. translators: %1$s is a string, %2$s is a string.
+#: includes/functions.php:2205
+msgid "%1$s and %2$s"
+msgstr ""
+
+#. translators: %s: Date and time.
+#: src/Objects/Generic_Post_Type.php:534
+msgid "%1$s at %2$s"
+msgstr ""
+
+#. translators: %1$s is the error type, %2$s is the error message, %3$s is the error file and %4$s is the error line.
+#: build/Emails/Admin/Table.php:496
+msgid "%1$s: %2$s in %3$s on line %4$s"
+msgstr ""
+
+#. translators: %s is the filter label, e.g, "Tags".
+#: build/Subscribers/Records.php:811
+#: src/Objects/Collection.php:900
+msgid "%s - Exclude"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1029
+#: src/Objects/Generic_Post_Type.php:557
+msgid "%s > Create or Update"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Orders.php:127
+msgid "%s > Created"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Emails/Records.php:243
+#: build/Subscribers/Records.php:1054
+#: src/Objects/Generic_Post_Type.php:579
+msgid "%s > Delete"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:183
+msgid "%s > Deleted"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/GeoDirectory/Listings.php:237
+msgid "%s > Downgraded"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/GeoDirectory/Listings.php:263
+msgid "%s > Expires"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WooCommerce/Customers.php:183
+msgid "%s > Lifetime Value"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:445
+msgid "%s > Link Click"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:431
+msgid "%s > Open Email"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:122
+msgid "%s > Published"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:50
+#: src/Integrations/WooCommerce/Products.php:896
+msgid "%s > Purchased"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:64
+#: src/Integrations/WooCommerce/Products.php:910
+msgid "%s > Refunded"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/GeoDirectory/Listings.php:206
+msgid "%s > Saved"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:164
+msgid "%s > Unpublished"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1076
+msgid "%s > Unsubscribe"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1098
+msgid "%s > Update Custom Field"
+msgstr ""
+
+#. translators: %s is the name of the integration.
+#: build/Settings/Menu.php:387
+msgid "%s addon"
+msgstr ""
+
+#. translators: %s: Human-readable time difference.
+#: build/Subscribers/Records.php:1559
+#: build/Subscribers/Records.php:1621
+#: includes/functions.php:1442
+msgid "%s ago"
+msgstr ""
+
+#. translators: %s: object type label
+#: src/Integrations/WooCommerce/Order_Items.php:82
+#: src/Integrations/WooCommerce/Products.php:828
+msgid "%s Attribute"
+msgstr ""
+
+#. translators: %d is the day number.
+#: build/Emails/Types/Recurring.php:229
+#: build/Emails/Types/Recurring.php:231
+msgid "%s day"
+msgstr ""
+
+#. translators: %s is the integration name.
+#: src/Integrations/Checkbox_Integration.php:796
+#: src/Integrations/Ecommerce_Integration.php:327
+msgid "%s Equivalent"
+msgstr ""
+
+#. translators: %s: object type label
+#: src/Objects/Collection.php:1170
+msgid "%s Meta"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:101
+#: src/Integrations/WooCommerce/Products.php:415
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:53
+msgid "%s Name"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WooCommerce/Orders.php:448
+msgid "%s Number"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:130
+msgid "%s Summary."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Generic_Post_Type.php:270
+msgid "%s Title"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:351
+msgid "(no title)"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:252
+#: src/Integrations/WPForms/Main.php:293
+msgid "-- Map Field --"
+msgstr ""
+
+#. Translators: %1$s Opening link tag, %2$s Closing link tag.
+#: build/Emails/functions.php:483
+msgid "[[blog_name]] &mdash; Powered by [[noptin]] | %1$sUnsubscribe%2$s"
+msgstr ""
+
+#: includes/class-noptin-dynamic-content-tags.php:106
+msgid "A custom field's value of the current subscriber (if known)."
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:116
+msgid "A key value array of additional metadata about this rule"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:153
+msgid "A new %s has been published on [[blog_name]]."
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:223
+#: build/Automation_Rules/Automation_Rule.php:598
+#: build/Subscribers/Records.php:219
+msgid "Action"
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:55
+msgid "Action settings JSON"
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:227
+msgid "Actions"
+msgstr ""
+
+#: build/Extensions/Menu.php:384
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:429
+#: src/Integrations/Main.php:342
+#: build/Extensions/assets/js/workspace.js:1
+#: build/Misc/assets/js/list.js:1
+#: build/Onboarding/assets/js/setup-wizard.js:1
+msgid "Activate"
+msgstr ""
+
+#. translators: %s plugin name.
+#: src/Integrations/Main.php:345
+msgid "Activate the %s integration to unlock."
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:431
+msgid "Activate the Noptin Addons Pack addon to unlock."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:852
+msgid "Activate your license key to start tracking"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1113
+msgid "Activate your license key to track and view revenue made per campaign"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1113
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Emails/assets/js/email-editor.js:13
+#: build/Emails/assets/js/email-editor.js:14
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Activate your license key to unlock"
+msgstr ""
+
+#: build/Extensions/Menu.php:295
+#: build/Extensions/Menu.php:374
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Extensions/assets/js/workspace.js:1
+#: build/Onboarding/assets/js/setup-wizard.js:1
+msgid "Active"
+msgstr ""
+
+#: build/Subscribers/Records.php:1478
+#: build/Subscribers/Records.php:1487
+msgid "Activity"
+msgstr ""
+
+#. translators: %s: code
+#: build/Emails/Admin/Main.php:610
+#: build/Emails/Admin/Main.php:812
+#: build/Misc/Main.php:203
+msgid "Add %s after an email to disable send, open and click tracking for that recipient."
+msgstr ""
+
+#: build/Dashboard/Main.php:94
+msgid "Add downloadable files to your site and restrict access by user role or newsletter subscription status."
+msgstr ""
+
+#: build/Emails/Admin/Editor.php:147
+#: build/Emails/Admin/Editor.php:347
+msgid "Add email subject"
+msgstr ""
+
+#: build/Emails/functions.php:589
+msgid "Add footer text here"
+msgstr ""
+
+#: build/Emails/functions.php:598
+msgid "Add heading text here"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:298
+msgid "Add me to your newsletter and keep me updated whenever you publish new blog posts"
+msgstr ""
+
+#: build/Forms/Main.php:105
+#: build/Subscribers/Schema.php:68
+#: build/Tasks/Main.php:798
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+msgid "Add New"
+msgstr ""
+
+#: build/Emails/Main.php:282
+#: build/Emails/Main.php:283
+msgid "Add New Campaign"
+msgstr ""
+
+#: build/Forms/Main.php:106
+msgid "Add New Form"
+msgstr "Aggiungi nuovo modulo"
+
+#: build/Forms/Main.php:104
+msgctxt "Add New on Toolbar"
+msgid "Subscription Form"
+msgstr ""
+
+#: build/Subscribers/Schema.php:69
+msgid "Add New Subscriber"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:497
+msgid "Add to cart"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:515
+msgid "Add to cart text"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:494
+msgid "Add to cart URL"
+msgstr ""
+
+#: build/Extensions/Menu.php:149
+msgid "Addons Pack"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:128
+msgid "Address"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:115
+#: src/Integrations/EDD/Orders.php:286
+msgid "Address 1"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:119
+#: src/Integrations/EDD/Orders.php:290
+msgid "Address 2"
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:199
+msgid "Adds a blank vertical space"
+msgstr ""
+
+#: build/Forms/Main.php:103
+msgctxt "Admin Menu text"
+msgid "Subscription Forms"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:265
+#: src/Integrations/WooCommerce/Orders.php:672
+msgid "Admin URL"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:715
+#: build/Forms/Admin/editor-settings.php:765
+#: build/Forms/Admin/editor-settings.php:815
+#: build/Forms/Admin/editor-settings.php:865
+msgid "Advanced"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1089
+msgid "After"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:163
+msgid "After a time delay"
+msgstr "Dopo un ritardo"
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:119
+msgid "After billing details"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:73
+msgid "After checkout submit"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:162
+msgid "After clicking on something"
+msgstr "Dopo aver cliccato su qualcosa"
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:69
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:121
+msgid "After customer details"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:68
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:118
+msgid "After email field"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:124
+msgid "After order notes"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:122
+msgid "After order review"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:71
+msgid "After payment details"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:75
+msgid "After post content"
+msgstr "Dopo il contenuto post"
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:120
+msgid "After shipping details"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:161
+msgid "After the user starts scrolling"
+msgstr "Dopo che l'utente inizia a scorrere"
+
+#: includes/emails/automated-email-types/class-post_notifications.php:348
+msgid "Alias for [[post_content]]."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:333
+msgid "Alias for [[post_excerpt]]."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:318
+msgid "Alias for [[post_title]]."
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:290
+msgid "All Forms"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1035
+msgid "All trash campaigns have been deleted."
+msgstr ""
+
+#: build/Settings/Menu.php:226
+msgid "Allow editors"
+msgstr ""
+
+#: build/Settings/Menu.php:227
+msgid "Allow editors to access and manage Noptin."
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:94
+msgid "Allow New Signups"
+msgstr ""
+
+#: build/Extensions/Menu.php:230
+msgid "Allow subscribers to manage their preferences and unsubscribe from specific lists."
+msgstr ""
+
+#: build/Forms/functions.php:359
+msgid "Already subscribed"
+msgstr ""
+
+#: build/Settings/Menu.php:292
+msgid "Already subscribed message"
+msgstr ""
+
+#: build/Settings/Menu.php:317
+msgid "Always show opt-in forms and methods to administrators even if they are already subscribed."
+msgstr ""
+
+#: build/Settings/Menu.php:315
+msgid "Always Show to Admin"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:41
+msgid "Amber"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:67
+msgid "Amount"
+msgstr ""
+
+#: build/Extensions/Menu.php:139
+msgid "An active license key gives you access to priority support, fixes, and all premium features and extensions. Use the tabs on the left to browse and install premium extensions."
+msgstr ""
+
+#. translators: %s is the error message.
+#: build/Emails/Admin/Table.php:493
+msgid "An error occurred while sending this campaign. The last error was: %s"
+msgstr ""
+
+#: includes/functions.php:2013
+msgid "AND"
+msgstr ""
+
+#: build/Forms/Admin/default-form.php:86
+msgid "And get notified everytime we publish a new blog post."
+msgstr ""
+
+#: build/Subscribers/Records.php:796
+#: src/Objects/Generic_Post_Type.php:103
+#: src/Objects/Users.php:249
+#: src/Objects/Users.php:262
+#: src/Objects/Users.php:268
+msgid "Any"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:285
+msgid "Archive pages"
+msgstr "Pagine d'archivio"
+
+#: build/Emails/Admin/Table.php:333
+msgid "Are you sure you want to delete this campaign?"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:726
+msgid "Are you sure you want to pause sending this campaign?"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:100
+msgid "Are you sure you want to reset all your data?"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:715
+msgid "Are you sure you want to resume sending this campaign?"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:287
+msgid "Are you sure you want to send this campaign?"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:294
+msgid "Are you sure you want to trash this campaign?"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:75
+#: src/Integrations/WooCommerce/Products.php:821
+msgid "Attribute"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:93
+#: src/Integrations/WooCommerce/Products.php:839
+msgid "Attribute Key"
+msgstr ""
+
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:121
+#: src/Objects/Generic_Post_Type.php:106
+msgid "Author"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:246
+msgid "Author ID"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:252
+msgid "Author ID or email address"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:109
+msgid "Author ID, or comma-separated list of IDs"
+msgstr ""
+
+#: src/Objects/Post_Type.php:37
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Authors"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1084
+msgid "Auto-Delete Campaigns"
+msgstr ""
+
+#: build/Emails/Main.php:428
+msgid "Automated Email"
+msgstr ""
+
+#: build/Emails/Main.php:429
+msgid "Automated Emails"
+msgstr ""
+
+#. Translators: %s is the collection label.
+#: src/Objects/Digest.php:63
+msgid "Automatically send a daily, weekly, monthly or yearly email highlighting your latest %s."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:87
+msgid "Automatically send your subscribers, users, or customers an email every X days."
+msgstr ""
+
+#: build/Automation_Rules/Admin/Main.php:49
+#: build/Automation_Rules/Admin/Main.php:55
+msgid "Automation Rules"
+msgstr ""
+
+#: build/Fields/Main.php:129
+msgid "Available Options"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:598
+msgid "Avatar Position"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:586
+#: src/Objects/Collection.php:453
+msgid "Avatar URL"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:288
+#: src/Integrations/WooCommerce/Products.php:774
+msgid "Average rating"
+msgstr ""
+
+#: build/Emails/Admin/views/campaigns.php:165
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Emails/assets/js/email-editor.js:14
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Back"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:274
+msgid "Background Color:"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:579
+msgid "Background Image"
+msgstr "Immagine di sfondo"
+
+#: src/Integrations/WooCommerce/Products.php:217
+#: src/Integrations/WooCommerce/Products.php:688
+msgid "Backorders"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:40
+msgid "Basic Options"
+msgstr "Opzioni di base"
+
+#: build/Forms/Admin/editor-settings.php:76
+msgid "Before and after post content"
+msgstr "Prima e dopo il post"
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:72
+msgid "Before checkout submit"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:70
+msgid "Before payment details"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:74
+msgid "Before post content"
+msgstr "Inserisci prima del contenuto"
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:123
+msgid "Before submit button"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:160
+msgid "Before the user leaves"
+msgstr "Prima che l'utente se ne vada"
+
+#: includes/functions.php:1757
+msgid "begins with"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:140
+#: src/Integrations/WooCommerce/Orders.php:507
+msgid "Billing address"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:169
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:318
+msgid "Billing Address 1"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:531
+msgid "Billing address 1"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:170
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:319
+msgid "Billing Address 2"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:535
+msgid "Billing address 2"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:139
+msgid "Billing address line 1"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:144
+msgid "Billing address line 2"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:64
+msgid "Billing Amount"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:172
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:321
+msgid "Billing City"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:144
+#: src/Integrations/WooCommerce/Orders.php:149
+#: src/Integrations/WooCommerce/Orders.php:539
+msgid "Billing city"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:317
+msgid "Billing Company"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:527
+msgid "Billing company"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:134
+msgid "Billing company name"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:174
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:323
+msgid "Billing Country"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:156
+#: src/Integrations/WooCommerce/Orders.php:164
+#: src/Integrations/WooCommerce/Orders.php:551
+msgid "Billing country"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:324
+msgid "Billing Country Code"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:82
+msgid "Billing Cycle Limit"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:556
+msgid "Billing email"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:169
+msgid "Billing email address"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:124
+#: src/Integrations/WooCommerce/Orders.php:519
+msgid "Billing first name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:129
+#: src/Integrations/WooCommerce/Orders.php:523
+msgid "Billing last name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:316
+msgid "Billing Phone"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:160
+#: src/Integrations/WooCommerce/Orders.php:560
+msgid "Billing phone"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:174
+msgid "Billing phone number"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:171
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:320
+msgid "Billing Postcode"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:152
+#: src/Integrations/WooCommerce/Orders.php:159
+#: src/Integrations/WooCommerce/Orders.php:547
+msgid "Billing postcode"
+msgstr ""
+
+#: src/Integrations/EDD/Subscription_Checkbox.php:173
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:322
+msgid "Billing State"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:148
+#: src/Integrations/WooCommerce/Orders.php:154
+#: src/Integrations/WooCommerce/Orders.php:543
+msgid "Billing state"
+msgstr ""
+
+#: src/Objects/Users.php:484
+msgid "BIO"
+msgstr ""
+
+#: build/Emails/Admin/Editor.php:432
+#: build/Forms/Widgets/New_Form.php:46
+msgid "Black"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:651
+msgid "Block"
+msgstr "Bloccare"
+
+#: build/Forms/Admin/editor-settings.php:283
+msgid "Blog page"
+msgstr "Pagina del blog"
+
+#: build/Forms/Widgets/New_Form.php:33
+msgid "Blue"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:45
+msgid "Blue Grey"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:433
+msgid "Border"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:596
+#: build/Forms/Admin/editor-settings.php:621
+msgid "Bottom"
+msgstr "Parte inferiore"
+
+#: build/Forms/Admin/editor-settings.php:147
+msgid "Bottom Left"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:148
+msgid "Bottom Left Alt"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:149
+msgid "Bottom right"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:150
+msgid "Bottom right Alt"
+msgstr ""
+
+#: build/Subscribers/Bounce_Handler.php:374
+msgid "Bounce Handler"
+msgstr ""
+
+#: build/Subscribers/functions.php:1387
+msgid "Bounced"
+msgstr ""
+
+#: build/Settings/Menu.php:268
+msgid "Brand Color"
+msgstr ""
+
+#: build/Settings/Menu.php:251
+msgid "Brand Info"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:44
+msgid "Brown"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:638
+#: build/Forms/Admin/editor-settings.php:976
+msgid "Button"
+msgstr "Pulsante"
+
+#: build/Forms/Widgets/New_Form.php:316
+msgid "Button Color:"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1309
+msgid "Call to Action"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1099
+#: build/Emails/Admin/views/campaigns.php:39
+msgid "Campaign"
+msgstr ""
+
+#: build/Tasks/Task.php:518
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Emails/assets/js/ai.js:1
+#: build/Emails/assets/js/email-editor.js:14
+#: build/Emails/assets/js/view-campaigns.js:11
+#: build/Misc/assets/js/list.js:1
+msgid "Cancel"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:231
+#: src/Integrations/WooCommerce/Products.php:602
+msgid "Catalog"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:598
+msgid "Catalog visibility"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:198
+#: src/Integrations/EDD/Downloads.php:203
+#: src/Integrations/WooCommerce/Products.php:536
+#: src/Integrations/WooCommerce/Products.php:541
+msgid "Categories"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:108
+msgid "Category"
+msgstr ""
+
+#. Translators: %s is the collection label.
+#: src/Objects/Digest.php:75
+msgid "Check out our latest %s"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_digest.php:109
+msgid "Check out our latest blog posts"
+msgstr ""
+
+#. translators: %s is the context, e.g users, customers
+#: includes/integrations/class-noptin-abstract-integration.php:571
+#: src/Integrations/Checkbox_Integration.php:500
+msgid "Check to display a subscription checkbox instead of automatically subscribing new %s"
+msgstr ""
+
+#: build/Fields/functions.php:95
+msgid "Checkbox"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:243
+#: src/Integrations/Checkbox_Integration.php:258
+msgid "Checkbox Message"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:379
+#: src/Integrations/Checkbox_Integration.php:342
+msgid "Checkbox position"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:439
+#: src/Integrations/Checkbox_Integration.php:386
+msgid "Checked by default"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:119
+msgid "Cheers"
+msgstr ""
+
+#: build/Subscribers/functions.php:717
+msgid "Cheers,"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:137
+msgid "Chosen Amount"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:138
+msgid "Chosen Currency"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:136
+msgid "Chosen Option"
+msgstr ""
+
+#: includes/functions.php:532
+#: src/Integrations/EDD/Customers.php:123
+#: src/Integrations/EDD/Orders.php:294
+#: src/Integrations/GeoDirectory/Listings.php:106
+#: src/Integrations/WPForms/Main.php:129
+msgid "City"
+msgstr ""
+
+#: build/Emails/functions.php:255
+msgid "Classic"
+msgstr ""
+
+#: build/Emails/Main.php:408
+msgid "Click the button below to send your first newsletter campaign"
+msgstr ""
+
+#: build/Emails/Main.php:431
+msgid "Click the button below to set-up your first automated email"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1103
+#: build/Subscribers/Subscriber.php:704
+msgid "Clicked"
+msgstr ""
+
+#: build/Subscribers/Records.php:1460
+msgid "Clicked on"
+msgstr ""
+
+#: build/Subscribers/Records.php:457
+msgid "Clicked URL"
+msgstr ""
+
+#: build/Emails/Records.php:149
+#: build/Dashboard/assets/js/dashboard.js:1
+msgid "Clicks"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:334
+#: src/Objects/Generic_Post_Type.php:363
+msgid "Closed"
+msgstr ""
+
+#: build/Fields/Main.php:73
+msgid "Collect more information from your subscribers by adding custom fields. "
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:106
+msgid "Comma-separated list of order IDs to exclude."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:101
+msgid "Comma-separated list of parent order IDs to exclude."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:82
+msgid "Comma-separated list of product IDs to exclude."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:77
+msgid "Comma-separated list of product IDs to include."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:113
+#: src/Objects/Generic_Post_Type.php:377
+msgid "Comment Count"
+msgstr ""
+
+#: src/Integrations/WordPress_Comment_Form/Main.php:28
+msgid "Comment Form"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:330
+msgid "Comment Status"
+msgstr ""
+
+#: build/Settings/Menu.php:256
+msgid "Company"
+msgstr "Azienda"
+
+#: src/Integrations/EDD/Orders.php:236
+msgid "Completed Date"
+msgstr ""
+
+#: build/Emails/functions.php:251
+msgid "Compose your email using the block editor"
+msgstr ""
+
+#: build/Automation_Rules/Automation_Rule.php:527
+#: build/Automation_Rules/Automation_Rule.php:531
+#: build/Emails/Main.php:166
+#: build/Emails/assets/js/blocks.js:14
+#: build/Emails/assets/js/email-editor.js:15
+msgid "Conditional Logic"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:170
+msgid "Confirm new %s"
+msgstr ""
+
+#: build/Subscribers/functions.php:713
+#: build/Subscribers/Records.php:881
+msgid "Confirm your subscription"
+msgstr ""
+
+#: includes/class-noptin-page.php:289
+#: src/Integrations/PMPro/Membership_Levels.php:56
+msgid "Confirmation Message"
+msgstr ""
+
+#: includes/class-noptin-page.php:296
+msgid "Confirmation Redirect"
+msgstr ""
+
+#. translators: %s Integration such as Mailchimp
+#: build/Extensions/Menu.php:311
+#: build/Onboarding/Main.php:49
+msgid "Connect Noptin to %s"
+msgstr ""
+
+#: build/Extensions/Menu.php:269
+msgid "Connections"
+msgstr ""
+
+#. translators: %s is the name of the integration.
+#: build/Settings/Menu.php:363
+msgid "Connects Noptin to %s"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:529
+msgid "Consent Text"
+msgstr ""
+
+#: includes/functions.php:1749
+msgid "contains"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:314
+msgid "Content"
+msgstr ""
+
+#: includes/functions.php:529
+msgid "Continent"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:116
+#: src/Objects/Post_Type.php:102
+msgid "Continue Reading"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:797
+msgid "Conversion Page"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:166
+msgid "Conversion Rate"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:217
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Copy"
+msgstr ""
+
+#: build/Forms/Main.php:287
+msgid "Could not establish a connection to the server."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:526
+msgid "Could not find a post for this preview."
+msgstr ""
+
+#: includes/functions.php:530
+#: src/Integrations/EDD/Customers.php:131
+#: src/Integrations/EDD/Orders.php:302
+#: src/Integrations/GeoDirectory/Listings.php:116
+#: src/Integrations/WPForms/Main.php:132
+msgid "Country"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:473
+msgid "Coupon Code"
+msgstr ""
+
+#: build/Extensions/Menu.php:172
+msgid "Coupon Codes"
+msgstr ""
+
+#: build/Extensions/Menu.php:211
+msgid "Create multiple lists and send emails to subscribers in specific lists, or automatically send emails to subscribers whenever they are added to or removed from specific lists."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1034
+#: src/Objects/Generic_Post_Type.php:568
+msgid "Create or update a %s"
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:225
+#: build/Emails/Records.php:157
+#: build/Subscribers/Records.php:77
+#: build/Subscribers/Records.php:223
+#: src/Integrations/WooCommerce/Orders.php:46
+msgid "Created"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:232
+msgid "Created Date"
+msgstr ""
+
+#: build/Subscribers/Records.php:151
+msgid "created or updated"
+msgstr ""
+
+#: build/Subscribers/Schema.php:139
+msgid "Creation date for this subscriber."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:736
+msgid "Cross sell IDs"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:722
+#: src/Integrations/WooCommerce/Products.php:795
+msgid "Cross sells"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:183
+msgid "CSS selector of the items to watch out for clicks"
+msgstr "Selettore CSS degli elementi a cui fare attenzione per i clic"
+
+#: includes/functions.php:535
+#: src/Integrations/EDD/Orders.php:199
+#: src/Integrations/Gravity_Forms/Main.php:84
+#: src/Integrations/WooCommerce/Orders.php:469
+msgid "Currency"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:109
+msgid "Currency Code"
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:213
+msgid "Current email address"
+msgstr ""
+
+#: src/Objects/Users.php:538
+msgid "Current User"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1229
+#: build/Forms/Admin/editor-settings.php:880
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Custom CSS"
+msgstr "CSS personalizzato"
+
+#: build/Subscribers/Records.php:1116
+msgid "Custom Field"
+msgstr ""
+
+#: build/Fields/Main.php:69
+#: build/Settings/Menu.php:146
+#: build/Subscribers/Records.php:1358
+msgid "Custom Fields"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:22
+msgid "Customer"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:764
+msgid "Customer Details"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:761
+msgid "Customer details"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:310
+msgid "Customer ID"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:119
+msgid "Customer ID or email"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:318
+msgid "Customer IP"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:224
+#: src/Integrations/WooCommerce/Orders.php:701
+msgid "Customer IP address"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:689
+#: src/Integrations/WooCommerce/Orders.php:692
+msgid "Customer note"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:705
+msgid "Customer user agent"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:21
+msgid "Customers"
+msgstr ""
+
+#: src/Integrations/Ecommerce_Integration.php:50
+#: src/Integrations/EDD/Subscription_Checkbox.php:21
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:21
+msgid "customers"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:35
+msgid "Cyan"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:68
+msgid "Cycle Number"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:72
+msgid "Cycle Period"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:257
+msgid "Daily"
+msgstr ""
+
+#: build/Dashboard/Main.php:40
+#: includes/class-noptin-white-label.php:126
+msgid "Dashboard"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:110
+#: includes/class-noptin-dynamic-content-tags.php:57
+msgid "Data from a cookie."
+msgstr ""
+
+#: build/Forms/Smart_Tags.php:72
+msgid "Data from the URL or a submitted form."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1124
+#: build/Fields/functions.php:85
+#: build/Subscribers/Records.php:1483
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:190
+#: src/Objects/Generic_Post_Type.php:259
+msgid "Date"
+msgstr ""
+
+#: src/Objects/Collection.php:725
+msgid "Date After"
+msgstr ""
+
+#: src/Objects/Collection.php:703
+msgid "Date Before"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:257
+#: src/Integrations/WooCommerce/Orders.php:794
+msgid "Date completed"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:110
+#: src/Integrations/WooCommerce/Orders.php:393
+msgid "Date Created"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:229
+#: src/Integrations/WooCommerce/Orders.php:782
+#: src/Integrations/WooCommerce/Products.php:305
+#: src/Integrations/WooCommerce/Products.php:579
+msgid "Date created"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:243
+#: src/Integrations/WooCommerce/Orders.php:786
+#: src/Integrations/WooCommerce/Products.php:583
+msgid "Date modified"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:319
+#: src/Integrations/WooCommerce/Products.php:634
+msgid "Date on sale from"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:333
+#: src/Integrations/WooCommerce/Products.php:639
+msgid "Date on sale to"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:262
+msgid "Date order was completed, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:234
+msgid "Date order was created, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:248
+msgid "Date order was last modified, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:276
+msgid "Date order was paid, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:271
+#: src/Integrations/WooCommerce/Orders.php:790
+msgid "Date paid"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:310
+msgid "Date product was created, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: build/Emails/functions.php:452
+#: build/Emails/Types/Recurring.php:270
+#: build/Emails/Types/Recurring.php:283
+#: build/Emails/Types/Recurring.php:295
+#: build/Emails/Types/Recurring.php:316
+#: build/Subscribers/Records.php:389
+#: build/Subscribers/Records.php:409
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Day"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1090
+msgid "day"
+msgstr ""
+
+#: build/Emails/functions.php:442
+#: build/Emails/Types/Recurring.php:309
+#: build/Emails/Types/Recurring.php:316
+#: build/Subscribers/Records.php:382
+#: build/Subscribers/Records.php:389
+#: build/Subscribers/Records.php:402
+#: build/Subscribers/Records.php:409
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Days"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1090
+msgid "days"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:84
+msgid "Debug Log"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:43
+msgid "Deep Orange"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:31
+msgid "Deep Purple"
+msgstr ""
+
+#: build/Subscribers/functions.php:1328
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Default"
+msgstr ""
+
+#: build/Forms/Widgets/Form.php:135
+#: build/Forms/assets/js/block.js:1
+msgid "Default form"
+msgstr ""
+
+#: build/Settings/Menu.php:284
+msgid "Default Success Message"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:99
+#: src/Integrations/WooCommerce/Products.php:845
+#: src/Objects/Collection.php:1187
+#: src/Objects/Post_Type.php:491
+msgid "Default Value"
+msgstr ""
+
+#: build/Fields/Main.php:142
+msgid "Default value"
+msgstr ""
+
+#: build/Automation_Rules/Actions/Action.php:36
+#: build/Emails/Admin/Table.php:468
+#: build/Forms/Admin/editor-settings.php:196
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+msgid "Delay"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:334
+#: build/Emails/Admin/Table.php:940
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+msgid "Delete"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1059
+#: src/Objects/Generic_Post_Type.php:590
+msgid "Delete a %s"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:50
+msgid "Deleted"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:98
+msgid "Deletes subscribers, campaigns, forms, settings then re-installs Noptin"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:920
+#: src/Integrations/PMPro/Membership_Levels.php:52
+#: src/Integrations/WooCommerce/Products.php:609
+msgid "Description"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:246
+msgid "Description:"
+msgstr ""
+
+#. translators: %s: file name
+#: build/Forms/Admin/editor-settings.php:406
+#: build/Emails/assets/js/blocks.js:14
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Design"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:748
+msgid "Details"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:368
+msgid "Device Targeting"
+msgstr "Targeting per dispositivo"
+
+#: includes/emails/automated-email-types/class-post_digest.php:287
+msgid "Digest"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:708
+msgid "Dimensions"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1252
+msgid "Disable default double opt-in email"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:170
+#: src/Integrations/Checkbox_Integration.php:154
+msgid "Disabled"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:100
+#: src/Integrations/EDD/Order_Items.php:79
+#: src/Integrations/WooCommerce/Orders.php:383
+msgid "Discount"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:489
+msgid "Discount total"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:216
+msgid "Discounted Amount"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:224
+msgid "Discounts"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:85
+msgid "Display a success message"
+msgstr "Visualizza un messaggio di successo"
+
+#: build/Automation_Rules/Triggers/Trigger.php:228
+#: src/Integrations/WordPress_Registration_Form/Main.php:257
+msgid "Display Name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:130
+#: src/Objects/Users.php:457
+msgid "Display name"
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:205
+msgid "Displays a button"
+msgstr ""
+
+#. translators: %s: Object link destination.
+#: build/Emails/Records.php:80
+#: build/Emails/Records.php:101
+#: build/Emails/Records.php:126
+#: build/Subscribers/Records.php:911
+msgid "Displays a button link to %s"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WooCommerce/Products.php:500
+msgid "Displays a button link to add the %s to the cart."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:676
+msgid "Displays a button link to edit the order in the admin backend."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:642
+msgid "Displays a button link to pay for the order."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:155
+#: src/Integrations/WooCommerce/Products.php:479
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:106
+#: src/Objects/Generic_Post_Type.php:344
+msgid "Displays a button link to the %s."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:659
+msgid "Displays a button link to view the order."
+msgstr ""
+
+#: src/Objects/Collection.php:1173
+msgid "Displays a custom field value."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:193
+msgid "Displays a horizontal rule"
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:219
+msgid "Displays a list of posts."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:178
+msgid "Displays a personalized link to the Noptin website."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:85
+#: src/Integrations/WooCommerce/Products.php:831
+msgid "Displays an attribute value."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:786
+msgid "Displays related products."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:201
+#: src/Integrations/EDD/Downloads.php:211
+#: src/Integrations/WooCommerce/Products.php:539
+#: src/Integrations/WooCommerce/Products.php:549
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:303
+#: src/Objects/Generic_Post_Type.php:444
+msgid "Displays the %1$s %2$s."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Generic_Post_Type.php:294
+msgid "Displays the %s excerpt."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:106
+#: src/Integrations/WooCommerce/Products.php:420
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:58
+msgid "Displays the %s name."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WooCommerce/Orders.php:453
+msgid "Displays the %s number."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:188
+#: src/Integrations/WooCommerce/Products.php:526
+msgid "Displays the %s short description."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:135
+msgid "Displays the %s summary."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Generic_Post_Type.php:275
+msgid "Displays the %s title."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:726
+msgid "Displays the cross sells for the order."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:799
+msgid "Displays the cross sells for the product."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:765
+msgid "Displays the customer details for the order."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:693
+msgid "Displays the customer note for the order."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:752
+msgid "Displays the details for the order."
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:127
+#: src/Integrations/WooCommerce/Products.php:442
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:78
+#: src/Objects/Generic_Post_Type.php:385
+msgid "Displays the featured image."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:511
+msgid "Displays the formatted billing address for the order"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:580
+msgid "Displays the formatted shipping address for the order"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:568
+msgid "Displays the formatted shipping method for the order"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:713
+msgid "Displays the items in the order."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:739
+msgid "Displays the upsells for the order."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:812
+msgid "Displays the upsells for the product."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:384
+msgid "Displays the value of a give meta key."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_digest.php:290
+msgid "Displays your latest content."
+msgstr ""
+
+#. translators: %s is the context, e.g users, customers
+#: includes/integrations/class-noptin-abstract-integration.php:389
+msgid "Do not subscribe new %s"
+msgstr ""
+
+#: includes/functions.php:1753
+msgid "does not contain"
+msgstr ""
+
+#. translators: %s is a list of conditions.
+#: build/Automation_Rules/Actions/Action.php:137
+msgid "Does not run if %s"
+msgstr ""
+
+#. translators: %s is a list of conditions.
+#: build/Emails/Records.php:236
+msgid "Does not send if %s"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:88
+msgid "Does partial matching on the SKU."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:73
+msgid "Don't inject"
+msgstr "Non iniettare"
+
+#: build/Settings/Menu.php:143
+msgid "Double Opt-In"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1244
+msgid "Double Opt-in"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1267
+msgid "Double Opt-in Email"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:280
+#: src/Integrations/WooCommerce/Products.php:769
+msgid "Download expiry"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:272
+#: src/Integrations/WooCommerce/Products.php:764
+msgid "Download limit"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:335
+msgid "Download Links"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:188
+#: src/Integrations/WooCommerce/Products.php:750
+msgid "Downloadable"
+msgstr ""
+
+#: build/Fields/functions.php:80
+msgid "Dropdown"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:275
+#: build/Forms/Admin/List_Table.php:103
+#: build/Emails/assets/js/view-campaigns.js:11
+#: build/Emails/assets/js/view-campaigns.js:14
+msgid "Duplicate"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:178
+msgid "Earnings"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:261
+#: build/Emails/Records.php:109
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Dashboard/assets/js/dashboard.js:4
+#: build/Emails/assets/js/ai.js:1
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Edit"
+msgstr ""
+
+#. translators: %s: email type label
+#: build/Emails/Admin/views/campaigns.php:38
+msgid "Edit %s"
+msgstr ""
+
+#: build/Automation_Rules/Admin/Main.php:47
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+msgid "Edit Automation Rule"
+msgstr ""
+
+#: build/Emails/Main.php:284
+msgid "Edit Campaign"
+msgstr ""
+
+#: build/Forms/Main.php:108
+msgid "Edit Form"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:675
+#: src/Integrations/WooCommerce/Orders.php:682
+msgid "Edit order"
+msgstr ""
+
+#: build/Subscribers/Schema.php:70
+msgid "Edit Subscriber"
+msgstr ""
+
+#. translators: %1 & 2, opening and closing link.
+#: build/Forms/Admin/editor-settings.php:15
+msgid "Edit the messages shown when someone submits this form. %1$sSmart tags%2$s are allowed in the message fields."
+msgstr ""
+
+#: build/Emails/Records.php:95
+#: build/Emails/Records.php:98
+#: build/Emails/Records.php:102
+msgid "Edit URL"
+msgstr ""
+
+#: build/Fields/Main.php:151
+msgid "Editable"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:277
+#: src/Integrations/WooCommerce/Customers.php:118
+#: src/Objects/Collection.php:471
+#: src/Objects/Users.php:449
+msgid "Email"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:222
+#: build/Fields/functions.php:29
+#: build/Fields/Main.php:240
+#: build/Forms/Admin/default-form.php:13
+#: build/Forms/Form.php:165
+#: build/Forms/Widgets/New_Form.php:178
+msgid "Email Address"
+msgstr "Indirizzo email"
+
+#: build/Emails/Admin/Main.php:1301
+msgid "Email Body"
+msgstr ""
+
+#: build/Emails/Main.php:281
+#: build/Emails/Records.php:33
+msgid "Email Campaign"
+msgstr ""
+
+#: build/Emails/Main.php:293
+msgid "Email campaign published."
+msgstr ""
+
+#: build/Emails/Main.php:294
+msgid "Email campaign reverted to draft."
+msgstr ""
+
+#: build/Emails/Main.php:296
+msgid "Email campaign scheduled."
+msgstr ""
+
+#: build/Emails/Main.php:295
+msgid "Email campaign trashed."
+msgstr ""
+
+#: build/Emails/Main.php:297
+msgid "Email campaign updated."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:348
+#: build/Emails/Main.php:280
+#: build/Emails/Main.php:299
+#: build/Emails/Records.php:32
+#: build/Dashboard/assets/js/dashboard.js:1
+msgid "Email Campaigns"
+msgstr ""
+
+#: build/Emails/Main.php:292
+msgid "Email campaigns list"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:785
+msgid "Email Confirmation URL"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1285
+#: build/Emails/assets/js/email-editor.js:13
+#: build/Emails/assets/js/email-editor.js:15
+msgid "Email Subject"
+msgstr "Oggetto dell'email"
+
+#: build/Settings/Menu.php:302
+#: build/Subscribers/Main.php:173
+msgid "Email Subscribers"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1209
+#: build/Emails/Admin/Main.php:1214
+msgid "Email Template"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1293
+msgid "Email Title"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:349
+#: build/Settings/Menu.php:140
+#: build/Settings/Menu.php:142
+#: build/Subscribers/Records.php:1433
+#: includes/class-noptin-white-label.php:141
+msgid "Emails"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:696
+msgid "Emails Sent"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1191
+msgid "Empty Trash"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:313
+#: src/Integrations/Checkbox_Integration.php:301
+msgid "Enable"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:167
+msgid "Enable Condition"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1237
+msgid "Enable Double Opt-in"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:231
+msgid "Enable Noptin Subscriptions"
+msgstr ""
+
+#. translators: %s is the integration name
+#: includes/integrations/class-noptin-abstract-integration.php:319
+#: src/Integrations/Checkbox_Integration.php:304
+msgid "Enable the %s Integration"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:156
+#: src/Integrations/Checkbox_Integration.php:140
+msgid "Enabled"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:338
+msgid "End date of sale price, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: includes/functions.php:1761
+msgid "ends with"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:399
+#: includes/integrations/class-noptin-abstract-integration.php:546
+#: src/Integrations/Checkbox_Integration.php:477
+msgid "Enter a comma separated list of tags to assign new subscribers."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WooCommerce/Products.php:861
+#: src/Integrations/WooCommerce/Products.php:874
+#: src/Objects/Generic_Post_Type.php:460
+msgid "Enter a comma-separated list of %1$s %2$s."
+msgstr ""
+
+#: build/Fields/Main.php:113
+msgid "Enter a descriptive name for the field, for example, Phone Number"
+msgstr ""
+
+#: build/Settings/Menu.php:264
+msgid "Enter a full url to your logo. Works best with rectangular images."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:310
+#: build/Subscribers/Records.php:383
+#: build/Subscribers/Records.php:403
+msgid "Enter a number"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:328
+msgid "Enter a time"
+msgstr ""
+
+#: build/Subscribers/Records.php:1125
+msgid "Enter a value to assign the field"
+msgstr ""
+
+#: build/Fields/Main.php:130
+msgid "Enter one option per line. You can use pipes to separate values and labels."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:607
+#: build/Emails/Admin/Main.php:809
+#: build/Misc/Main.php:200
+msgid "Enter recipients (comma-separated) for this email."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:887
+msgid "Enter Your Custom CSS."
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:334
+msgid "Error fetching downloadable file"
+msgstr ""
+
+#: includes/functions.php:439
+#: includes/functions.php:501
+msgid "Error fetching GeoLocation information."
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com.php:168
+msgid "Error fetching your license key."
+msgstr ""
+
+#. translators: %s is the field label.
+#: src/Objects/Action.php:143
+#: src/Objects/Trigger.php:310
+msgid "Error: \"%s\" not specified"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:83
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:92
+msgid "Error: Form not found"
+msgstr ""
+
+#. Translators: %d Number of minutes.
+#: src/Core/Bulk_Task_Runner.php:392
+msgid "Every %d Minutes"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:261
+msgid "Every X days"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:341
+msgid "Everyone"
+msgstr "Tutti"
+
+#: build/Forms/Admin/editor-settings.php:256
+msgid "Everywhere"
+msgstr "Ovunque"
+
+#. translators: %s: Examples.
+#: src/Objects/Collection.php:708
+#: src/Objects/Collection.php:730
+msgid "Examples: %s"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:182
+#: src/Integrations/EDD/Downloads.php:185
+#: src/Objects/Generic_Post_Type.php:287
+#: src/Objects/Generic_Post_Type.php:291
+msgid "Excerpt"
+msgstr ""
+
+#. translators: %s is the filter label, e.g, "Tags".
+#: src/Objects/Collection.php:907
+msgid "Exclude %s."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:104
+msgid "Exclude Order IDs"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:99
+msgid "Exclude parent order"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:80
+msgid "Exclude Product IDs"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:98
+msgid "Expiration Number"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:102
+msgid "Expiration Period"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1317
+msgid "Extra Text"
+msgstr ""
+
+#. Translators: %1$s Email address, %2$s Email subject & error.
+#: build/Emails/Sender.php:129
+msgid "Failed sending an email to %1$s with the subject %2$s"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:53
+#: src/Integrations/GeoDirectory/Listings.php:185
+msgid "False"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:194
+#: src/Integrations/WooCommerce/Products.php:593
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Emails/assets/js/email-editor.js:14
+#: build/Emails/assets/js/view-campaigns.js:2
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Featured"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:126
+#: src/Integrations/WooCommerce/Products.php:441
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:77
+#: src/Objects/Generic_Post_Type.php:384
+msgid "Featured Image"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:381
+msgid "Featured Image URL"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:157
+msgid "Feed Name"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:133
+msgid "Feed Settings"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:208
+msgid "Fees Total"
+msgstr ""
+
+#: src/Integrations/Elementor/Action.php:175
+msgid "Field Mapping"
+msgstr ""
+
+#: build/Fields/Main.php:112
+msgid "Field Name"
+msgstr ""
+
+#: build/Fields/Main.php:92
+#: build/Forms/Admin/editor-settings.php:467
+msgid "Field Type"
+msgstr ""
+
+#: build/Subscribers/Records.php:1124
+msgid "Field Value"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:234
+msgid "File Download Limit"
+msgstr ""
+
+#. translators: %s: Taxonomy name.
+#: src/Objects/Collection.php:890
+msgid "Filter by %s."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:71
+#: src/Integrations/WooCommerce/Products.php:72
+msgid "Filter by product type."
+msgstr ""
+
+#: build/Emails/Main.php:291
+msgid "Filter campaigns list"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:122
+msgid "First"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:234
+#: build/Fields/functions.php:35
+#: build/Fields/Main.php:224
+#: src/Integrations/EDD/Subscription_Checkbox.php:167
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:313
+#: src/Integrations/WordPress_Registration_Form/Main.php:258
+msgid "First Name"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:269
+#: src/Integrations/WooCommerce/Customers.php:122
+#: src/Objects/Users.php:462
+msgid "First name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:110
+msgid "First order date"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1222
+msgid "Footer text"
+msgstr ""
+
+#. translators: %s: The Example
+#: build/Emails/Admin/Main.php:617
+#: build/Emails/Admin/Main.php:819
+#: build/Emails/Email.php:986
+#: build/Misc/Main.php:210
+#: src/Integrations/WooCommerce/Products.php:91
+#: src/Objects/Users.php:234
+msgid "For example, %s"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:124
+msgid "For example, pillow -sofa"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:596
+msgid "Force Delete"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:97
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:200
+msgid "Form"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:411
+msgid "Form Appearance"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:441
+msgid "Form Fields"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:162
+#: build/Forms/assets/js/form-editor.js:2
+msgid "Form Name"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:146
+msgid "Form stats reset successfully"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:51
+msgid "Form Submitted"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:163
+msgid "Form Type"
+msgstr ""
+
+#: build/Forms/Widgets/Form.php:132
+msgid "Form:"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:325
+msgid "Formatted Billing Address"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:218
+msgid "FREE NEWSLETTER"
+msgstr "NEWSLETTER GRATUITA"
+
+#: build/Emails/Types/Recurring.php:264
+msgid "Frequency"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:282
+msgid "Front page"
+msgstr "Prima pagina"
+
+#: build/Forms/Admin/editor-settings.php:477
+msgid "Frontend Label"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:281
+msgid "Full Address"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:191
+msgid "Gateway"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:249
+msgid "GDPR checkbox (Optional)"
+msgstr ""
+
+#: src/Integrations/Contact_Form_7/Main.php:155
+#: src/Integrations/Elementor/Action.php:155
+#: src/Integrations/Ninja_Forms/Action.php:72
+msgid "GDPR Consent"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Email_Type.php:213
+#: build/Emails/Admin/Main.php:1051
+#: build/Misc/Main.php:419
+#: build/Settings/Menu.php:138
+#: build/Settings/Menu.php:222
+#: includes/functions.php:1949
+#: includes/functions.php:2229
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Emails/assets/js/email-editor.js:1
+msgid "General"
+msgstr ""
+
+#: build/Forms/functions.php:370
+msgid "Generic error"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:297
+msgid "Gets products with that many reviews."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:174
+msgid "Gets products with that many sales."
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:154
+msgid "Go back to tools page"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:37
+msgid "Green"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:48
+msgid "Grey"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:730
+#: build/Forms/Admin/editor-settings.php:743
+#: build/Forms/Admin/editor-settings.php:924
+msgid "Heading"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:138
+#: src/Integrations/WooCommerce/Products.php:727
+msgid "Height"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:233
+#: src/Integrations/WooCommerce/Products.php:604
+msgid "Hidden"
+msgstr ""
+
+#: build/Settings/Menu.php:308
+msgid "Hide From Subscribers"
+msgstr "Nascondi dagli abbonati"
+
+#: build/Forms/Admin/editor-settings.php:738
+msgid "Hide heading"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:838
+msgid "Hide note"
+msgstr "Nascondi nota"
+
+#: build/Forms/Admin/editor-settings.php:381
+msgid "Hide on Desktops"
+msgstr "Nascondi sui desktop"
+
+#: build/Forms/Admin/editor-settings.php:375
+msgid "Hide on Mobile"
+msgstr "Nascondi sul cellulare"
+
+#: build/Settings/Menu.php:310
+msgid "Hide opt-in forms and methods from existing subscribers."
+msgstr "nascondi i moduli newsletter agli abbonati."
+
+#: build/Forms/Admin/editor-settings.php:688
+msgid "Hide prefix"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:788
+msgid "Hide sub-heading"
+msgstr ""
+
+#: build/Emails/functions.php:451
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Hour"
+msgstr ""
+
+#: build/Emails/functions.php:441
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Hours"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:265
+msgid "How often should this email be sent?"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1068
+#: build/Onboarding/Menu.php:201
+msgid "How the sender email appears in outgoing emails. Leave this field blank if you are not able to send any emails."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1077
+#: build/Onboarding/Menu.php:210
+msgid "How the sender name appears in outgoing emails"
+msgstr ""
+
+#. Author URI of the plugin
+#: C:\app\laragon\www\noptin\wp-content\plugins\noptin\noptin.php
+msgid "https://github.com/picocodes"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: C:\app\laragon\www\noptin\wp-content\plugins\noptin\noptin.php
+msgid "https://noptin.com"
+msgstr ""
+
+#: build/Forms/Admin/default-form.php:9
+msgid "I consent to receive promotional emails about your products and services."
+msgstr ""
+
+#: build/Emails/Records.php:57
+#: src/Integrations/EDD/Customers.php:87
+#: src/Integrations/EDD/Downloads.php:91
+#: src/Integrations/EDD/Orders.php:171
+#: src/Integrations/EDD/Order_Items.php:43
+#: src/Integrations/GeoDirectory/Listings.php:248
+#: src/Integrations/PMPro/Membership_Levels.php:44
+#: src/Integrations/WooCommerce/Customers.php:97
+#: src/Integrations/WooCommerce/Orders.php:774
+#: src/Integrations/WooCommerce/Order_Items.php:43
+#: src/Integrations/WooCommerce/Products.php:556
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:182
+#: src/Objects/Generic_Post_Type.php:225
+#: src/Objects/Users.php:428
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+msgid "ID"
+msgstr ""
+
+#: src/Integrations/PMPro/Main.php:60
+msgid "ID of the level being cancelled if specified"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:253
+msgid "If an email address is provided, the user will be created if they do not already exist."
+msgstr ""
+
+#: src/Integrations/Contact_Form_7/settings.php:82
+#: src/Integrations/WPForms/Main.php:253
+msgid "If mapped, only users who consent will join your newsletter."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:372
+msgid "If provided and a post with the same slug exists, the post will be updated."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:619
+msgid "If provided and a product with the same sku exists, the product will be updated."
+msgstr ""
+
+#: build/Subscribers/functions.php:716
+msgid "If that doesn't work, copy and paste the following link in your browser:"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:117
+#: src/Objects/Post_Type.php:103
+#: src/Objects/Post_Type.php:110
+msgid "If that doesn't work, copy and paste the following link into your browser:"
+msgstr ""
+
+#: build/Settings/Menu.php:331
+msgid "If you are migrating from another email plugin, enter the cookie name they used to identify subscribers."
+msgstr ""
+
+#: build/Subscribers/functions.php:710
+msgid "If you have received this email by mistake, you can safely delete it."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:325
+msgid "If you specify any posts here, all other targeting rules will be ignored, and this form will only be displayed on posts or urls that you specify here."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:570
+#: src/Integrations/EDD/Downloads.php:123
+#: src/Integrations/WooCommerce/Products.php:438
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:74
+msgid "Image"
+msgstr "Immagine"
+
+#: build/Forms/Admin/editor-settings.php:623
+msgid "Image Position"
+msgstr "Posizione dell'immagine"
+
+#: build/Forms/Admin/editor-settings.php:610
+msgid "Image URL"
+msgstr "URL dell'immagine"
+
+#: build/Forms/Admin/editor-settings.php:159
+msgid "Immediately"
+msgstr "Subito"
+
+#: build/Subscribers/Schema.php:76
+msgid "Import Subscribers"
+msgstr ""
+
+#: build/Subscribers/functions.php:1327
+#: build/Subscribers/Records.php:79
+msgid "Imported"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:164
+msgid "Impressions"
+msgstr ""
+
+#. translators: 1: list of categories.
+#: templates/post-digests/email-posts-grid.php:80
+#: templates/post-digests/email-posts-grid.php:145
+#: templates/post-digests/email-posts-list.php:71
+msgid "in %1$s"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:248
+#: src/Integrations/WooCommerce/Products.php:683
+msgid "In stock"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:32
+msgid "Indigo"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:27
+msgid "Inherit From Theme"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:60
+msgid "Initial Payment"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:70
+msgid "Inject into post content"
+msgstr "Iniettare nel contenuto del post"
+
+#: build/Emails/Main.php:289
+msgid "Insert into campaign"
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:429
+#: src/Integrations/Main.php:342
+#: build/Extensions/assets/js/workspace.js:1
+#: build/Onboarding/assets/js/setup-wizard.js:1
+msgid "Install"
+msgstr ""
+
+#: build/Extensions/Menu.php:393
+msgid "Install Now"
+msgstr ""
+
+#. translators: %1$s is the name of the integration, %2$s is the link to the integration's website.
+#: build/Forms/Admin/editor-settings.php:1090
+msgid "Install the %1$s to add new subscribers to %2$s."
+msgstr ""
+
+#. translators: %s plugin name.
+#: src/Integrations/Main.php:345
+msgid "Install the %s integration to unlock."
+msgstr ""
+
+#. translators: %s is the name of the integration.
+#: build/Settings/Menu.php:381
+msgid "Install the %s to use it with Noptin."
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:432
+msgid "Install the Noptin Addons Pack addon to unlock."
+msgstr ""
+
+#: build/Extensions/Menu.php:353
+msgid "Install Update"
+msgstr ""
+
+#: build/Extensions/Menu.php:266
+#: build/Forms/Admin/editor-settings.php:997
+#: build/Settings/Menu.php:147
+msgid "Integrations"
+msgstr ""
+
+#: build/Forms/functions.php:344
+msgid "Invalid email address"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:642
+msgid "Invalid email address."
+msgstr ""
+
+#. translators: %s: email address
+#: build/Subscribers/Subscriber.php:649
+msgid "Invalid email address: %s"
+msgstr ""
+
+#: build/Emails/Email.php:699
+#: build/Emails/Email.php:721
+msgid "Invalid recipient"
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com.php:194
+msgid "Invalid response from the server."
+msgstr ""
+
+#: src/Integrations/Elementor/Main.php:129
+#: src/Integrations/Gravity_Forms/Main.php:80
+msgid "IP Address"
+msgstr ""
+
+#: includes/functions.php:1741
+msgid "is"
+msgstr ""
+
+#: includes/functions.php:1789
+msgid "is after"
+msgstr ""
+
+#: includes/functions.php:1785
+msgid "is before"
+msgstr ""
+
+#: includes/functions.php:1781
+#: includes/functions.php:1793
+msgid "is between"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:244
+msgid "Is Complete"
+msgstr ""
+
+#: includes/functions.php:1765
+msgid "is empty"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:49
+msgid "Is Featured"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:218
+msgid "Is Free"
+msgstr ""
+
+#: includes/functions.php:1773
+msgid "is greater than"
+msgstr ""
+
+#: includes/functions.php:1777
+msgid "is less than"
+msgstr ""
+
+#: includes/functions.php:1745
+msgid "is not"
+msgstr ""
+
+#: includes/functions.php:1769
+msgid "is not empty"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:248
+msgid "Is Recoverable"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:497
+msgid "Item count"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:84
+#: src/Integrations/WooCommerce/Orders.php:367
+#: src/Integrations/WooCommerce/Orders.php:709
+msgid "Items"
+msgstr ""
+
+#: build/Forms/Admin/default-form.php:45
+#: build/Forms/assets/js/new-form-block.js:1
+msgid "JOIN OUR NEWSLETTER"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:183
+msgid "Key"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:107
+msgid "Known email addresses"
+msgstr ""
+
+#: build/Fields/functions.php:53
+#: build/Fields/Main.php:251
+#: build/Subscribers/functions.php:1002
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:169
+#: src/Objects/Generic_Post_Type.php:98
+#: src/Objects/Users.php:245
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Language"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:124
+msgid "Last"
+msgstr ""
+
+#: build/Subscribers/Schema.php:146
+msgid "Last modification date for this subscriber."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:240
+#: build/Fields/functions.php:41
+#: build/Fields/Main.php:232
+#: src/Integrations/EDD/Subscription_Checkbox.php:168
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:314
+#: src/Integrations/WordPress_Registration_Form/Main.php:259
+msgid "Last Name"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:273
+#: src/Integrations/WooCommerce/Customers.php:126
+#: src/Objects/Users.php:468
+msgid "Last name"
+msgstr ""
+
+#. Translators: %s is the collection label.
+#: src/Objects/Digest.php:50
+msgid "Latest %s"
+msgstr ""
+
+#: includes/functions.php:533
+#: src/Integrations/GeoDirectory/Listings.php:126
+msgid "Latitude"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:516
+msgid "Learn how to troubleshoot email sending errors"
+msgstr ""
+
+#: build/Extensions/Menu.php:166
+#: build/Extensions/Menu.php:185
+#: build/Extensions/Menu.php:204
+#: build/Extensions/Menu.php:223
+#: build/Extensions/Menu.php:242
+#: build/Extensions/Menu.php:261
+#: build/Extensions/Menu.php:288
+#: build/Extensions/Menu.php:316
+#: build/Fields/Main.php:74
+#: build/Subscribers/Records.php:1402
+#: build/Emails/assets/js/email-editor.js:16
+#: build/Onboarding/assets/js/setup-wizard.js:1
+msgid "Learn More"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1139
+#: build/Emails/Admin/Main.php:1258
+#: build/Emails/Admin/Table.php:1115
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Emails/assets/js/email-editor.js:16
+#: build/Extensions/assets/js/workspace.js:1
+msgid "Learn more"
+msgstr ""
+
+#: build/Automation_Rules/Admin/views/edit.php:50
+#: build/Automation_Rules/Admin/views/list.php:35
+msgid "Learn more about automation rules"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:239
+msgid "Learn More!"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:231
+msgid "Leave blank to create a new post."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:562
+msgid "Leave blank to create a new product."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:594
+#: build/Forms/Admin/editor-settings.php:619
+#: build/Forms/Admin/editor-settings.php:652
+msgid "Left"
+msgstr "Sinistra"
+
+#: src/Integrations/WooCommerce/Products.php:122
+#: src/Integrations/WooCommerce/Products.php:717
+msgid "Length"
+msgstr ""
+
+#: build/Extensions/Menu.php:138
+msgid "License Key"
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:196
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:237
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:240
+msgid "License key deactivated successfully. You will no longer receive product updates and support for this site."
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:99
+#: src/Integrations/EDD/Customers.php:168
+#: src/Integrations/WooCommerce/Customers.php:106
+#: src/Integrations/WooCommerce/Customers.php:308
+msgid "Lifetime value"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:34
+msgid "Light Blue"
+msgstr ""
+
+#: build/Emails/Admin/Editor.php:442
+msgid "Light Gray"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:38
+msgid "Light Green"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:39
+msgid "Lime"
+msgstr ""
+
+#: src/Objects/Post_Type.php:485
+msgid "Link"
+msgstr ""
+
+#: build/Extensions/Menu.php:210
+msgid "Lists"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:325
+msgid "Live"
+msgstr ""
+
+#: build/Automation_Rules/Admin/views/edit.php:46
+msgid "Loading..."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:134
+#: src/Integrations/WooCommerce/Orders.php:501
+#: src/Objects/Users.php:442
+msgid "Locale"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:185
+#: src/Objects/Users.php:519
+msgid "Log-in status"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:190
+#: src/Objects/Users.php:522
+msgid "Logged in"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:176
+msgid "Logged in user's email"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:181
+msgid "Logged in user's name"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:342
+msgid "Logged in users"
+msgstr "Utenti connessi"
+
+#: build/Automation_Rules/Triggers/Trigger.php:191
+#: src/Objects/Users.php:523
+msgid "Logged out"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:343
+msgid "Logged out users"
+msgstr "Utenti disconnessi"
+
+#: build/Automation_Rules/Triggers/Trigger.php:246
+msgid "Login Name"
+msgstr ""
+
+#: build/Settings/Menu.php:263
+#: templates/email-templates/merriweather/logo.php:18
+#: templates/email-templates/paste/logo.php:26
+#: templates/email-templates/plain/logo.php:15
+msgid "Logo"
+msgstr ""
+
+#: includes/functions.php:534
+#: src/Integrations/GeoDirectory/Listings.php:131
+msgid "Longitude"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:698
+msgid "Low stock amount"
+msgstr ""
+
+#: build/Extensions/Menu.php:173
+msgid "Make more money by automatically sending new subscribers, users, or customers unique coupon codes."
+msgstr ""
+
+#: build/Extensions/Menu.php:229
+msgid "Manage Preferences"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:206
+#: src/Integrations/WooCommerce/Products.php:670
+msgid "Manage stock"
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:322
+msgid "Manage your license key"
+msgstr ""
+
+#: build/Subscribers/Records.php:880
+msgid "Manage your preferences"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:565
+#: src/Integrations/Checkbox_Integration.php:497
+msgid "Manual Subscription"
+msgstr ""
+
+#: build/Subscribers/functions.php:1324
+msgid "Manually Added"
+msgstr ""
+
+#: build/Automation_Rules/Trigger_Action.php:189
+msgid "Map custom fields"
+msgstr ""
+
+#: src/Integrations/Contact_Form_7/settings.php:49
+#: src/Integrations/Gravity_Forms/Feed.php:178
+#: src/Integrations/WPForms/Main.php:239
+msgid "Map Fields"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:136
+msgid "Map View"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:141
+msgid "Map Zoom"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:23
+msgid "Membership Level"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:22
+msgid "Membership Levels"
+msgstr ""
+
+#: build/Emails/functions.php:298
+msgid "Merriweather"
+msgstr ""
+
+#: build/Tasks/Main.php:964
+#: templates/debug-log.php:14
+msgid "Message"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:110
+#: build/Settings/Menu.php:148
+msgid "Messages"
+msgstr ""
+
+#: src/Objects/Collection.php:1181
+msgid "Meta Key / Field Key"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:151
+#: src/Integrations/EDD/Orders.php:330
+#: src/Integrations/PMPro/Membership_Levels.php:112
+#: src/Objects/Collection.php:1163
+msgid "Meta Value"
+msgstr ""
+
+#: src/Integrations/WPForms/Main.php:123
+msgid "Middle"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:423
+msgid "Minimum Height"
+msgstr "Altezza minima"
+
+#: build/Emails/functions.php:450
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Minute"
+msgstr ""
+
+#: build/Emails/functions.php:440
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Minutes"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:322
+msgid "Mode"
+msgstr ""
+
+#: build/Emails/functions.php:454
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Month"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:259
+msgid "Monthly"
+msgstr ""
+
+#: build/Emails/functions.php:444
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Months"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:945
+msgid "Move to Trash"
+msgstr ""
+
+#: build/Fields/functions.php:101
+msgid "Multiple checkboxes"
+msgstr ""
+
+#: build/Emails/Records.php:65
+#: build/Subscribers/functions.php:1022
+#: src/Integrations/EDD/Customers.php:111
+#: src/Integrations/EDD/Downloads.php:96
+#: src/Integrations/EDD/Order_Items.php:59
+#: src/Integrations/EDD/Subscription_Checkbox.php:166
+#: src/Integrations/GeoDirectory/Listings.php:253
+#: src/Integrations/Gravity_Forms/Feed.php:208
+#: src/Integrations/PMPro/Membership_Levels.php:48
+#: src/Integrations/WooCommerce/Order_Items.php:55
+#: src/Integrations/WooCommerce/Products.php:96
+#: src/Integrations/WooCommerce/Products.php:410
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:312
+#: src/Integrations/WordPress_Comment_Form/Main.php:133
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:48
+msgid "Name"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1085
+msgid "Never Delete"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:293
+msgid "Never show on:"
+msgstr "Non mostrare mai su:"
+
+#: build/Subscribers/Records.php:208
+#: src/Integrations/EDD/Orders.php:151
+#: src/Integrations/WooCommerce/Orders.php:872
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+msgid "New"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:144
+msgid "New %s notification"
+msgstr ""
+
+#: build/Emails/Main.php:430
+msgid "New Automated Email"
+msgstr ""
+
+#: build/Emails/Main.php:285
+#: build/Emails/Main.php:407
+msgid "New Campaign"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:45
+msgid "New Comment"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:34
+msgid "New Comment Reply"
+msgstr ""
+
+#: build/Forms/Main.php:107
+msgid "New Form"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:219
+msgid "New Listing"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:90
+msgid "New Post Automation"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:104
+msgid "New post published on [[blog_name]]"
+msgstr ""
+
+#: build/Subscribers/Schema.php:71
+msgid "New Subscriber"
+msgstr ""
+
+#: build/Subscribers/Records.php:250
+#: build/Subscribers/Records.php:288
+msgid "New value"
+msgstr ""
+
+#: build/Emails/Main.php:405
+#: build/Forms/Widgets/Form.php:122
+msgid "Newsletter"
+msgstr ""
+
+#. Translators: %s is the current date.
+#: build/Emails/Main.php:412
+msgid "Newsletter - %s"
+msgstr ""
+
+#: build/Forms/Widgets/Form.php:23
+#: build/Forms/assets/js/block.js:1
+msgid "Newsletter Form"
+msgstr ""
+
+#: build/Forms/Main.php:256
+msgid "Newsletter Subscription Form"
+msgstr ""
+
+#: src/Objects/Collection.php:444
+msgid "Newsletter subscription status"
+msgstr ""
+
+#: build/Emails/Main.php:406
+msgid "Newsletters"
+msgstr ""
+
+#. translators: %1 is the time.
+#: build/Emails/Types/Recurring.php:823
+#: build/Emails/Types/Recurring.php:850
+msgid "Next send in %1$s"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:341
+msgid "Next send is"
+msgstr ""
+
+#. translators: %1 is the day, %2 is the time.
+#: build/Emails/Types/Recurring.php:841
+msgid "Next send on %1$s at %2$s"
+msgstr ""
+
+#. translators: %1 is the time.
+#: build/Emails/Types/Recurring.php:832
+msgid "Next send tomorrow at %1$s"
+msgstr ""
+
+#: build/Subscribers/functions.php:1181
+#: build/Subscribers/functions.php:1240
+#: build/Subscribers/Privacy.php:67
+#: includes/class-noptin-dynamic-content-tags.php:576
+#: includes/functions.php:1207
+#: src/Integrations/WooCommerce/Products.php:220
+#: src/Integrations/WooCommerce/Products.php:691
+#: src/Objects/Store.php:169
+msgid "No"
+msgstr ""
+
+#. translators: %s is the object type label, e.g. "orders".
+#: src/Objects/Collection.php:539
+#: src/Objects/Collection.php:1027
+msgid "No %s found."
+msgstr ""
+
+#: build/Subscribers/Records.php:1480
+msgid "No activity has been recorded yet."
+msgstr ""
+
+#: build/Subscribers/Records.php:1435
+msgid "No emails have been sent yet."
+msgstr ""
+
+#: build/Forms/Main.php:113
+msgid "No forms found in Trash."
+msgstr ""
+
+#: build/Forms/Main.php:112
+msgid "No forms found."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_digest.php:320
+msgid "No posts found."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:432
+#: build/Emails/Admin/Table.php:459
+msgid "No recipients"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:398
+msgid "No subject"
+msgstr ""
+
+#: build/Subscribers/Schema.php:75
+msgid "No subscribers found."
+msgstr ""
+
+#: build/Emails/functions.php:295
+msgid "No template"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:246
+msgid "Non Refundable"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:258
+#: src/Integrations/WooCommerce/Products.php:660
+msgid "None"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:71
+msgid "Noptin can automatically embed this form into your post content. You can also find the form's shortcode below the form preview"
+msgstr "Noptin può inserire automaticamente questo modulo nei tuoi contenuti post. È inoltre possibile trovare lo shortcode del modulo sotto l'anteprima del modulo"
+
+#: build/Dashboard/Main.php:39
+msgid "Noptin Dashboard"
+msgstr ""
+
+#. Author of the plugin
+#: C:\app\laragon\www\noptin\wp-content\plugins\noptin\noptin.php
+#: templates/actions-page-confirm.php:9
+#: templates/actions-page.php:9
+msgid "Noptin Newsletter"
+msgstr ""
+
+#: build/Emails/functions.php:182
+#: build/Subscribers/Records.php:32
+msgid "Noptin Subscribers"
+msgstr ""
+
+#. translators: %s: Trigger description.
+#: build/Emails/Main.php:190
+msgid "Noptin will send this email %s"
+msgstr ""
+
+#: build/Settings/Menu.php:369
+msgid "Not Installed"
+msgstr ""
+
+#: src/Integrations/Checkbox_Integration.php:807
+#: src/Integrations/Contact_Form_7/settings.php:76
+#: src/Integrations/Ecommerce_Integration.php:338
+msgid "Not Mapped"
+msgstr ""
+
+#: build/Forms/functions.php:386
+msgid "Not subscribed"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:830
+#: build/Forms/Admin/editor-settings.php:843
+#: build/Forms/Admin/editor-settings.php:944
+msgid "Note"
+msgstr "Nota"
+
+#. translators: %1$s: helper url, %2$d: number of extensions
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:358
+msgid "Note: You currently have <a href=\"%1$s\">%2$d paid extension</a> which should be updated first before updating Noptin."
+msgid_plural "Note: You currently have <a href=\"%1$s\">%2$d paid extensions</a> which should be updated first before updating Noptin."
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Integrations/WooCommerce/Products.php:221
+#: src/Integrations/WooCommerce/Products.php:692
+msgid "Notify"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:179
+#: src/Integrations/WooCommerce/Orders.php:443
+msgid "Number"
+msgstr ""
+
+#: build/Fields/functions.php:68
+msgid "Number Input"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:116
+msgid "Number of comments, with an optional comparison operator."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:311
+msgid "Number of days between each email."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:101
+msgid "Number of orders"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:95
+#: src/Integrations/EDD/Customers.php:164
+#: src/Integrations/WooCommerce/Customers.php:304
+msgid "Number of payments"
+msgstr ""
+
+#: build/Subscribers/Records.php:257
+msgid "Old value"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:169
+msgid "Only add to Noptin if"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Collection.php:696
+msgid "Only show %s created since last send"
+msgstr ""
+
+#: build/Forms/functions.php:372
+msgid "Oops. Something went wrong. Please try again later."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:333
+#: src/Objects/Generic_Post_Type.php:362
+msgid "Open"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1102
+#: build/Subscribers/Records.php:1452
+#: build/Subscribers/Subscriber.php:700
+msgid "Opened"
+msgstr ""
+
+#: build/Emails/Records.php:145
+#: build/Dashboard/assets/js/dashboard.js:1
+msgid "Opens"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:166
+msgid "Opt-In Condition"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1230
+msgid "Optional. Add any custom CSS to style your emails."
+msgstr ""
+
+#: build/Fields/Main.php:118
+msgid "Optional. Enter the default placeholder for this field"
+msgstr ""
+
+#: build/Fields/Main.php:143
+msgid "Optional. Enter the default value for this field"
+msgstr ""
+
+#: build/Subscribers/Records.php:836
+msgid "Optional. Exclude recipients by their tags."
+msgstr ""
+
+#: build/Subscribers/Records.php:829
+msgid "Optional. Filter recipients by their tags."
+msgstr ""
+
+#: src/Integrations/Ninja_Forms/Action.php:73
+msgid "Optional. If set, users will only join your newsletter if they consent."
+msgstr ""
+
+#: build/Subscribers/Records.php:803
+msgid "Optional. Leave blank to send to all"
+msgstr ""
+
+#: build/Emails/Main.php:169
+msgid "Optional. Send this email only if certain conditions are met."
+msgstr ""
+
+#: includes/functions.php:2011
+msgid "OR"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:42
+msgid "Orange"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:23
+msgid "Order"
+msgstr ""
+
+#. translators: %s: Order status label.
+#: src/Integrations/WooCommerce/Orders.php:858
+msgid "Order > %s"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:510
+msgid "Order Billing address"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:725
+msgid "Order Cross sells"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:751
+msgid "Order Details"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:47
+msgid "Order ID"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:24
+#: src/Integrations/WooCommerce/Order_Items.php:24
+msgid "Order Item"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:23
+#: src/Integrations/WooCommerce/Orders.php:712
+#: src/Integrations/WooCommerce/Order_Items.php:23
+msgid "Order Items"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:579
+msgid "Order Shipping address"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:88
+msgid "Order status"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:738
+msgid "Order Upsells"
+msgstr ""
+
+#: src/Integrations/Ecommerce_Integration.php:51
+#: src/Integrations/WooCommerce/Orders.php:22
+msgid "Orders"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:249
+#: src/Integrations/WooCommerce/Products.php:684
+msgid "Out of Stock"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:63
+msgid "Overall Rating"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:171
+msgid "Package Name"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:243
+msgid "Page Targeting"
+msgstr "Targeting per pagina"
+
+#: src/Integrations/Elementor/Main.php:121
+msgid "Page URL"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:48
+msgid "Paid"
+msgstr ""
+
+#: src/Integrations/PMPro/Main.php:54
+#: src/Integrations/PMPro/Main.php:188
+msgid "Paid Memberships Pro"
+msgstr ""
+
+#: build/Forms/Main.php:111
+msgid "Parent Forms:"
+msgstr ""
+
+#: build/Emails/Records.php:61
+#: src/Integrations/EDD/Orders.php:175
+#: src/Integrations/WooCommerce/Orders.php:778
+#: src/Integrations/WooCommerce/Products.php:573
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:186
+#: src/Objects/Generic_Post_Type.php:242
+msgid "Parent ID"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:94
+msgid "Parent order ID"
+msgstr ""
+
+#: build/Emails/functions.php:296
+msgid "Paste"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:724
+msgid "Pause"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:725
+msgid "Pause Campaign"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:639
+#: build/Emails/Admin/Table.php:1286
+msgid "Paused"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:648
+msgid "Pay Now"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:641
+msgid "Pay Order"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Main.php:92
+msgid "Payment Amount"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:147
+msgid "Payment IDs"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:114
+#: src/Integrations/WooCommerce/Orders.php:629
+msgid "Payment method"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:634
+msgid "Payment method title"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:638
+msgid "Payment URL"
+msgstr ""
+
+#: build/Subscribers/functions.php:1383
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Pending"
+msgstr ""
+
+#: build/Subscribers/Records.php:84
+msgid "Pending email confirmation"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:79
+msgid "Periodic"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1325
+msgid "Permission Text"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:359
+msgid "Ping Status"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:29
+msgid "Pink"
+msgstr ""
+
+#: build/Fields/Main.php:117
+msgid "Placeholder"
+msgstr ""
+
+#: build/Emails/functions.php:297
+msgid "Plain"
+msgstr ""
+
+#: build/Emails/functions.php:260
+msgid "Plain Text"
+msgstr ""
+
+#: build/Forms/functions.php:356
+msgid "Please accept the terms and conditions first."
+msgstr ""
+
+#: build/Subscribers/functions.php:705
+#: build/Subscribers/functions.php:706
+msgid "Please confirm your subscription"
+msgstr ""
+
+#: build/Forms/functions.php:351
+msgid "Please fill in all the required fields."
+msgstr ""
+
+#: build/Emails/REST.php:124
+#: build/Subscribers/functions.php:381
+msgid "Please provide a valid email address"
+msgstr "Per favore fornisci un indirizzo email valido"
+
+#: build/Forms/functions.php:346
+msgid "Please provide a valid email address."
+msgstr ""
+
+#: src/Integrations/PMPro/Main.php:53
+msgid "PMPro > Change Membership Level"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:278
+#: build/Forms/Admin/List_Table.php:323
+msgid "Popup Forms"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:280
+msgid "Post"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:215
+#: src/Objects/Generic_Post_Type.php:230
+msgid "Post ID"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:566
+msgid "Post ID or SKU"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:235
+msgid "Post ID or Slug"
+msgstr ""
+
+#: build/Forms/Main.php:101
+msgctxt "Post type general name"
+msgid "Subscription Forms"
+msgstr ""
+
+#: build/Forms/Main.php:102
+msgctxt "Post type singular name"
+msgid "Subscription Form"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:417
+msgid "Preferred Width"
+msgstr "Larghezza preferita"
+
+#: build/Forms/Admin/default-form.php:66
+#: build/Forms/Admin/editor-settings.php:680
+#: build/Forms/Admin/editor-settings.php:693
+#: build/Forms/Admin/editor-settings.php:934
+msgid "Prefix"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:886
+msgid "Prefix all your styles with '.noptin-optin-form-wrapper' or else they will apply to all opt-in forms on the page"
+msgstr "Prefisso tutti i tuoi stili con '.noptin-optin-form-wrapper' altrimenti si applicheranno a tutti i moduli di opt-in nella pagina"
+
+#: src/Objects/People_List.php:308
+msgid "Premium plans allow you to filter newsletter recipients by their subscription method, tags, lists, and custom fields."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:123
+msgid "Prepending a term with a hyphen will exclude posts matching that term."
+msgstr ""
+
+#: build/Dashboard/Main.php:111
+msgid "Prevent spam sign-ups."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:281
+#: build/Emails/Main.php:286
+#: build/Emails/Records.php:88
+#: build/Forms/Admin/List_Table.php:71
+#: build/Dashboard/assets/js/dashboard.js:4
+#: build/Emails/assets/js/ai.js:1
+#: build/Forms/assets/js/form-editor.js:2
+msgid "Preview"
+msgstr "Anteprima"
+
+#: build/Emails/Records.php:74
+#: build/Emails/Records.php:77
+#: build/Emails/Records.php:81
+msgid "Preview URL"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:250
+#: src/Integrations/GeoDirectory/Listings.php:255
+msgid "Previous Package"
+msgstr ""
+
+#: build/Subscribers/Records.php:204
+msgid "Previous status"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:170
+#: src/Integrations/WooCommerce/Products.php:146
+#: src/Integrations/WooCommerce/Products.php:464
+msgid "Price"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:469
+msgid "Price HTML"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:51
+msgid "Price ID"
+msgstr ""
+
+#: build/Emails/Admin/Editor.php:422
+msgid "Primary"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:103
+msgid "Primary email address"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:47
+msgid "Processed via checkout"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:798
+msgid "Product Cross sells"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:523
+msgid "Product description"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:55
+#: src/Integrations/WooCommerce/Order_Items.php:47
+#: src/Integrations/WooCommerce/Products.php:561
+msgid "Product ID"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:75
+msgid "Product IDs"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:67
+msgid "Product type"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:811
+msgid "Product Upsells"
+msgstr ""
+
+#: includes/class-noptin-dynamic-content-tags.php:118
+msgid "Property of the current page or post."
+msgstr ""
+
+#: build/Dashboard/Main.php:85
+msgid "Protects your subscription, contact, checkout, and registration forms from spammers."
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:160
+msgid "Provide feed name e.g \"Newsletter Subscription\""
+msgstr ""
+
+#: build/Emails/Admin/Table.php:944
+msgid "Publish"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:745
+msgid "Purchase note"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:30
+msgid "Purple"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:230
+msgid "Quantities Disabled"
+msgstr ""
+
+#: src/Integrations/EDD/Order_Items.php:63
+#: src/Integrations/WooCommerce/Order_Items.php:59
+msgid "Quantity"
+msgstr ""
+
+#: build/Fields/functions.php:74
+msgid "Radio Buttons"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:67
+msgid "Rating Count"
+msgstr ""
+
+#: build/Emails/functions.php:265
+msgid "Raw HTML"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:923
+msgid "Re-order"
+msgstr ""
+
+#: includes/class-noptin-page.php:326
+msgid "Re-subscription"
+msgstr ""
+
+#: includes/class-noptin-page.php:331
+msgid "Re-subscription Message"
+msgstr ""
+
+#: includes/class-noptin-page.php:338
+msgid "Re-subscription Redirect"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:152
+#: src/Integrations/EDD/Downloads.php:163
+#: src/Integrations/WooCommerce/Products.php:476
+#: src/Integrations/WooCommerce/Products.php:487
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:103
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:114
+#: src/Objects/Generic_Post_Type.php:341
+#: src/Objects/Generic_Post_Type.php:352
+msgid "Read More"
+msgstr ""
+
+#: src/Objects/Collection.php:419
+msgid "Read more"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:604
+#: build/Emails/Admin/Main.php:806
+#: build/Misc/Main.php:197
+msgid "Recipient(s)"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:426
+#: build/Emails/Admin/Table.php:439
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Recipients"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:261
+msgid "Recovery URL"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:30
+#: build/Emails/assets/js/view-campaigns.js:5
+msgid "Recurring"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:28
+msgid "Red"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:86
+msgid "redirect to a different page"
+msgstr "reindirizzare a una pagina diversa"
+
+#: build/Forms/Admin/editor-settings.php:94
+msgid "Redirect url"
+msgstr "URL di reindirizzamento"
+
+#: build/Forms/Widgets/New_Form.php:259
+msgid "Redirect:"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:238
+msgid "Refund Window"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:242
+msgid "Refundability"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:245
+msgid "Refundable"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:240
+msgid "Refundable Date"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:49
+msgid "Refunded"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:111
+msgid "Region"
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:143
+#: src/Objects/Users.php:491
+msgid "Registration date"
+msgstr ""
+
+#: src/Integrations/WordPress_Registration_Form/Main.php:28
+msgid "Registration Form"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:155
+#: src/Integrations/WooCommerce/Products.php:624
+msgid "Regular price"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:782
+#: src/Integrations/WooCommerce/Products.php:785
+msgid "Related Products"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1328
+msgid "Remind the subscriber how they signed up."
+msgstr ""
+
+#: build/Forms/Smart_Tags.php:67
+msgid "Replaced with the form response (error or success messages)."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:188
+#: build/Forms/Smart_Tags.php:78
+msgid "Replaced with the total number of subscribers"
+msgstr ""
+
+#: build/Dashboard/Main.php:107
+msgid "Report a bug or request a feature"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1245
+msgid "Require new subscribers to confirm their email addresses."
+msgstr ""
+
+#: build/Fields/Main.php:166
+msgid "Required"
+msgstr ""
+
+#: build/Forms/functions.php:349
+msgid "Required field missing"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:674
+msgid "Resend"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:675
+msgid "Resend Campaign"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:97
+msgid "Reset"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:96
+msgid "Reset Noptin"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:87
+msgid "Reset Stats"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:139
+#: src/Integrations/WooCommerce/Products.php:454
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:90
+#: src/Objects/Generic_Post_Type.php:397
+msgid "Resolution"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:328
+#: build/Emails/Admin/Table.php:939
+msgid "Restore"
+msgstr ""
+
+#: build/Subscribers/Actions.php:33
+#: build/Subscribers/Records.php:883
+msgid "Resubscribe"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:766
+msgid "Resubscribe URL"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:713
+msgid "Resume"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:714
+msgid "Resume Campaign"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1106
+msgid "Revenue"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1112
+msgid "Revenue is tracked when someone makes a purchase within 2 weeks of clicking on a link in a campaign"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:296
+#: src/Integrations/WooCommerce/Products.php:778
+msgid "Review count"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:212
+#: src/Integrations/WooCommerce/Products.php:740
+msgid "Reviews allowed"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:595
+#: build/Forms/Admin/editor-settings.php:620
+#: build/Forms/Admin/editor-settings.php:653
+msgid "Right"
+msgstr "Destra"
+
+#: src/Objects/Users.php:433
+msgid "Role"
+msgstr ""
+
+#: build/Automation_Rules/Admin/views/edit.php:14
+#: build/Automation_Rules/Admin/views/edit.php:22
+msgid "Rule not found. It might have been deleted."
+msgstr ""
+
+#. translators: %s is a list of conditions.
+#: build/Automation_Rules/Actions/Action.php:127
+msgid "Runs if %s"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:164
+#: src/Integrations/WooCommerce/Products.php:629
+msgid "Sale price"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:174
+msgid "Sales"
+msgstr ""
+
+#: build/Subscribers/Records.php:78
+msgid "Saved"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:217
+msgid "Saving Type"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:214
+msgid "Scroll depth in percentage after which the form will appear"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:232
+#: src/Integrations/WooCommerce/Products.php:603
+msgid "Search"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:120
+msgid "Search by keyword"
+msgstr ""
+
+#: build/Emails/Admin/views/campaigns.php:177
+#: build/Emails/Main.php:288
+msgid "Search Campaigns"
+msgstr ""
+
+#: build/Forms/Main.php:110
+msgid "Search Forms"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:284
+msgid "Search page"
+msgstr "Pagina di ricerca"
+
+#: build/Subscribers/Schema.php:74
+msgid "Search Subscribers"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1218
+msgid "Select \"No Template\" if you are using an email templates plugin."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:271
+#: build/Emails/Types/Recurring.php:284
+#: build/Emails/Types/Recurring.php:296
+msgid "Select a day"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1215
+msgid "Select a template"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:519
+#: src/Integrations/Checkbox_Integration.php:356
+#: src/Integrations/Checkbox_Integration.php:453
+msgid "Select an option"
+msgstr ""
+
+#: build/Subscribers/Records.php:1118
+msgid "Select Field"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:142
+#: src/Integrations/WooCommerce/Products.php:457
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:93
+#: src/Objects/Generic_Post_Type.php:400
+msgid "Select image size"
+msgstr ""
+
+#. translators: %s is the context, e.g hobbies, lists
+#: build/Forms/Admin/editor-settings.php:1020
+msgid "Select the %s to add new subscribers who sign up via this form."
+msgstr ""
+
+#: build/Subscribers/Records.php:1117
+msgid "Select the custom field to update"
+msgstr ""
+
+#. translators: %s is the context, e.g users, customers
+#: includes/integrations/class-noptin-abstract-integration.php:516
+#: src/Integrations/Checkbox_Integration.php:450
+msgid "Select the default %s to add new subscribers who sign up via this method."
+msgstr ""
+
+#: build/Fields/Main.php:100
+msgid "Select the field type"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:201
+msgid "Select the form that you want to trigger this automation rule for."
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:141
+#: src/Integrations/WooCommerce/Products.php:456
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:92
+#: src/Objects/Generic_Post_Type.php:399
+msgid "Select the image size to display."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:352
+msgid "Select user roles"
+msgstr "Seleziona i ruoli utente"
+
+#: build/Emails/functions.php:183
+msgid "Send a bulk email to your active subscribers. You can filter recipients by subscription source, tags, lists or custom fields."
+msgstr ""
+
+#: build/Emails/functions.php:261
+msgid "Send a plain text email. It will contain no HTML which means open tracking and click tracking will not work."
+msgstr ""
+
+#: build/Emails/Records.php:229
+#: build/Emails/Records.php:230
+#: build/Subscribers/Subscriber.php:749
+msgid "Send Email"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:288
+msgid "Send Now"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:641
+#: build/Emails/Admin/Table.php:1285
+msgid "Sending"
+msgstr ""
+
+#: build/Emails/Records.php:141
+#: build/Dashboard/assets/js/dashboard.js:1
+msgid "Sends"
+msgstr ""
+
+#. translators: %s: Trigger description.
+#: build/Automation_Rules/Triggers/Email_Type.php:112
+msgid "Sends an email %s."
+msgstr ""
+
+#. translators: %s is a list of conditions.
+#: build/Emails/Records.php:234
+msgid "Sends if %s"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:637
+#: build/Emails/Admin/Table.php:1101
+#: build/Emails/Admin/Table.php:1284
+#: build/Subscribers/Records.php:1444
+msgid "Sent"
+msgstr ""
+
+#: build/Emails/Main.php:455
+msgid "Sequence / Course"
+msgstr ""
+
+#: build/Emails/Main.php:456
+#: build/Extensions/Menu.php:153
+msgid "Sequences / Courses"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:443
+#: src/Integrations/Checkbox_Integration.php:387
+msgid "Set the checkbox as checked by default."
+msgstr ""
+
+#: build/Extensions/Menu.php:154
+msgid "Set-up a series of free or paid emails to be sent at specific intervals one after another. Usefull for courses, welcome series, etc."
+msgstr ""
+
+#: build/Extensions/Menu.php:366
+#: build/Forms/Admin/editor-settings.php:35
+#: build/Settings/Menu.php:68
+#: build/Settings/Menu.php:69
+#: includes/class-noptin-white-label.php:151
+#: build/Emails/assets/js/blocks.js:14
+msgid "Settings"
+msgstr "impostazioni"
+
+#: src/Integrations/WooCommerce/Products.php:257
+#: src/Integrations/WooCommerce/Products.php:659
+msgid "Shipping"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:576
+msgid "Shipping address"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:600
+msgid "Shipping address 1"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:604
+msgid "Shipping address 2"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:194
+msgid "Shipping address line 1"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:199
+msgid "Shipping address line 2"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:204
+#: src/Integrations/WooCommerce/Orders.php:608
+msgid "Shipping city"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:267
+msgid "Shipping class"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:760
+msgid "Shipping class ID"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:596
+msgid "Shipping company"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:189
+msgid "Shipping company name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:219
+#: src/Integrations/WooCommerce/Orders.php:620
+msgid "Shipping country"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:179
+#: src/Integrations/WooCommerce/Orders.php:588
+msgid "Shipping first name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:184
+#: src/Integrations/WooCommerce/Orders.php:592
+msgid "Shipping last name"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:564
+#: src/Integrations/WooCommerce/Orders.php:567
+msgid "Shipping method"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:625
+msgid "Shipping phone"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:214
+#: src/Integrations/WooCommerce/Orders.php:616
+msgid "Shipping postcode"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:209
+#: src/Integrations/WooCommerce/Orders.php:612
+msgid "Shipping state"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:485
+msgid "Shipping total"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:519
+msgid "Short description"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:277
+#: build/Forms/Admin/List_Table.php:322
+msgid "Shortcode Forms"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Collection.php:742
+msgid "Show %s created after this date."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Collection.php:720
+msgid "Show %s created before this date."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:493
+msgid "Show all fields in a single line"
+msgstr "Mostra tutti i campi in un'unica riga"
+
+#: build/Forms/Admin/editor-settings.php:517
+msgid "Show GDPR checkbox"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:157
+msgid "Show this form"
+msgstr ""
+
+#: build/Forms/functions.php:371
+msgid "Shown when a generic error occurs."
+msgstr ""
+
+#: build/Forms/functions.php:360
+#: build/Settings/Menu.php:295
+msgid "Shown when an existing subscriber tries to sign-up again."
+msgstr ""
+
+#: build/Forms/functions.php:376
+msgid "Shown when an existing subscriber unsubscribes via this form."
+msgstr ""
+
+#: build/Forms/functions.php:398
+msgid "Shown when an existing subscriber updates their details via this form."
+msgstr ""
+
+#: build/Forms/functions.php:355
+msgid "Shown when someone does not check the acceptance checkbox."
+msgstr ""
+
+#: build/Forms/functions.php:350
+msgid "Shown when someone does not fill all required fields."
+msgstr ""
+
+#: build/Forms/functions.php:345
+msgid "Shown when someone enters an invalid email address."
+msgstr ""
+
+#: build/Forms/functions.php:330
+msgid "Shown when someone successfully fills the form."
+msgstr ""
+
+#: build/Forms/functions.php:387
+msgid "Shown when someone unsubscribes with an email that is not already subscribed."
+msgstr ""
+
+#: src/Objects/Collection.php:691
+msgid "Since Last Send"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:222
+msgid "Single Price Mode"
+msgstr ""
+
+#: build/Forms/Widgets/Form.php:136
+msgid "Single-line / Horizontal Form"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:118
+#: src/Integrations/WooCommerce/Products.php:85
+#: src/Integrations/WooCommerce/Products.php:614
+msgid "SKU"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:279
+#: build/Forms/Admin/List_Table.php:324
+msgid "Sliding Forms"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:434
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:70
+#: src/Objects/Generic_Post_Type.php:367
+msgid "Slug"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:200
+#: src/Integrations/WooCommerce/Products.php:703
+msgid "Sold individually"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Main.php:76
+msgid "Source URL"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:344
+msgid "specific user roles"
+msgstr "ruoli utente specifici"
+
+#: src/Integrations/WooCommerce/Products.php:567
+msgid "Specify a post ID or sku"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:236
+msgid "Specify a post ID or slug"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:324
+msgid "Start date of sale price, in the site's timezone, with an optional comparison operator."
+msgstr ""
+
+#: build/Emails/Admin/Editor.php:148
+#: build/Emails/assets/js/blocks.js:4
+msgid "Start writing or type / to choose a block"
+msgstr ""
+
+#: includes/functions.php:531
+#: src/Integrations/EDD/Customers.php:127
+#: src/Integrations/EDD/Orders.php:298
+#: src/Integrations/WPForms/Main.php:130
+msgid "State"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1100
+#: build/Tasks/Main.php:851
+#: src/Integrations/EDD/Customers.php:139
+#: src/Integrations/EDD/Orders.php:95
+#: src/Integrations/EDD/Orders.php:252
+#: src/Integrations/WooCommerce/Orders.php:378
+#: src/Integrations/WooCommerce/Orders.php:798
+#: src/Integrations/WooCommerce/Products.php:587
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:165
+#: src/Objects/Generic_Post_Type.php:319
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Status"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:257
+msgid "Status Nicename"
+msgstr ""
+
+#. translators: %s: New status.
+#: build/Subscribers/Records.php:508
+msgid "Status set to %1$s"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:237
+#: src/Integrations/WooCommerce/Products.php:675
+msgid "Stock quantity"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:245
+#: src/Integrations/WooCommerce/Products.php:680
+msgid "Stock status"
+msgstr ""
+
+#. translators: %1$s is the opening link tag, %2$s is the closing link tag.
+#: build/Subscribers/Records.php:1395
+msgid "Store more information about your subscribers by %1$screating custom fields%2$s."
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:96
+msgid "Street"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:101
+msgid "Street2"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:780
+#: build/Forms/Admin/editor-settings.php:793
+msgid "Sub-heading"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:390
+#: build/Emails/Records.php:70
+msgid "Subject"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:90
+msgid "Submit"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:328
+msgid "Submit Button Text:"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:58
+msgid "Submit IP"
+msgstr ""
+
+#: build/Forms/Renderer.php:209
+#: build/Forms/Renderer.php:655
+msgid "Subscribe"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:220
+msgid "SUBSCRIBE NOW"
+msgstr ""
+
+#: build/Forms/Admin/default-form.php:38
+msgid "Subscribe Now"
+msgstr ""
+
+#: src/Integrations/Gravity_Forms/Feed.php:96
+msgid "Subscribe to Noptin only when payment is received."
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:219
+msgid "Subscribe to our newsletter today and be the first to know when we publish a new blog post."
+msgstr ""
+
+#: build/Subscribers/functions.php:1384
+msgid "Subscribed"
+msgstr ""
+
+#: src/Objects/Collection.php:447
+msgid "subscribed"
+msgstr ""
+
+#: build/Subscribers/functions.php:1165
+#: build/Subscribers/Records.php:33
+#: build/Subscribers/Schema.php:67
+msgid "Subscriber"
+msgstr ""
+
+#: build/Subscribers/Schema.php:152
+msgid "Subscriber activity"
+msgstr ""
+
+#: build/Subscribers/Records.php:1065
+#: build/Subscribers/Records.php:1087
+#: build/Subscribers/Records.php:1109
+#: build/Subscribers/Records.php:1160
+#: build/Subscribers/Records.php:1195
+#: build/Subscribers/Records.php:1230
+msgid "Subscriber ID or email address"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:397
+msgid "Subscriber Tags"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:544
+#: src/Integrations/Checkbox_Integration.php:475
+msgid "Subscriber tags"
+msgstr ""
+
+#: build/Subscribers/Main.php:174
+#: build/Subscribers/Schema.php:66
+#: includes/class-noptin-white-label.php:136
+msgid "Subscribers"
+msgstr ""
+
+#: build/Fields/Main.php:167
+msgid "Subscribers MUST fill this field whenever it is added to a subscription form."
+msgstr ""
+
+#: build/Settings/Menu.php:278
+msgid "Subscription"
+msgstr ""
+
+#: includes/class-noptin-page.php:284
+msgid "Subscription Confirmation"
+msgstr ""
+
+#: build/Settings/Menu.php:329
+msgid "Subscription Cookie"
+msgstr ""
+
+#: build/Forms/Admin/Main.php:296
+#: build/Forms/Main.php:115
+msgid "Subscription Forms"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:218
+msgctxt "Subscription forms that appear in a popup"
+msgid "Popup"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:217
+msgctxt "Subscription forms that are embedded in posts using shortcodes"
+msgid "Shortcode"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:216
+msgctxt "Subscription forms that are meant to appear in a widget area"
+msgid "Widget"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:219
+msgctxt "Subscription forms that slide into view"
+msgid "Sliding"
+msgstr ""
+
+#: build/Subscribers/functions.php:1325
+msgid "Subscription Shortcode"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:165
+msgid "Subscriptions"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:204
+#: src/Integrations/EDD/Order_Items.php:71
+#: src/Integrations/WooCommerce/Orders.php:477
+#: src/Integrations/WooCommerce/Order_Items.php:63
+msgid "Subtotal"
+msgstr ""
+
+#: build/Forms/functions.php:329
+msgid "Successfully subscribed"
+msgstr ""
+
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:125
+msgid "Summary"
+msgstr ""
+
+#. translators: %s is the list of supported services.
+#: build/Subscribers/Bounce_Handler.php:379
+msgid "Supported services:- %s"
+msgstr ""
+
+#: build/Extensions/Menu.php:248
+msgid "Sync Subscribers"
+msgstr ""
+
+#: build/Extensions/Menu.php:249
+msgid "Sync subscribers between sites, and add newsletter subscription forms on external sites."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:102
+msgid "Tag"
+msgstr ""
+
+#: build/Extensions/Menu.php:191
+msgid "Tag Subscribers"
+msgstr ""
+
+#: build/Extensions/Menu.php:192
+msgid "Tag subscribers based on their actions and send emails to subscribers with specific tags, or automatically send emails to subscribers whenever they are tagged or untagged."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:390
+#: build/Subscribers/Records.php:106
+#: build/Subscribers/Records.php:827
+#: src/Integrations/EDD/Downloads.php:208
+#: src/Integrations/EDD/Downloads.php:213
+#: src/Integrations/WooCommerce/Products.php:546
+#: src/Integrations/WooCommerce/Products.php:551
+msgid "Tags"
+msgstr ""
+
+#: build/Subscribers/Records.php:834
+msgid "Tags - Exclude"
+msgstr ""
+
+#: build/Subscribers/functions.php:709
+msgid "Tap the button below to confirm your subscription to our newsletter."
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:212
+#: src/Integrations/EDD/Order_Items.php:75
+msgid "Tax"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:262
+#: src/Integrations/WooCommerce/Products.php:665
+msgid "Tax class"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:228
+msgid "Tax Rate"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:253
+#: src/Integrations/WooCommerce/Products.php:655
+msgid "Tax status"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:256
+#: src/Integrations/WooCommerce/Products.php:658
+msgid "Taxable"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:36
+msgid "Teal"
+msgstr ""
+
+#: build/Forms/functions.php:354
+msgid "Terms not Accepted"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:326
+msgid "Test"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:303
+msgid "Text Color:"
+msgstr ""
+
+#: build/Fields/functions.php:58
+msgid "Text Input"
+msgstr ""
+
+#: build/Fields/functions.php:63
+msgid "Textarea Input"
+msgstr ""
+
+#: includes/class-noptin-page.php:355
+#: includes/class-noptin-page.php:379
+msgid "Thank You"
+msgstr ""
+
+#: includes/class-noptin-page.php:367
+msgid "Thank You, Again!"
+msgstr ""
+
+#: build/Forms/functions.php:399
+msgid "Thank you, your details have been updated."
+msgstr ""
+
+#: build/Settings/Main.php:46
+#: build/Settings/Menu.php:285
+#: build/Settings/Menu.php:286
+#: includes/functions.php:41
+msgid "Thanks for subscribing to our newsletter"
+msgstr ""
+
+#: build/Forms/functions.php:331
+msgid "Thanks for subscribing to the newsletter."
+msgstr ""
+
+#: build/Forms/Listener.php:662
+msgid "Thanks!"
+msgstr ""
+
+#. translators: %1$s is the integration label, %2$s is the required plugin version.
+#: src/Integrations/Main.php:190
+msgid "The %1$s integration requires %2$s version %3$s or higher."
+msgstr ""
+
+#. translators: %1$s is the integration label, %2$s is the required Noptin version.
+#: src/Integrations/Main.php:138
+msgid "The %1$s integration requires Noptin version %2$s or higher."
+msgstr ""
+
+#. translators: %1$s is the integration label, %2$s is the required PHP version.
+#: src/Integrations/Main.php:152
+msgid "The %1$s integration requires PHP version %2$s or higher."
+msgstr ""
+
+#. translators: %1$s is the integration label, %2$s is the required WordPress version.
+#: src/Integrations/Main.php:166
+msgid "The %1$s integration requires WordPress version %2$s or higher."
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:49
+msgid "The action ID."
+msgstr ""
+
+#: build/Extensions/Menu.php:150
+msgid "The addons pack gives you access to the following features."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:96
+#: src/Integrations/WooCommerce/Products.php:842
+msgid "The attribute key to display."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:262
+msgid "The campaign has been deleted."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:235
+msgid "The campaign has been duplicated."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:200
+msgid "The campaign has been paused."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:302
+msgid "The campaign has been restored."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:282
+msgid "The campaign has been trashed."
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:73
+msgid "The comment author"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:78
+msgid "The comment author email"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:88
+msgid "The comment author IP"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:83
+msgid "The comment author URL"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:93
+msgid "The comment content"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:68
+msgid "The comment ID"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:98
+msgid "The comment type"
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:183
+msgid "The company name that you set in Noptin > Settings > Emails."
+msgstr ""
+
+#: build/Subscribers/Schema.php:131
+msgid "The confirmation key."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:750
+msgid "The cron event for this campaign is not scheduled. Rescheduling it."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:745
+msgid "The cron event for this campaign is not scheduled. We tried to reschedule it, but it seems that your server is not configured to run cron jobs."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:133
+#: build/Emails/Generate/Merge_Tags.php:142
+msgid "The current date"
+msgstr ""
+
+#. translators: %s is the current date.
+#: includes/class-noptin-dynamic-content-tags.php:80
+msgid "The current date. Example: %s."
+msgstr ""
+
+#. translators: %s is the current language.
+#: includes/class-noptin-dynamic-content-tags.php:93
+msgid "The current language. Example: %s."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:149
+#: build/Emails/Generate/Merge_Tags.php:157
+msgid "The current month"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:176
+#: build/Emails/Generate/Merge_Tags.php:147
+msgid "The current time"
+msgstr ""
+
+#. translators: %s is the current time.
+#: includes/class-noptin-dynamic-content-tags.php:87
+msgid "The current time. Example: %s."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:141
+#: build/Emails/Generate/Merge_Tags.php:152
+msgid "The current year"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:342
+msgid "The date and time the next email will be sent."
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:104
+msgid "The date this rule was created."
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:111
+msgid "The date this rule was last modified."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:158
+#: build/Emails/Generate/Merge_Tags.php:164
+msgid "The day of the month"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:167
+msgid "The day of the week"
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:171
+msgid "The day of the weekday"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:102
+#: src/Integrations/WooCommerce/Products.php:848
+#: src/Objects/Collection.php:1190
+#: src/Objects/Post_Type.php:494
+msgid "The default value to display if not set."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:418
+msgid "The element will resize to 100% width on smaller devices"
+msgstr "L'elemento ridimensionerà al 100% di larghezza su dispositivi più piccoli"
+
+#: build/Automation_Rules/Smart_Tags.php:64
+#: includes/class-noptin-dynamic-content-tags.php:63
+msgid "The email address of the current visitor (if known)."
+msgstr ""
+
+#: build/Emails/Generate/Generator.php:134
+msgid "The email body cannot be empty."
+msgstr ""
+
+#: build/Emails/Email.php:512
+#: build/Emails/Email.php:687
+msgid "The email cannot be sent."
+msgstr ""
+
+#: build/Emails/Email.php:613
+msgid "The email has no valid recipients."
+msgstr ""
+
+#: build/Emails/Email.php:735
+msgid "The email is unsubscribed"
+msgstr ""
+
+#. translators: %s: Addon name.
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:310
+msgid "The following addon is currently active: %s"
+msgstr ""
+
+#. translators: %s: Addon names.
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:316
+msgid "The following addons are currently active: %s."
+msgstr ""
+
+#: build/Forms/Previewer.php:135
+#: build/Forms/assets/js/form-editor.js:2
+msgid "The form may look slightly different than this when shown in a post, page or widget area."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:132
+msgid "The form will slide from..."
+msgstr ""
+
+#: build/Forms/functions.php:388
+msgid "The given email address is not subscribed."
+msgstr ""
+
+#: build/Subscribers/Schema.php:109
+msgid "The IP address of the subscriber."
+msgstr ""
+
+#: includes/class-noptin-page.php:292
+msgid "The message to show to subscribers after they confirm their email address. Only used if you do not provide a redirect url below."
+msgstr ""
+
+#: includes/class-noptin-page.php:334
+msgid "The message to show to subscribers after they resubscribe. Only used if you do not provide a redirect url below."
+msgstr ""
+
+#: includes/class-noptin-page.php:313
+msgid "The message to show to subscribers after they unsubscribe. Only used if you do not provide a redirect url below."
+msgstr ""
+
+#: src/Objects/Collection.php:1184
+msgid "The meta key or field key to display."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1086
+msgid "The number of days after which to delete a sent campaign. Leave empty if you do not want to automatically delete campaigns."
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:97
+msgid "The number of seconds to wait before firing the action."
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:90
+msgid "The number of times this rule has run."
+msgstr ""
+
+#: build/Subscribers/Schema.php:116
+msgid "The page the subscriber converted on."
+msgstr ""
+
+#: includes/class-noptin-dynamic-content-tags.php:74
+msgid "The path of the page."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:309
+msgid "The post author email"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:299
+msgid "The post author ID"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:304
+msgid "The post author name"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:363
+msgid "The post author's email"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:370
+msgid "The post author's login name"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:377
+msgid "The post author's user ID"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:366
+msgid "The post comment count"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:334
+msgid "The post content"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:314
+msgid "The post date"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:329
+msgid "The post excerpt"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:294
+msgid "The post ID"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:355
+msgid "The post modified date"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:345
+msgid "The post password"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:350
+msgid "The post slug"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:339
+msgid "The post status"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:319
+msgid "The post title"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:360
+msgid "The post type"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:324
+msgid "The post URL"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:356
+msgid "The post's author"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:341
+msgid "The post's content."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:326
+msgid "The post's excerpt."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:304
+msgid "The post's featured image."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:283
+msgid "The post's ID"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:290
+msgid "The post's published date"
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:311
+msgid "The post's title."
+msgstr ""
+
+#: includes/emails/automated-email-types/class-post_notifications.php:297
+msgid "The post's URL"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:148
+#: src/Integrations/WooCommerce/Orders.php:869
+msgid "The previous order status."
+msgstr ""
+
+#: build/Subscribers/Records.php:205
+msgid "The previous subscriber status."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:99
+msgid "The product name (sometimes referred to as the product title) to match on."
+msgstr ""
+
+#: includes/class-noptin-dynamic-content-tags.php:112
+msgid "The property of the currently logged-in user."
+msgstr ""
+
+#: build/Subscribers/Records.php:319
+msgid "The removed value"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:61
+msgid "The reply author"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:66
+msgid "The reply author email"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:76
+msgid "The reply author IP"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:71
+msgid "The reply author URL"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:81
+msgid "The reply content"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:56
+msgid "The reply ID"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:86
+msgid "The reply type"
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:81
+msgid "The rule status"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1079
+msgid "The selected campaigns have been deleted."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1058
+msgid "The selected campaigns have been published."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1072
+msgid "The selected campaigns have been restored."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1065
+msgid "The selected campaigns have been trashed."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1288
+msgid "The subject of the subscription confirmation email"
+msgstr ""
+
+#: build/Subscribers/Schema.php:257
+msgid "The subscriber's avatar URL."
+msgstr ""
+
+#: build/Subscribers/Schema.php:236
+msgid "The subscriber's confirm subscription URL."
+msgstr ""
+
+#: build/Subscribers/Schema.php:215
+msgid "The subscriber's edit URL."
+msgstr ""
+
+#: build/Subscribers/Schema.php:42
+msgid "The subscriber's email address."
+msgstr ""
+
+#: build/Subscribers/functions.php:1023
+msgid "The subscriber's name."
+msgstr ""
+
+#: build/Subscribers/Schema.php:229
+msgid "The subscriber's resubscribe URL."
+msgstr ""
+
+#: build/Subscribers/Schema.php:250
+msgid "The subscriber's send email URL."
+msgstr ""
+
+#: build/Subscribers/Schema.php:94
+msgid "The subscriber's status."
+msgstr ""
+
+#: build/Subscribers/Schema.php:86
+msgid "The subscriber's tags."
+msgstr ""
+
+#: build/Subscribers/Schema.php:222
+msgid "The subscriber's unsubscribe URL."
+msgstr ""
+
+#: build/Subscribers/Schema.php:265
+msgid "The subscriber's WordPress user ID."
+msgstr ""
+
+#: build/Subscribers/Schema.php:101
+msgid "The subscription source."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1312
+msgid "The text of the call to action button"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1296
+msgid "The title of the email"
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:64
+msgid "The trigger ID."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:116
+msgid "The unsubscribe URL."
+msgstr ""
+
+#: includes/class-noptin-dynamic-content-tags.php:68
+msgid "The URL of the page."
+msgstr ""
+
+#. translators: %s is the current IP address.
+#: build/Automation_Rules/Triggers/Trigger.php:117
+#: includes/class-noptin-dynamic-content-tags.php:100
+msgid "The visitor's IP address. Example: %s."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:131
+msgid "The website description."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:126
+msgid "The website name."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:136
+msgid "The website URL."
+msgstr ""
+
+#. Translators: %1$s Opening link tag, %2$s Closing link tag.
+#: build/Emails/Admin/views/404.php:30
+msgid "There is no campaign with that id. %1$sGo back to the campaigns overview page%2$s."
+msgstr ""
+
+#. translators: %s: Error message.
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:134
+msgid "There was an error activating your license key: %s"
+msgstr ""
+
+#. translators: %s: Error message.
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:301
+msgid "There was an error checking your license key: %s"
+msgstr ""
+
+#. translators: %s: Error message.
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:224
+msgid "There was an error deactivating your license key: %s"
+msgstr ""
+
+#: build/Extensions/Menu.php:270
+msgid "These extensions allow you to connect Noptin to your favorite CRM or email software."
+msgstr ""
+
+#: build/Extensions/Menu.php:267
+msgid "These extensions allow you to connect Noptin to your favorite plugins."
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:660
+msgid "This email address is already subscribed."
+msgstr ""
+
+#: build/Forms/Listener.php:143
+msgid "This form is in-active."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1304
+msgid "This is the main content of the email"
+msgstr ""
+
+#: build/Settings/Menu.php:287
+msgid "This is the message shown to people after they successfully sign up for your newsletter."
+msgstr ""
+
+#: build/Emails/functions.php:266
+msgid "This is useful if you're using a drag and drop email builder. Please note that you should include an unsubscribe link by using the [[unsubscribe_url]] merge tag."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1225
+msgid "This text appears below all emails."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1320
+msgid "This text is shown after the call to action button"
+msgstr ""
+
+#. Translators: %1$s Opening link tag, %2$s Closing link tag.
+#: includes/admin/class-noptin-admin.php:346
+msgid "Thousands of hours have gone into this plugin. If you love it, Consider %1$sgiving us a 5* rating on WordPress.org%2$s. It takes less than 5 minutes."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:327
+#: build/Tasks/Main.php:959
+#: templates/debug-log.php:13
+msgid "Time"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:197
+msgid "Time in seconds to delay"
+msgstr "Tempo in secondi per ritardare"
+
+#: includes/functions.php:536
+msgid "Time Zone"
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:224
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+msgid "Times Run"
+msgstr ""
+
+#: build/Subscribers/Records.php:1438
+#: src/Objects/Generic_Post_Type.php:263
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Title"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:289
+msgid "Title Color:"
+msgstr ""
+
+#: build/Forms/Widgets/Form.php:127
+#: build/Forms/Widgets/New_Form.php:233
+msgid "Title:"
+msgstr ""
+
+#. translators: %s: updates page URL.
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:379
+#: includes/libraries/noptin-com/class-noptin-com-updater.php:399
+msgid "To update, please <a href=\"%s\">activate your license key</a>."
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:26
+#: includes/admin/class-noptin-tools.php:128
+#: includes/class-noptin-white-label.php:156
+msgid "Tools"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:593
+#: build/Forms/Admin/editor-settings.php:618
+msgid "Top"
+msgstr "Superiore"
+
+#: build/Forms/Admin/editor-settings.php:141
+msgid "Top Left"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:142
+msgid "Top Left Alt"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:143
+msgid "Top Right"
+msgstr "In alto a destra"
+
+#: build/Forms/Admin/editor-settings.php:144
+msgid "Top Right Alt"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:105
+#: src/Integrations/EDD/Orders.php:220
+#: src/Integrations/EDD/Order_Items.php:83
+#: src/Integrations/WooCommerce/Orders.php:388
+#: src/Integrations/WooCommerce/Orders.php:493
+#: src/Integrations/WooCommerce/Order_Items.php:67
+msgid "Total"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:173
+#: src/Integrations/WooCommerce/Products.php:644
+msgid "Total sales"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:481
+#: src/Integrations/WooCommerce/Order_Items.php:71
+msgid "Total tax"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:187
+#: src/Integrations/WooCommerce/Orders.php:465
+msgid "Transaction ID"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:295
+#: build/Emails/Main.php:486
+#: build/Emails/Main.php:487
+msgid "Trash"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:86
+msgid "Trial Amount"
+msgstr ""
+
+#: src/Integrations/PMPro/Membership_Levels.php:90
+msgid "Trial Limit"
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:222
+#: build/Automation_Rules/Automation_Rule.php:512
+#: includes/admin/class-noptin-tools.php:91
+#: includes/admin/class-noptin-tools.php:219
+msgid "Trigger"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:92
+msgid "Trigger a new post automation."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:118
+msgid "Trigger Options"
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:70
+msgid "Trigger settings JSON"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:52
+#: src/Integrations/GeoDirectory/Listings.php:184
+msgid "True"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:250
+#: src/Integrations/WooCommerce/Products.php:648
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:173
+msgid "Type"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:704
+#: build/Forms/Admin/editor-settings.php:754
+#: build/Forms/Admin/editor-settings.php:804
+#: build/Forms/Admin/editor-settings.php:854
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Typography"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:241
+msgid "Unable to duplicate the campaign."
+msgstr ""
+
+#. Translators: %s The error message.
+#: build/Emails/REST.php:185
+msgid "Unable to send test email. Error: %s"
+msgstr ""
+
+#: build/Automation_Rules/Schema.php:43
+#: build/Emails/Logs/Main.php:172
+#: build/Subscribers/Schema.php:36
+#: build/Tasks/Main.php:814
+msgid "Unique identifier for this resource."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:368
+msgid "Unknown email type."
+msgstr ""
+
+#: build/Emails/Admin/Table.php:453
+msgid "Unknown sender"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:381
+msgid "Unknown type"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1160
+#: build/Onboarding/Menu.php:229
+msgid "Unlimited"
+msgstr ""
+
+#: build/Emails/Generate/Generator.php:160
+#: build/Forms/Renderer.php:177
+#: build/Subscribers/Actions.php:26
+#: build/Subscribers/Records.php:882
+msgid "Unsubscribe"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1081
+msgid "Unsubscribe a %s"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:758
+msgid "Unsubscribe URL"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1123
+#: build/Emails/Records.php:153
+#: build/Forms/functions.php:375
+#: build/Subscribers/functions.php:1385
+#: build/Subscribers/Records.php:1468
+msgid "Unsubscribed"
+msgstr ""
+
+#: src/Objects/Collection.php:448
+msgid "unsubscribed"
+msgstr ""
+
+#: includes/class-noptin-page.php:305
+msgid "Unsubscription"
+msgstr ""
+
+#: includes/class-noptin-page.php:310
+msgid "Unsubscription Message"
+msgstr ""
+
+#: includes/class-noptin-page.php:317
+msgid "Unsubscription Redirect"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:1103
+msgid "Update a %s field"
+msgstr ""
+
+#: build/Subscribers/Records.php:1040
+msgid "Update existing subscribers"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:53
+msgid "Update existing subscribers if they match the submitted email address."
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:220
+msgid "Update Listing"
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:226
+#: build/Forms/functions.php:397
+#: build/Subscribers/Records.php:222
+msgid "Updated"
+msgstr ""
+
+#: build/Emails/Main.php:290
+msgid "Uploaded to this campaign"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:732
+msgid "Upsell IDs"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:735
+#: src/Integrations/WooCommerce/Products.php:808
+msgid "Upsells"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:149
+#: src/Integrations/WooCommerce/Products.php:473
+#: src/Integrations/WP_Recipe_Maker/Recipes.php:100
+#: src/Objects/Generic_Post_Type.php:338
+#: src/Objects/Users.php:479
+#: build/Dashboard/assets/js/dashboard.js:1
+msgid "URL"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:310
+msgid "Use a comma to separate post ids or urls where this form should not be displayed. All post type ids (page, products, etc) are supported, not just blog post ids."
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:509
+#: src/Integrations/Checkbox_Integration.php:443
+msgid "Use default"
+msgstr ""
+
+#: build/Forms/Admin/List_Table.php:233
+msgid "Use this shortcode to display the form on your website"
+msgstr ""
+
+#: build/Settings/Menu.php:271
+msgid "Used as the link color and button background."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:193
+#: build/Automation_Rules/Triggers/Trigger.php:203
+#: build/Automation_Rules/Triggers/Trigger.php:210
+#: build/Automation_Rules/Triggers/Trigger.php:218
+#: build/Automation_Rules/Triggers/Trigger.php:224
+#: build/Automation_Rules/Triggers/Trigger.php:230
+#: build/Automation_Rules/Triggers/Trigger.php:236
+#: build/Automation_Rules/Triggers/Trigger.php:242
+#: build/Automation_Rules/Triggers/Trigger.php:248
+#: build/Automation_Rules/Triggers/Trigger.php:254
+#: build/Automation_Rules/Triggers/Trigger.php:260
+msgid "User"
+msgstr ""
+
+#: src/Integrations/Elementor/Main.php:125
+#: src/Integrations/Gravity_Forms/Main.php:88
+msgid "User Agent"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:258
+msgid "User Bio"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:201
+#: src/Integrations/EDD/Customers.php:91
+#: src/Integrations/EDD/Orders.php:314
+#: src/Integrations/WooCommerce/Subscription_Checkbox.php:315
+#: src/Integrations/WordPress_Registration_Form/Main.php:256
+msgid "User ID"
+msgstr ""
+
+#: src/Objects/Users.php:454
+msgid "User ID or email address"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:214
+msgid "User Locale"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:207
+msgid "User Role"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:252
+msgid "User URL"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Customers.php:114
+#: src/Objects/Users.php:474
+msgid "Username"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:66
+#: src/Integrations/Checkbox_Integration.php:62
+msgid "users"
+msgstr ""
+
+#: build/Subscribers/functions.php:1326
+msgid "Users Sync"
+msgstr ""
+
+#: src/Integrations/EDD/Downloads.php:226
+msgid "Variable Prices"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Order_Items.php:51
+msgid "Variation ID"
+msgstr ""
+
+#: build/Tasks/Main.php:771
+#: includes/admin/class-noptin-tools.php:85
+msgid "View"
+msgstr ""
+
+#: includes/admin/class-noptin-tools.php:86
+msgid "View a list of notices and errors logged by Noptin."
+msgstr ""
+
+#: build/Emails/Main.php:287
+msgid "View Campaigns"
+msgstr ""
+
+#: build/Forms/Main.php:109
+msgid "View Form"
+msgstr ""
+
+#: build/Emails/Records.php:116
+msgid "View in browser"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:658
+#: src/Integrations/WooCommerce/Orders.php:665
+msgid "View order"
+msgstr ""
+
+#: build/Extensions/Menu.php:341
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+#: build/Emails/assets/js/email-editor.js:13
+#: build/Emails/assets/js/email-editor.js:14
+#: build/Emails/assets/js/view-campaigns.js:11
+#: build/Misc/assets/js/list.js:1
+msgid "View Pricing"
+msgstr ""
+
+#: build/Subscribers/Schema.php:72
+msgid "View Subscriber"
+msgstr ""
+
+#: build/Subscribers/Schema.php:73
+msgid "View Subscribers"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Orders.php:655
+msgid "View URL"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:738
+msgid "View User Profile"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:182
+#: src/Integrations/WooCommerce/Products.php:755
+msgid "Virtual"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:227
+msgid "Visibility"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:230
+#: src/Integrations/WooCommerce/Products.php:601
+msgid "Visible"
+msgstr ""
+
+#: build/Emails/functions.php:250
+msgid "Visual"
+msgstr ""
+
+#. translators: %1 is the time.
+#: build/Emails/Types/Recurring.php:791
+msgid "Was supposed to be send %1$s ago"
+msgstr ""
+
+#: build/Emails/functions.php:453
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Week"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:258
+msgid "Weekly"
+msgstr ""
+
+#: build/Emails/functions.php:443
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Weeks"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:114
+#: src/Integrations/WooCommerce/Products.php:712
+msgid "Weight"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:183
+msgid "Welcome new %s"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:272
+#: build/Emails/Types/Recurring.php:285
+#: build/Emails/Types/Recurring.php:297
+msgid "What day should this email be sent?"
+msgstr ""
+
+#: build/Settings/Menu.php:258
+msgid "What is the name of your company or website?"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:83
+msgid "What should happen after the user subscribes"
+msgstr "Cosa dovrebbe succedere dopo che l'utente si è iscritto"
+
+#: build/Emails/Types/Recurring.php:329
+msgid "What time should this email be sent?"
+msgstr ""
+
+#. translators: %s: field label
+#: build/Subscribers/Records.php:243
+msgid "When %s changes"
+msgstr ""
+
+#. translators: %s: Object type label and new state
+#: build/Subscribers/Records.php:149
+msgid "When a %1$s is %2$s"
+msgstr ""
+
+#. translators: %s: field label
+#: build/Subscribers/Records.php:280
+msgid "When a %1$s is added to %2$s"
+msgstr ""
+
+#. translators: %s: field label
+#: build/Subscribers/Records.php:311
+msgid "When a %1$s is removed from %2$s"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:450
+msgid "When a %s clicks on a link in an email"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/GeoDirectory/Listings.php:268
+msgid "When a %s expires"
+msgstr ""
+
+#. translators: %s is the form provider.
+#: includes/automation-rules/triggers/class-noptin-form-submit-trigger.php:59
+msgid "When a %s form is submitted"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:194
+msgid "When a %s is deleted"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/GeoDirectory/Listings.php:242
+msgid "When a %s is downgraded"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:133
+msgid "When a %s is published"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:55
+#: src/Integrations/WooCommerce/Products.php:901
+msgid "When a %s is purchased"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/EDD/Downloads.php:69
+#: src/Integrations/WooCommerce/Products.php:915
+msgid "When a %s is refunded"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/GeoDirectory/Listings.php:211
+msgid "When a %s is saved"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:175
+msgid "When a %s is unpublished"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Integrations/WooCommerce/Customers.php:188
+msgid "When a %s's lifetime value surpasses a certain amount"
+msgstr ""
+
+#: build/Subscribers/Records.php:434
+msgid "When a subscriber opens an email campaign"
+msgstr ""
+
+#. translators: %s: new state
+#: build/Subscribers/Records.php:198
+msgid "When a subscriber's status is set to %1$s"
+msgstr ""
+
+#: src/Integrations/PMPro/Main.php:55
+msgid "When a user's membership level changes"
+msgstr ""
+
+#. translators: %s: Order status label.
+#: src/Integrations/WooCommerce/Orders.php:863
+msgid "When a WooCommerce order is %s"
+msgstr ""
+
+#. translators: %s is the payment action label, e.g. "Complete" or "Refunded".
+#: src/Integrations/EDD/Orders.php:142
+msgid "When an EDD order is %s"
+msgstr ""
+
+#: src/Integrations/EDD/Orders.php:130
+msgid "When an EDD order is created"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-new-comment-trigger.php:52
+msgid "When someone leaves a comment"
+msgstr ""
+
+#: includes/automation-rules/triggers/class-noptin-comment-reply-trigger.php:41
+msgid "When someone replies to someone else's comment"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:249
+msgid "Where do you want to show this subscription form?"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1060
+#: build/Onboarding/Menu.php:219
+msgid "Where should subscribers reply to in case they need to get in touch with you?"
+msgstr ""
+
+#: includes/integrations/class-noptin-abstract-integration.php:383
+#: src/Integrations/Checkbox_Integration.php:343
+msgid "Where should we add a newsletter subscription checkbox?"
+msgstr ""
+
+#: includes/class-noptin-page.php:298
+msgid "Where should we redirect subscribers after they confirm their emails?"
+msgstr ""
+
+#: includes/class-noptin-page.php:340
+msgid "Where should we redirect subscribers after they resubscribe?"
+msgstr ""
+
+#: includes/class-noptin-page.php:319
+msgid "Where should we redirect subscribers after they unsubscribe?"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:224
+msgid "Whether or not the product allows backorders."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:191
+msgid "Whether or not the product is downloadable."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:197
+msgid "Whether or not the product is featured."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:203
+msgid "Whether or not the product is sold individually."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:209
+msgid "Whether or not the product is stock managed."
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:185
+msgid "Whether or not the product is virtual."
+msgstr ""
+
+#: build/Subscribers/Schema.php:125
+msgid "Whether the subscriber has confirmed their email address."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:597
+msgid "Whether to bypass the trash and force delete the post."
+msgstr ""
+
+#: src/Objects/Post_Type.php:488
+msgid "Whether to link to the term."
+msgstr ""
+
+#: build/Emails/Admin/Editor.php:427
+#: build/Forms/Widgets/New_Form.php:47
+msgid "White"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:346
+msgid "Who can see this form?"
+msgstr "Chi può vedere questo modulo?"
+
+#: build/Forms/Admin/List_Table.php:276
+#: build/Forms/Admin/List_Table.php:321
+msgid "Widget Forms"
+msgstr ""
+
+#: src/Integrations/WooCommerce/Products.php:130
+#: src/Integrations/WooCommerce/Products.php:722
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Width"
+msgstr ""
+
+#: src/Objects/Users.php:537
+msgid "WordPress User"
+msgstr ""
+
+#: src/Objects/Users.php:537
+msgid "WordPress Users"
+msgstr ""
+
+#: build/Emails/functions.php:455
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Year"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:260
+msgid "Yearly"
+msgstr ""
+
+#: build/Emails/functions.php:445
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Years"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:40
+msgid "Yellow"
+msgstr ""
+
+#: build/Subscribers/functions.php:1180
+#: build/Subscribers/functions.php:1239
+#: build/Subscribers/Privacy.php:67
+#: build/Subscribers/Records.php:1586
+#: includes/class-noptin-dynamic-content-tags.php:576
+#: includes/functions.php:1211
+#: src/Integrations/WooCommerce/Products.php:222
+#: src/Integrations/WooCommerce/Products.php:693
+#: src/Objects/Store.php:168
+msgid "Yes"
+msgstr ""
+
+#: build/Forms/functions.php:361
+#: build/Settings/Menu.php:293
+#: build/Settings/Menu.php:294
+msgid "You are already subscribed to the newsletter, thank you!"
+msgstr ""
+
+#: build/Subscribers/functions.php:719
+msgid "You are receiving this email because we got your request to subscribe to our newsletter. If you don't want to join the newsletter, you can safely delete this email"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1256
+msgid "You can disable the default double opt-in email if you wish to use a custom email or set-up different emails."
+msgstr ""
+
+#. translators: %1$s is a link to the newsletter form editor.
+#: build/Forms/Widgets/Form.php:157
+msgid "You can edit or create new newsletter sign-up forms in the <a href=\"%s\">Noptin forms overview</a> page."
+msgstr ""
+
+#: build/Subscribers/Records.php:1400
+msgid "You can use tags to automate your email marketing."
+msgstr ""
+
+#. Translators: %1$s Opening link tag, %2$s Closing link tag.
+#: build/Emails/Admin/views/permission-denied.php:9
+msgid "You do not have permission to edit this campaign. %1$sGo back to the campaigns overview page%2$s."
+msgstr ""
+
+#: build/Extensions/Menu.php:66
+#: build/Settings/Menu.php:83
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: includes/class-noptin-page.php:368
+msgid "You have been resubscribed to our newsletter."
+msgstr ""
+
+#: includes/class-noptin-page.php:356
+msgid "You have been unsubscribed from this mailing list and won't receive any emails from us."
+msgstr ""
+
+#: includes/class-noptin-page.php:380
+msgid "You have successfully subscribed to this newsletter."
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:295
+msgid "You need an active license key to keep using premium Noptin Addons."
+msgstr ""
+
+#: build/Forms/functions.php:377
+msgid "You were successfully unsubscribed."
+msgstr ""
+
+#: build/Subscribers/functions.php:711
+msgid "You won't be subscribed if you don't click on the button below."
+msgstr ""
+
+#. translators: %s: Update URL.
+#: includes/admin/class-noptin-admin.php:305
+msgid "Your Addons Pack is outdated and nolonger works with this version of Noptin. Please update to the latest version to continue using it. <a href=\"%s\">Update Now</a>"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:153
+#: build/Emails/Admin/Main.php:181
+msgid "Your email has been added to the sending queue and will be sent soon."
+msgstr ""
+
+#: build/Emails/functions.php:256
+msgid "Your email will be embedded inside a template"
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:146
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:179
+msgid "Your license key has been activated successfully. You will now receive updates and support for this website."
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:186
+msgid "Your site does not support this action."
+msgstr ""
+
+#: build/Automation_Rules/Admin/Table.php:144
+#: build/Automation_Rules/Admin/views/edit.php:30
+msgid "Your site does not support this trigger."
+msgstr ""
+
+#: build/Emails/REST.php:195
+msgid "Your test email has been sent"
+msgstr ""
+
+#: build/Automation_Rules/Admin/views/edit.php:38
+msgid "Your website does not support that action."
+msgstr ""
+
+#: build/Emails/Main.php:157
+msgid "Your website does not support that trigger."
+msgstr ""
+
+#: src/Integrations/EDD/Customers.php:135
+#: src/Integrations/EDD/Orders.php:306
+msgid "ZIP"
+msgstr ""
+
+#: src/Integrations/GeoDirectory/Listings.php:121
+#: src/Integrations/WPForms/Main.php:131
+msgid "Zip"
+msgstr ""
+
+#. translators: %s is the taxonomy label
+#: build/Forms/Admin/editor-settings.php:1068
+msgid "Enter a comma-separated list of %s ids, slugs, or names to show this form on"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:1071
+msgid "Prefix the id with a minus sign to exclude it from the list"
+msgstr ""
+
+#: build/Tasks/Main.php:453
+msgctxt "Status"
+msgid "Pending"
+msgstr ""
+
+#: build/Tasks/Main.php:454
+msgctxt "Status"
+msgid "Running"
+msgstr ""
+
+#: build/Tasks/Main.php:455
+msgctxt "Status"
+msgid "Failed"
+msgstr ""
+
+#: build/Tasks/Main.php:456
+msgctxt "Status"
+msgid "Canceled"
+msgstr ""
+
+#: build/Tasks/Main.php:457
+msgctxt "Status"
+msgid "Complete"
+msgstr ""
+
+#: build/Tasks/Main.php:770
+msgid "Scheduled Tasks"
+msgstr ""
+
+#: build/Tasks/Main.php:772
+msgid "View a list of scheduled tasks."
+msgstr ""
+
+#: build/Tasks/Main.php:796
+#: build/Tasks/Main.php:1016
+#: build/Tasks/Main.php:1017
+msgid "Tasks"
+msgstr ""
+
+#: build/Tasks/Main.php:797
+msgid "Task"
+msgstr ""
+
+#: build/Tasks/Main.php:799
+msgid "Add New Task"
+msgstr ""
+
+#: build/Tasks/Main.php:800
+msgid "Edit Task"
+msgstr ""
+
+#: build/Tasks/Main.php:801
+msgid "New Task"
+msgstr ""
+
+#: build/Tasks/Main.php:802
+msgid "View Task"
+msgstr ""
+
+#: build/Tasks/Main.php:803
+msgid "View Tasks"
+msgstr ""
+
+#: build/Tasks/Main.php:804
+msgid "Search Tasks"
+msgstr ""
+
+#: build/Tasks/Main.php:805
+msgid "No tasks found."
+msgstr ""
+
+#: build/Tasks/Main.php:806
+msgid "Import Tasks"
+msgstr ""
+
+#: build/Tasks/Main.php:823
+msgid "The hook ID."
+msgstr ""
+
+#: build/Tasks/Main.php:830
+msgid "The subject ID, email, etc."
+msgstr ""
+
+#: build/Tasks/Main.php:865
+msgid "The args to pass to the hook."
+msgstr ""
+
+#: build/Tasks/Main.php:872
+msgid "The args hash."
+msgstr ""
+
+#: build/Tasks/Main.php:955
+msgid "Log"
+msgstr ""
+
+#: build/Tasks/Task.php:510
+msgid "Run"
+msgstr ""
+
+#: build/Tasks/Task.php:526
+msgid "Re-run"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:98
+msgid "Automation runs"
+msgstr ""
+
+#: build/Tasks/Main.php:892
+msgid "Scheduled date"
+msgstr ""
+
+#: build/Settings/Menu.php:240
+msgid "Keep data on uninstall"
+msgstr ""
+
+#: build/Settings/Menu.php:241
+msgid "Keep all data when the plugin is uninstalled."
+msgstr ""
+
+#: build/Emails/Generate/Merge_Tags.php:121
+msgid "The \"View in Browser\" URL."
+msgstr ""
+
+#: includes/admin/class-noptin-admin.php:343
+msgid "You have been using Noptin for a while now."
+msgstr ""
+
+#: includes/admin/class-noptin-admin.php:352
+msgid "Rate Noptin"
+msgstr ""
+
+#: includes/admin/class-noptin-admin.php:357
+msgid "I already did!"
+msgstr ""
+
+#: includes/admin/class-noptin-admin.php:362
+msgid "Not now"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:104
+msgid "The current language"
+msgstr ""
+
+#: src/Objects/Post_Type.php:37
+msgid "Post Author"
+msgstr ""
+
+#: src/Objects/Users.php:205
+msgid "Logged in user"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:777
+msgid "Send Confirmation Email"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:303
+msgid "Words"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:306
+msgid "The maximum number of words to display."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:169
+msgid "This option only works for users using a mouse. It will not work for touch devices."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:182
+msgid "Selector"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:213
+msgid "Scroll depth"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:268
+msgid "Only show on selected pages"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:478
+msgid "Leave empty to use the default label."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:645
+#: build/Forms/Admin/editor-settings.php:916
+#: build/Forms/Admin/editor-settings.php:964
+#: build/Forms/Admin/editor-settings.php:989
+msgid "Text"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:655
+msgid "Position"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:896
+msgid "Colors"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:901
+#: build/Forms/Admin/editor-settings.php:960
+#: build/Forms/Admin/editor-settings.php:980
+msgid "Background"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:145
+msgid "Center Left"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:146
+msgid "Center Right"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:205
+#: build/Forms/Admin/editor-settings.php:234
+msgid "seconds"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:505
+msgid "Show field labels outside the fields"
+msgstr ""
+
+#: build/Forms/Widgets/Form.php:25
+msgid "Displays a pre-built newsletter form"
+msgstr ""
+
+#: build/Forms/Widgets/New_Form.php:53
+msgid "Create and display a newsletter subscription form"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+msgctxt "block title"
+msgid "Newsletter Form"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+msgctxt "block description"
+msgid "Displays a pre-built newsletter form"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block keyword"
+msgid "noptin"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block keyword"
+msgid "newsletter"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block keyword"
+msgid "optin"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block keyword"
+msgid "email"
+msgstr ""
+
+#: build/Forms/assets/block/block.json
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block keyword"
+msgid "subscribe"
+msgstr ""
+
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block title"
+msgid "Create Newsletter Form"
+msgstr ""
+
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block description"
+msgid "Create and display a newsletter subscription form"
+msgstr ""
+
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block style label"
+msgid "Default"
+msgstr ""
+
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block style label"
+msgid "Unstyled"
+msgstr ""
+
+#: build/Forms/assets/new-form-block/block.json
+msgctxt "block style label"
+msgid "Single Line"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:230
+msgid "Hide for"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:231
+msgid "Hide the form for X seconds after a user closes it"
+msgstr ""
+
+#: build/Emails/Main.php:458
+msgid "Set-up a series of emails to be sent at specific intervals one after another. Usefull for courses, welcome series, etc."
+msgstr ""
+
+#: build/Emails/Main.php:470
+#: build/Emails/assets/js/email-editor.js:15
+#: build/Forms/assets/js/form-editor.js:2
+msgid "Template"
+msgstr ""
+
+#: build/Emails/Main.php:471
+msgid "Templates"
+msgstr ""
+
+#: build/Emails/Main.php:472
+msgid "New Email Template"
+msgstr ""
+
+#: build/Emails/Main.php:473
+msgid "Click the button below to set-up your first email template"
+msgstr ""
+
+#: build/Emails/Main.php:474
+msgid "Create your own reusable email templates."
+msgstr ""
+
+#: build/Subscribers/Records.php:1137
+msgid "Email confirmation status"
+msgstr ""
+
+#. translators: %1$s: Object type label, %2$s: Field label.
+#: build/Subscribers/Records.php:1144
+msgid "%1$s > Update %2$s"
+msgstr ""
+
+#. translators: %1$s: Object type label, %2$s: Field label.
+#: build/Subscribers/Records.php:1214
+msgid "%1$s > Remove from %2$s"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:47
+msgid "This is an unsubscribe form."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:545
+msgid "Hide email field if the email address is already known"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:353
+#: build/Emails/Types/Recurring.php:767
+msgid "Skip days"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:354
+msgid "Select days"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:355
+msgid "Select days to skip sending this email."
+msgstr ""
+
+#. translators: %1$s is the day.
+#: build/Emails/Types/Recurring.php:813
+msgid "This email will skip sending on %1$s since %2$s is a skip day."
+msgstr ""
+
+#. translators: %s: The merge tag button.
+#: build/Automation_Rules/Automation_Rule.php:584
+msgid "Click the %s button to add dynamic values. You can combine multiple values in a single field."
+msgstr ""
+
+#. translators: %s: The merge tag button.
+#: build/Automation_Rules/Automation_Rule.php:620
+msgid "Click the %s button to add dynamic values from your trigger. You can add multiple values to a single field."
+msgstr ""
+
+#. translators: %s is the cron URL.
+#: build/Emails/Types/Recurring.php:802
+msgid "Set up an external cron job for \"%s\" to fix such issues."
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:122
+msgid "The current user agent"
+msgstr ""
+
+#: build/Automation_Rules/Triggers/Trigger.php:128
+msgid "The current referer"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Action.php:189
+msgid "%s Information"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:325
+msgid "Scheduled"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Generic_Post_Type.php:563
+msgid "Create or update an %s"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Emails/Records.php:248
+#: src/Objects/Generic_Post_Type.php:585
+msgid "Delete an %s"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:128
+msgid "When an %s is published"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:170
+msgid "When an %s is unpublished"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Post_Type.php:189
+msgid "When an %s is deleted"
+msgstr ""
+
+#. translators: %s: field label
+#: build/Subscribers/Records.php:1150
+msgid "Update the subscriber's %s"
+msgstr ""
+
+#. translators: %s: field label
+#: build/Subscribers/Records.php:1185
+msgid "Add the subscriber to %s"
+msgstr ""
+
+#. translators: %s: field label
+#: build/Subscribers/Records.php:1220
+msgid "Remove the subscriber from %s"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:100
+msgid "The language to filter posts by."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:414
+msgid "Language (Locale)"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:597
+#: build/Emails/Admin/Main.php:793
+#: build/Misc/Main.php:184
+msgid "Specific People"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:598
+#: build/Emails/Admin/Main.php:794
+#: build/Misc/Main.php:185
+msgid "Enter one or more email addresses manually, separated by commas."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:262
+msgid "Send manually"
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:706
+msgid "This email is sent manually."
+msgstr ""
+
+#: build/Emails/Types/Recurring.php:714
+msgid "Last sent:"
+msgstr ""
+
+#: build/Settings/Menu.php:336
+#: build/Subscribers/Subscriber.php:727
+msgid "Manage Preferences URL"
+msgstr ""
+
+#: build/Settings/Menu.php:339
+msgid "Optional. Enter a custom URL to a page where subscribers can manage their subscriptions. Ensure the page has the [noptin_manage_subscription] shortcode."
+msgstr ""
+
+#: build/Subscribers/Schema.php:243
+msgid "The subscriber's manage preferences URL."
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:404
+msgid "Fallback"
+msgstr ""
+
+#: src/Objects/Generic_Post_Type.php:407
+msgid "The fallback image URL to use for posts without a featured image."
+msgstr ""
+
+#: build/Dashboard/Main.php:115
+msgid "Set-up new post notifications."
+msgstr ""
+
+#: build/Dashboard/Main.php:119
+msgid "Email sending limits."
+msgstr ""
+
+#: build/Dashboard/Main.php:123
+msgid "How to fix emails not sending."
+msgstr ""
+
+#: build/Fields/Main.php:152
+msgid "Can subscribers view and edit this field?"
+msgstr ""
+
+#: build/Fields/Main.php:153
+msgid "If unchecked, you can't add this field to the subscription form."
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:487
+msgid "Hide form fields"
+msgstr ""
+
+#: build/Forms/Admin/Main.php:297
+#: includes/class-noptin-white-label.php:131
+msgid "Forms"
+msgstr ""
+
+#: includes/class-noptin-white-label.php:146
+msgid "Automation"
+msgstr ""
+
+#: build/Subscribers/functions.php:1388
+msgid "Blocked"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:809
+msgid "Block Subscriber"
+msgstr ""
+
+#: build/Subscribers/Subscriber.php:818
+msgid "Unblock Subscriber"
+msgstr ""
+
+#. translators: %s is the integration name
+#: src/Integrations/Checkbox_Integration.php:200
+msgid "Add a subscription checkbox to %s"
+msgstr ""
+
+#: src/Integrations/Checkbox_Integration.php:283
+msgid "Add me to your newsletter and keep me updated whenever you publish new content"
+msgstr ""
+
+#: src/Integrations/PMPro/Main.php:271
+msgid "PMPro Newsletter Subscription Management"
+msgstr ""
+
+#: src/Integrations/PMPro/Main.php:272
+msgid "If enabled, subscribers will be able to manage their newsletter subscription from their PMPro profile edit page."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1148
+msgid "Email Sending Limit"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1159
+msgid "Maximum Emails"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1163
+#: build/Onboarding/Menu.php:232
+msgid "email"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1163
+#: build/Onboarding/Menu.php:232
+msgid "emails"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1169
+#: build/Onboarding/Menu.php:238
+msgid "Time Period"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1174
+#: build/Onboarding/Menu.php:243
+msgid "per"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1179
+#: build/Onboarding/Menu.php:248
+msgid "second(s)"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1184
+#: build/Onboarding/Menu.php:253
+msgid "minute(s)"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1189
+#: build/Onboarding/Menu.php:258
+msgid "hour(s)"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1194
+#: build/Onboarding/Menu.php:263
+msgid "day(s)"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:679
+#: build/Emails/assets/js/view-campaigns.js:5
+msgid "Send to"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:683
+msgid "All recipients"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:684
+msgid "Send to all matching recipients"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:688
+msgid "Only new recipients"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:689
+msgid "Send only to matching recipients who have not received this campaign before"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1235
+#: build/Emails/Admin/Table.php:1292
+msgid "All"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:1243
+msgid "Filter"
+msgstr ""
+
+#: build/Emails/Admin/views/campaigns.php:57
+msgid "Email sending has been paused"
+msgstr ""
+
+#. translators: %1$s: number of emails allowed to be sent per period, %2$s: time period
+#: build/Emails/Admin/views/campaigns.php:63
+msgid "You’ve sent %1$s emails in the past %2$s, triggering the sending limit."
+msgstr ""
+
+#. translators: %s: time until next email can be sent
+#: build/Emails/Admin/views/campaigns.php:74
+msgid "Email sending will resume in %s."
+msgstr ""
+
+#: build/Emails/Admin/views/campaigns.php:87
+msgid "WP-Cron is being used for email sending"
+msgstr ""
+
+#: build/Emails/Admin/views/campaigns.php:90
+msgid "Your site is using WordPress' built-in cron system to send emails. This may cause delays in email delivery if your site is cached or doesn't receive regular traffic."
+msgstr ""
+
+#. translators: %s: link to documentation
+#: build/Emails/Admin/views/campaigns.php:94
+msgid "For better email delivery, consider setting up a real cron job. <a href=\"%s\" target=\"_blank\">Learn more</a>"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:315
+msgid "Only show on:"
+msgstr ""
+
+#. translators: %1$s and %2$s are opening and closing link tags to the privacy policy, respectively.
+#: build/Forms/functions.php:475
+msgid "By subscribing, you agree to our %1$sprivacy policy%2$s and terms of service."
+msgstr ""
+
+#: build/Forms/Listener.php:712
+msgid "Please fill in this field."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:347
+msgid "%s > Date Anniversary"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Subscribers/Records.php:352
+msgid "Triggered on the anniversary of a %s's date field, such as signup date, birth date, last email engagement, etc."
+msgstr ""
+
+#: build/Subscribers/Records.php:360
+msgid "Date Field"
+msgstr ""
+
+#: build/Subscribers/Records.php:361
+msgid "Choose a date field to monitor for each subscriber."
+msgstr ""
+
+#: build/Subscribers/Records.php:362
+msgid "Select a date field"
+msgstr ""
+
+#: build/Subscribers/Records.php:369
+#: build/Emails/assets/js/email-editor.js:16
+msgid "Timing"
+msgstr ""
+
+#: build/Subscribers/Records.php:371
+msgid "On the exact date"
+msgstr ""
+
+#: build/Subscribers/Records.php:372
+msgid "Before the date"
+msgstr ""
+
+#: build/Subscribers/Records.php:373
+msgid "After the date"
+msgstr ""
+
+#: build/Subscribers/Records.php:384
+msgid "Number of days before the date"
+msgstr ""
+
+#: build/Subscribers/Records.php:404
+msgid "Number of days after the date"
+msgstr ""
+
+#: build/Subscribers/Schema.php:162
+msgid "Total number of emails sent to this subscriber."
+msgstr ""
+
+#: build/Subscribers/Schema.php:171
+msgid "Total number of emails opened by this subscriber."
+msgstr ""
+
+#: build/Subscribers/Schema.php:180
+msgid "Total number of links clicked by this subscriber."
+msgstr ""
+
+#: build/Subscribers/Schema.php:185
+msgid "Date when subscriber was last sent an email."
+msgstr ""
+
+#: build/Subscribers/Schema.php:192
+msgid "Date when subscriber last opened an email."
+msgstr ""
+
+#: build/Subscribers/Schema.php:199
+msgid "Date when subscriber last clicked a link in an email."
+msgstr ""
+
+#: build/Subscribers/Schema.php:210
+msgid "Engagement score (0.00 to 1.00)."
+msgstr ""
+
+#: src/Integrations/WordPress_Comment_Form/Main.php:132
+msgid "Comment ID"
+msgstr ""
+
+#: src/Integrations/WordPress_Comment_Form/Main.php:134
+#: src/Integrations/WordPress_Registration_Form/Main.php:260
+msgid "Website"
+msgstr ""
+
+#: src/Integrations/WordPress_Registration_Form/Main.php:261
+msgid "Login"
+msgstr ""
+
+#: src/Integrations/WordPress_Registration_Form/Main.php:262
+msgid "Bio"
+msgstr ""
+
+#: src/Objects/Users.php:224
+msgid "Select the user roles to send this email to"
+msgstr ""
+
+#: src/Objects/Users.php:230
+msgid "Exclude"
+msgstr ""
+
+#: src/Objects/Users.php:237
+msgid "Enter a comma separated list of user ids who should not receive this email"
+msgstr ""
+
+#: includes/class-noptin-page.php:43
+msgid "Please click the button below to confirm this action."
+msgstr ""
+
+#: templates/actions-page-confirm.php:111
+msgid "Confirm"
+msgstr ""
+
+#: build/Emails/Admin/Table.php:409
+msgid "Source"
+msgstr ""
+
+#: build/Emails/Records.php:120
+#: build/Emails/Records.php:123
+#: build/Emails/Records.php:127
+msgid "Activity URL"
+msgstr ""
+
+#: build/Emails/Records.php:134
+msgid "View Stats"
+msgstr ""
+
+#. translators: %s: Object type label.
+#: build/Emails/Records.php:177
+msgid "%s > Newsletter Sent"
+msgstr ""
+
+#: build/Emails/Records.php:180
+msgid "When a newsletter is sent"
+msgstr ""
+
+#: build/Emails/Records.php:255
+msgid "Campaign ID"
+msgstr ""
+
+#: build/Fields/functions.php:90
+msgid "Date & Time"
+msgstr ""
+
+#: build/Onboarding/Menu.php:48
+#: build/Onboarding/Menu.php:49
+msgid "Setup Wizard"
+msgstr ""
+
+#: build/Onboarding/Menu.php:228
+msgid "Sending rate"
+msgstr ""
+
+#: includes/admin/class-noptin-admin.php:328
+msgid "Get the Deal"
+msgstr ""
+
+#: includes/admin/class-noptin-admin.php:333
+msgid "Dismiss"
+msgstr ""
+
+#: includes/libraries/noptin-com/class-noptin-com-helper.php:55
+msgid "The license key to activate."
+msgstr ""
+
+#: src/Objects/Collection.php:456
+msgid "Avatar"
+msgstr ""
+
+#: src/Objects/Collection.php:457
+msgid "Displays the avatar image."
+msgstr ""
+
+#: src/Objects/Collection.php:472
+msgid "Displays the email address."
+msgstr ""
+
+#. translators: %s: Object type label.
+#: src/Objects/Generic_Post_Type.php:92
+msgid "Comma-separated list of %s IDs to show."
+msgstr ""
+
+#. translators: %s is a number.
+#: includes/functions.php:1969
+msgctxt "number range"
+msgid "%1$s and %2$s"
+msgstr ""
+
+#. translators: %s is a date.
+#: includes/functions.php:1981
+msgctxt "date range"
+msgid "%1$s and %2$s"
+msgstr ""
+
+#. Plugin Name of the plugin
+#: C:\app\laragon\www\noptin\wp-content\plugins\noptin\noptin.php
+msgid "Noptin"
+msgstr ""
+
+#. Description of the plugin
+#: C:\app\laragon\www\noptin\wp-content\plugins\noptin\noptin.php
+msgid "A very fast and lightweight WordPress marketing automation plugin"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1098
+msgid "Tracking"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1102
+msgid "Track campaign performance"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1103
+msgid "See how subscribers interact with your emails via opens and clicks."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1109
+msgid "Track e-commerce revenue"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1110
+msgid "Measure exactly how much revenue each email generates."
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1134
+msgid "Auto-tag links (UTM)"
+msgstr ""
+
+#: build/Emails/Admin/Main.php:1137
+msgid "Add UTM parameters so you can track traffic sources in analytics tools."
+msgstr ""
+
+#: build/Extensions/Menu.php:51
+#: build/Extensions/Menu.php:52
+#: includes/class-noptin-white-label.php:161
+msgid "Add-ons"
+msgstr ""
+
+#: build/Fields/functions.php:47
+msgid "Full Name"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:429
+#: build/Forms/Admin/editor-settings.php:672
+msgid "Box Shadow"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:556
+msgid "Field Border"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:666
+msgid "Border Radius"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:905
+msgid "Color"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:909
+#: build/Forms/Admin/editor-settings.php:984
+msgid "Gradient"
+msgstr ""
+
+#: build/Forms/Admin/editor-settings.php:956
+msgid "Fields"
+msgstr ""
+
+#: build/Misc/Main.php:237
+#: build/Emails/assets/js/view-campaigns.js:5
+msgid "Site Admin"
+msgstr ""
+
+#. translators: %s: description
+#. translators: %s: description, e.g, "Send an email to the site admin."
+#: build/Misc/Main.php:240
+#: build/Misc/Main.php:256
+#: build/Emails/assets/js/view-campaigns.js:8
+#: build/Emails/assets/js/view-campaigns.js:11
+msgid "Send an email to the %s"
+msgstr ""
+
+#: build/Misc/Main.php:241
+#: build/Emails/assets/js/view-campaigns.js:8
+msgid "site admin"
+msgstr ""
+
+#: build/Misc/Main.php:253
+#: build/Emails/assets/js/view-campaigns.js:8
+msgid "Send an email to the currently logged-in user."
+msgstr ""
+
+#: build/Settings/Menu.php:235
+msgid "Disable AI"
+msgstr ""
+
+#: build/Settings/Menu.php:237
+msgid "Disable AI generation for this site."
+msgstr ""
+
+#: build/Subscribers/functions.php:1386
+#: build/Automation_Rules/assets/js/automation-rule-editor.js:1
+#: build/Automation_Rules/assets/js/automation-rules.js:1
+msgid "Inactive"
+msgstr ""
+
+#: build/Subscribers/Main.php:206
+msgid "Send Confirmation Emails"
+msgstr ""
+
+#: build/Subscribers/Main.php:207
+#: build/Emails/assets/js/ai.js:1
+msgid "Send"
+msgstr ""
+
+#: build/Subscribers/Main.php:208
+msgid "Send confirmation emails to all unconfirmed subscribers."
+msgstr ""
+
+#: build/Subscribers/Main.php:210
+msgid "Are you sure you want to send confirmation emails to all unconfirmed subscribers?"
+msgstr ""
+
+#: build/Subscribers/Manage_Preferences.php:45
+#: build/Subscribers/Manage_Preferences.php:65
+msgid "Subscribe to our newsletter"
+msgstr ""
+
+#: build/Subscribers/Manage_Preferences.php:210
+msgid "Update Preferences"
+msgstr ""
+
+#: build/Subscribers/Manage_Preferences.php:230
+msgid "Could not verify nonce. Please try again."
+msgstr ""
+
+#: build/Subscribers/Manage_Preferences.php:236
+msgid "Missing or invalid email address."
+msgstr ""
+
+#: build/Subscribers/Manage_Preferences.php:290
+msgid "Your changes have been saved"
+msgstr ""
+
+#: includes/admin/class-noptin-admin-menus.php:56
+#: includes/admin/class-noptin-admin-menus.php:57
+#: includes/class-noptin-white-label.php:166
+msgid "Need Help?"
+msgstr ""

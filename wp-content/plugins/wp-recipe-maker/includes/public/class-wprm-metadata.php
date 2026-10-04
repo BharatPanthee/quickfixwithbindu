@@ -1,0 +1,1279 @@
+<?php
+/**
+ * Handle the recipe metadata.
+ *
+ * @link       https://bootstrapped.ventures
+ * @since      1.0.0
+ *
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ */
+
+/**
+ * Handle the recipe metadata.
+ *
+ * @since      1.0.0
+ * @package    WP_Recipe_Maker
+ * @subpackage WP_Recipe_Maker/includes/public
+ * @author     Brecht Vandersmissen <brecht@bootstrapped.ventures>
+ */
+class WPRM_Metadata {
+	/**
+	 * Version for the recipe metadata cache format/hash.
+	 *
+	 * @since    10.8.1
+	 * @access   private
+	 * @var      int METADATA_CACHE_VERSION Version for the recipe metadata cache.
+	 */
+	const METADATA_CACHE_VERSION = 4;
+
+	/**
+	 * List of recipes we've already outputted the metadata for.
+	 *
+	 * @since    5.3.0
+	 * @access   private
+	 * @var      mixed $outputted_metadata_for List of recipes we've already outputted the metadata for.
+	 */
+	private static $outputted_metadata_for = array();
+
+	/**
+	 * Register actions and filters.
+	 *
+	 * @since    1.0.0
+	 */
+	public static function init() {
+		add_action( 'wp_head', array( __CLASS__, 'metadata_in_head' ), 1 );
+		add_action( 'after_setup_theme', array( __CLASS__, 'metadata_image_sizes' ) );
+
+		add_filter( 'wpseo_schema_graph_pieces', array( __CLASS__, 'wpseo_schema_graph_pieces' ), 1, 2 );
+		add_filter( 'wpseo_schema_graph', array( __CLASS__, 'wpseo_schema_graph' ), 99, 2 );
+
+		if ( defined( 'WPRM_POST_TYPE' ) ) {
+			add_action( 'save_post_' . WPRM_POST_TYPE, array( __CLASS__, 'invalidate_metadata_for_recipe' ), 10, 1 );
+		}
+
+		add_action( 'comment_post', array( __CLASS__, 'invalidate_metadata_for_comment' ), 99, 1 );
+		add_action( 'edit_comment', array( __CLASS__, 'invalidate_metadata_for_comment' ), 99, 1 );
+		add_action( 'transition_comment_status', array( __CLASS__, 'invalidate_metadata_for_comment_status_change' ), 99, 3 );
+		add_action( 'trashed_comment', array( __CLASS__, 'invalidate_metadata_for_comment' ), 99, 1 );
+		add_action( 'spammed_comment', array( __CLASS__, 'invalidate_metadata_for_comment' ), 99, 1 );
+		add_action( 'unspammed_comment', array( __CLASS__, 'invalidate_metadata_for_comment' ), 99, 1 );
+		add_action( 'deleted_comment', array( __CLASS__, 'invalidate_metadata_for_comment' ), 99, 2 );
+	}
+
+	/**
+	 * Invalidate cached metadata for a recipe.
+	 *
+	 * @since	10.8.1
+	 * @param	int $recipe_id Recipe ID.
+	 */
+	public static function invalidate_metadata_for_recipe( $recipe_id ) {
+		$recipe_id = intval( $recipe_id );
+
+		if ( $recipe_id && defined( 'WPRM_POST_TYPE' ) && WPRM_POST_TYPE === get_post_type( $recipe_id ) ) {
+			delete_post_meta( $recipe_id, 'wprm_metadata_cache' );
+		}
+	}
+
+	/**
+	 * Invalidate cached metadata for recipes affected by a comment.
+	 *
+	 * @since	10.8.1
+	 * @param	int|object $comment Comment ID or object.
+	 * @param	object     $deleted_comment Optional deleted comment object.
+	 */
+	public static function invalidate_metadata_for_comment( $comment, $deleted_comment = null ) {
+		if ( $deleted_comment && is_object( $deleted_comment ) ) {
+			$comment = $deleted_comment;
+		} elseif ( ! is_object( $comment ) ) {
+			$comment = get_comment( $comment );
+		}
+
+		if ( ! $comment || ! isset( $comment->comment_post_ID ) ) {
+			return;
+		}
+
+		$recipe_ids = self::get_recipe_ids_for_comment_post( $comment->comment_post_ID );
+
+		foreach ( $recipe_ids as $recipe_id ) {
+			self::invalidate_metadata_for_recipe( $recipe_id );
+		}
+	}
+
+	/**
+	 * Invalidate cached metadata when comment status changes.
+	 *
+	 * @since	10.8.1
+	 * @param	string $new_status New comment status.
+	 * @param	string $old_status Old comment status.
+	 * @param	object $comment    Comment object.
+	 */
+	public static function invalidate_metadata_for_comment_status_change( $new_status, $old_status, $comment ) {
+		if ( $new_status !== $old_status ) {
+			self::invalidate_metadata_for_comment( $comment );
+		}
+	}
+
+	/**
+	 * Confirm recipe as being outputted in the metadata.
+	 *
+	 * @since	5.3.0
+	 * @param 	int $recipe_id Recipe we've outputted the metadata for.
+	 */
+	public static function outputted_metadata_for( $recipe_id ) {
+		self::$outputted_metadata_for[] = intval( $recipe_id );
+	}
+
+	/**
+	 * Check if recipe metadata has been outputted.
+	 *
+	 * @since	5.6.0
+	 * @param 	int $recipe_id Optional recipe to check for.
+	 */
+	public static function has_outputted_metadata( $recipe_id = false ) {
+		if ( false === $recipe_id ) {
+			return 0 < count( self::$outputted_metadata_for );
+		} else {
+			return in_array( intval( $recipe_id ), self::$outputted_metadata_for );
+		}
+	}
+
+	/**
+	 * Check if we should output the metadata for a recipe.
+	 *
+	 * @since	5.3.0
+	 * @param 	int $recipe_id Recipe to check.
+	 */
+	public static function should_output_metadata_for( $recipe_id ) {
+		// Don't output metadata twice.
+		if ( self::has_outputted_metadata( $recipe_id ) ) {
+			// Disabled in version 5.4.3 to prevent issues with metadata not showing up in certain cases.
+			// return false;
+		}
+
+		// Only output metadata for first recipe on page.
+		if ( WPRM_Settings::get( 'metadata_only_show_for_first_recipe' ) && 0 < count( self::$outputted_metadata_for ) && $recipe_id !== self::$outputted_metadata_for[0] ) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Output metadata in the HTML head.
+	 *
+	 * @since    1.25.0
+	 */
+	public static function metadata_in_head() {
+		if ( WPRM_Settings::get( 'metadata_pinterest_optout' ) ) {
+			// Only opt out if there are recipes on this page.
+			if ( WPRM_Recipe_Manager::get_recipe_ids_from_post() ) {
+				echo '<meta name="pinterest-rich-pin" content="false" />';
+			}
+		}
+
+		if ( is_singular() && 'head' === WPRM_Settings::get( 'metadata_location' ) && ! self::use_yoast_seo_integration() && ! self::use_rank_math_integration() ) {
+			$recipe_ids_to_output_metadata_for = self::get_recipe_ids_to_output();
+			
+			foreach ( $recipe_ids_to_output_metadata_for as $recipe_id ) {
+				if ( self::should_output_metadata_for( $recipe_id ) ) {
+					$recipe = WPRM_Recipe_Manager::get_recipe( $recipe_id );
+					$metadata = self::get_sanitized_metadata( $recipe );
+					$output = self::get_metadata_output( $recipe, $metadata );
+
+					if ( $output ) {
+						WPRM_Debug::track_metadata_output(
+							array(
+								'type' => isset( $metadata['@type'] ) ? $metadata['@type'] : 'Metadata',
+								'source' => 'head',
+								'label' => sprintf( '%1$s #%2$d (head)', isset( $metadata['@type'] ) ? $metadata['@type'] : __( 'Metadata', 'wp-recipe-maker' ), $recipe_id ),
+								'object_id' => $recipe_id,
+								'payload' => $metadata,
+							)
+						);
+						self::outputted_metadata_for( $recipe_id );
+						echo $output;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * Get recipe IDs to output metadata for.
+	 *
+	 * @since	5.1.0
+	 */
+	public static function get_recipe_ids_to_output() {
+		$recipe_ids_to_output_metadata_for = array();
+
+		if ( is_singular() ) {
+			$recipe_ids = WPRM_Recipe_Manager::get_recipe_ids_from_post();
+
+			if ( $recipe_ids ) {
+				if ( ! WPRM_Settings::get( 'metadata_only_show_for_first_recipe' ) ) {
+					// Output metadata for all recipes.
+					$recipe_ids_to_output_metadata_for = $recipe_ids;
+				} else {
+					// Only add metadata for first food recipe on page.
+					foreach ( $recipe_ids as $recipe_id ) {
+						$recipe = WPRM_Recipe_Manager::get_recipe( $recipe_id );
+
+						if ( $recipe && 'other' !== $recipe->type() ) {
+							$recipe_ids_to_output_metadata_for = array( $recipe_id );
+							break;
+						}
+					}
+				}
+			}
+		}
+
+		return $recipe_ids_to_output_metadata_for;
+	}
+
+	/**
+	 * Whether or not to use Rank Math integration.
+	 *
+	 * @since	8.7.0
+	 */
+	public static function use_rank_math_integration() {
+		return WPRM_Settings::get( 'rank_math_integration' ) && class_exists( '\RankMath\Schema\JsonLD' ) && class_exists( '\RankMath\Helper') && \RankMath\Helper::is_module_active( 'rich-snippet' );
+	}
+
+	/**
+	 * Whether or not to use Yoast SEO 11 integration.
+	 *
+	 * @since	5.1.0
+	 */
+	public static function use_yoast_seo_integration() {
+		return WPRM_Settings::get( 'yoast_seo_integration' ) && class_exists( '\Yoast\WP\SEO\Generators\Schema\Abstract_Schema_Piece' );
+	}
+
+	/**
+	 * Yoast SEO 11 Schema integration.
+	 *
+	 * @since	5.1.0
+	 * @param 	array $pieces  Yoast schema pieces.
+	 * @param 	mixed $context Yoast schema context.
+	 */
+	public static function wpseo_schema_graph_pieces( $pieces, $context ) {
+		if ( self::use_yoast_seo_integration() ) {
+			require_once( WPRM_DIR . 'includes/public/class-wprm-metadata-yoast-seo.php' );
+			$recipe_piece = new WPRM_Metadata_Yoast_Seo( $context );
+			$pieces[] = $recipe_piece;
+		}
+	
+		return $pieces;
+	}
+
+	/**
+	 * Yoast SEO 11 Schema graph.
+	 *
+	 * @since	8.8.0
+	 * @param 	array $graph  Yoast schema graph.
+	 * @param 	mixed $context Yoast schema context.
+	 */
+	public static function wpseo_schema_graph( $graph, $context ) {
+		if ( self::use_yoast_seo_integration() ) {
+			$recipe_piece_index = false;
+			$person_piece_indexes = array();
+
+			foreach ( $graph as $index => $piece ) {
+				if ( isset( $piece['@type'] ) ) {
+					if ( 'Person' === $piece['@type'] && isset( $piece['@id' ] ) ) {
+						$person_piece_indexes[] = $index;
+					} elseif( ( 'Recipe' === $piece['@type'] || 'HowTo' === $piece['@type'] ) && isset( $piece['author_reference'] ) ) {
+						$recipe_piece_index = $index;
+					}
+				}
+			}
+
+			if ( false !== $recipe_piece_index ) {
+				// Check is Yoast is outputting Person metadata for the author we want to reference.
+				$person_reference_found = false;
+
+				foreach ( $person_piece_indexes as $index ) {
+					if ( $graph[ $index ]['@id'] === $graph[ $recipe_piece_index ]['author_reference']['@id'] ) {
+						$person_reference_found = true;
+					}
+				}
+
+				// Found a match, so we can use the reference instead of simple author metadata.
+				if ( $person_reference_found ) {
+					$graph[ $recipe_piece_index ]['author'] = $graph[ $recipe_piece_index ]['author_reference'];
+				}
+
+				// Always remove temporary placeholder.
+				unset( $graph[ $recipe_piece_index ]['author_reference'] );
+			}
+		}
+	
+		return $graph;
+	}
+
+	/**
+	 * Register image sizes for the recipe metadata.
+	 *
+	 * @since    1.25.0
+	 */
+	public static function metadata_image_sizes() {
+		if ( function_exists( 'fly_add_image_size' ) ) {
+			fly_add_image_size( 'wprm-metadata-1_1', 500, 500, true );
+			fly_add_image_size( 'wprm-metadata-4_3', 500, 375, true );
+			fly_add_image_size( 'wprm-metadata-16_9', 480, 270, true );
+		} else {
+			add_image_size( 'wprm-metadata-1_1', 500, 500, true );
+			add_image_size( 'wprm-metadata-4_3', 500, 375, true );
+			add_image_size( 'wprm-metadata-16_9', 480, 270, true );
+		}
+	}
+
+	/**
+	 * Get the metadata to output for a recipe.
+	 *
+	 * @since    1.0.0
+	 * @param		 object $recipe Recipe to get the metadata for.
+	 */
+	public static function get_metadata_output( $recipe, $metadata = null ) {
+		$output = '';
+
+		if ( null === $metadata ) {
+			$metadata = self::get_sanitized_metadata( $recipe );
+		}
+
+		if ( $metadata ) {
+			$output = '<script type="application/ld+json">' . wp_json_encode( $metadata ) . '</script>';
+		}
+
+		return $output;
+	}
+
+	/**
+	 * Get sanitized metadata for a recipe.
+	 *
+	 * @since	10.3.0
+	 * @param	object $recipe Recipe to get the sanitized metadata for.
+	 */
+	public static function get_sanitized_metadata( $recipe ) {
+		if ( ! self::metadata_cache_enabled( $recipe ) ) {
+			return self::sanitize_metadata( self::get_metadata( $recipe ) );
+		}
+
+		$recipe_id = self::get_recipe_id( $recipe );
+		if ( ! $recipe_id ) {
+			return self::sanitize_metadata( self::get_metadata( $recipe ) );
+		}
+
+		$hash = self::get_metadata_cache_hash( $recipe );
+		$cache = get_post_meta( $recipe_id, 'wprm_metadata_cache', true );
+
+		if ( is_array( $cache ) && isset( $cache['version'], $cache['hash'], $cache['metadata'] ) && self::METADATA_CACHE_VERSION === $cache['version'] && hash_equals( $hash, (string) $cache['hash'] ) ) {
+			// Keep the independently expiring video cache moving even when the complete
+			// recipe metadata can be returned as-is. This only reads local state and queues
+			// background work; provider requests never run in this visitor request.
+			$recipe->videos_metadata();
+			return $cache['metadata'];
+		}
+
+		$metadata = self::sanitize_metadata( self::get_metadata( $recipe ) );
+
+		update_post_meta(
+			$recipe_id,
+			'wprm_metadata_cache',
+			array(
+				'version' => self::METADATA_CACHE_VERSION,
+				'hash' => $hash,
+				'metadata' => $metadata,
+				'updated' => time(),
+			)
+		);
+
+		return $metadata;
+	}
+
+	/**
+	 * Check if metadata caching should be used for a recipe.
+	 *
+	 * @since	10.8.1
+	 * @param	object $recipe Recipe to get the metadata for.
+	 */
+	private static function metadata_cache_enabled( $recipe ) {
+		return (bool) apply_filters( 'wprm_recipe_metadata_cache_enabled', true, $recipe );
+	}
+
+	/**
+	 * Get recipe ID from a recipe object.
+	 *
+	 * @since	10.8.1
+	 * @param	object $recipe Recipe object.
+	 */
+	private static function get_recipe_id( $recipe ) {
+		if ( is_object( $recipe ) && method_exists( $recipe, 'id' ) ) {
+			return intval( $recipe->id() );
+		}
+
+		return 0;
+	}
+
+	/**
+	 * Get hash for the current metadata cache dependencies.
+	 *
+	 * @since	10.8.1
+	 * @param	object $recipe Recipe to get the metadata for.
+	 */
+	private static function get_metadata_cache_hash( $recipe ) {
+		$recipe_id = self::get_recipe_id( $recipe );
+		$parent_post_id = 0;
+		$settings = array();
+
+		if ( is_object( $recipe ) && method_exists( $recipe, 'parent_post_id' ) ) {
+			$parent_post_id = intval( $recipe->parent_post_id() );
+		}
+
+		foreach ( self::get_metadata_cache_settings() as $setting ) {
+			$settings[ $setting ] = WPRM_Settings::get( $setting );
+		}
+
+		$hash_data = array(
+			'cache_version' => self::METADATA_CACHE_VERSION,
+			'plugin_version' => defined( 'WPRM_VERSION' ) ? WPRM_VERSION : '',
+			'wp_version' => get_bloginfo( 'version' ),
+			'home_url' => home_url(),
+			'permalink_structure' => get_option( 'permalink_structure' ),
+			'locale' => function_exists( 'determine_locale' ) ? determine_locale() : get_locale(),
+			'recipe_id' => $recipe_id,
+			'recipe_modified' => $recipe_id ? get_post_modified_time( 'U', true, $recipe_id ) : 0,
+			'recipe_version' => $recipe_id ? get_post_meta( $recipe_id, 'wprm_version', true ) : '',
+			'parent_post_id' => $parent_post_id,
+			'parent_modified' => $parent_post_id ? get_post_modified_time( 'U', true, $parent_post_id ) : 0,
+			'rating_count' => $recipe_id ? get_post_meta( $recipe_id, 'wprm_rating_count', true ) : '',
+			'rating_average' => $recipe_id ? get_post_meta( $recipe_id, 'wprm_rating_average', true ) : '',
+			'video_metadata_updated' => $recipe_id ? get_post_meta( $recipe_id, 'wprm_video_metadata_updated', true ) : '',
+			'settings' => $settings,
+			'filters' => array(
+				'wprm_recipe_field' => self::get_filter_signature( 'wprm_recipe_field' ),
+				'wprm_recipe_metadata' => self::get_filter_signature( 'wprm_recipe_metadata' ),
+				'wprm_recipe_metadata_cache_hash_data' => self::get_filter_signature( 'wprm_recipe_metadata_cache_hash_data' ),
+				'wprm_video_metadata_description' => self::get_filter_signature( 'wprm_video_metadata_description' ),
+				'wpml_translate_single_string' => self::get_filter_signature( 'wpml_translate_single_string' ),
+			),
+		);
+
+		$hash_data = apply_filters( 'wprm_recipe_metadata_cache_hash_data', $hash_data, $recipe );
+
+		return md5( wp_json_encode( $hash_data ) );
+	}
+
+	/**
+	 * Get settings that can affect metadata output.
+	 *
+	 * @since	10.8.1
+	 */
+	private static function get_metadata_cache_settings() {
+		return apply_filters(
+			'wprm_recipe_metadata_cache_settings',
+			array(
+				'metadata_include_ingredient_notes',
+				'metadata_restrict_ingredient_length',
+				'metadata_instruction_name',
+				'metadata_review_include',
+				'metadata_review_append_featured',
+				'metadata_youtube_api_key',
+				'nutrition_default_serving_unit',
+				'post_type_structure',
+				'post_type_comments',
+				'post_type_permalink_priority',
+				'features_comment_ratings',
+				'features_user_ratings',
+				'yoast_seo_integration',
+				'rank_math_integration',
+			)
+		);
+	}
+
+	/**
+	 * Get signature of registered filters.
+	 *
+	 * @since	10.8.1
+	 * @param	string $hook Hook to get the filter signature for.
+	 */
+	private static function get_filter_signature( $hook ) {
+		global $wp_filter;
+
+		if ( ! isset( $wp_filter[ $hook ] ) || ! is_object( $wp_filter[ $hook ] ) || ! isset( $wp_filter[ $hook ]->callbacks ) ) {
+			return '';
+		}
+
+		$signature = array();
+
+		foreach ( $wp_filter[ $hook ]->callbacks as $priority => $callbacks ) {
+			foreach ( $callbacks as $callback_id => $callback ) {
+				$signature[] = $priority . ':' . $callback_id . ':' . $callback['accepted_args'];
+			}
+		}
+
+		return implode( '|', $signature );
+	}
+
+	/**
+	 * Get recipes affected by comments on a post.
+	 *
+	 * @since	10.8.1
+	 * @param	int $post_id Post ID comments belong to.
+	 */
+	private static function get_recipe_ids_for_comment_post( $post_id ) {
+		$post_id = intval( $post_id );
+		$recipe_ids = array();
+
+		if ( ! $post_id || ! defined( 'WPRM_POST_TYPE' ) ) {
+			return $recipe_ids;
+		}
+
+		if ( WPRM_POST_TYPE === get_post_type( $post_id ) ) {
+			$recipe_ids[] = $post_id;
+		}
+
+		$recipe_ids_from_post = WPRM_Recipe_Manager::get_recipe_ids_from_post( $post_id );
+		if ( $recipe_ids_from_post ) {
+			$recipe_ids = array_merge( $recipe_ids, $recipe_ids_from_post );
+		}
+
+		return array_values( array_unique( array_map( 'intval', $recipe_ids ) ) );
+	}
+
+	/**
+	 * Santize metadata before outputting.
+	 *
+	 * @since    1.5.0
+	 * @param		 mixed $metadata Metadata to sanitize.
+	 */
+	public static function sanitize_metadata( $metadata ) {
+		$sanitized = array();
+		if ( is_array( $metadata ) ) {
+			foreach ( $metadata as $key => $value ) {
+				$sanitized[ $key ] = self::sanitize_metadata( $value );
+			}
+		} else {
+			// Metadata includes visitor-controlled review bodies and author names. Never execute
+			// shortcodes here, even for logged-in visitors whose output could be cached publicly.
+			$sanitized = strip_shortcodes( wp_strip_all_tags( WPRM_Instacart::do_shortcode_safe( $metadata ) ) );
+		}
+		return $sanitized;
+	}
+
+	/**
+	 * Expand safe fallback text for inline instruction shortcodes.
+	 *
+	 * This deliberately parses attributes instead of executing shortcode callbacks. All
+	 * remaining shortcode syntax is handled by the recursive metadata sanitizer.
+	 *
+	 * @since    10.8.3
+	 * @param    string $text Instruction text.
+	 */
+	private static function expand_instruction_metadata_shortcodes( $text ) {
+		if ( ! is_string( $text ) || false === strpos( $text, '[wprm-' ) ) {
+			return $text;
+		}
+
+		$pattern = get_shortcode_regex( array( 'wprm-ingredient', 'wprm-temperature' ) );
+		$expanded = preg_replace_callback(
+			"/$pattern/s",
+			function( $matches ) {
+				// Leave escaped shortcode syntax for the metadata sanitizer to strip safely.
+				if ( '[' === $matches[1] && ']' === $matches[6] ) {
+					return $matches[0];
+				}
+
+				$attributes = shortcode_parse_atts( $matches[3] );
+				if ( ! is_array( $attributes ) ) {
+					return '';
+				}
+
+				if ( 'wprm-ingredient' === $matches[2] ) {
+					return isset( $attributes['text'] ) ? $attributes['text'] : '';
+				}
+
+				$value = isset( $attributes['value'] ) ? $attributes['value'] : '';
+				if ( '' === $value ) {
+					return '';
+				}
+
+				$unit = isset( $attributes['unit'] ) ? $attributes['unit'] : WPRM_Settings::get( 'default_temperature_unit' );
+				$unit = strtoupper( sanitize_key( $unit ) );
+
+				return $value . ( in_array( $unit, array( 'C', 'F' ), true ) ? ' °' . $unit : '' );
+			},
+			$text
+		);
+
+		return null === $expanded ? $text : $expanded;
+	}
+
+	/**
+	 * Remove URLs from a video description before including it in the metadata.
+	 *
+	 * @since    10.8.2
+	 * @param    mixed  $video_metadata Video metadata to sanitize.
+	 * @param    object $recipe         Recipe the video belongs to.
+	 */
+	public static function sanitize_video_metadata_description( $video_metadata, $recipe = false ) {
+		if ( ! is_array( $video_metadata ) || ! isset( $video_metadata['description'] ) || ! is_string( $video_metadata['description'] ) ) {
+			return $video_metadata;
+		}
+
+		$original_description = $video_metadata['description'];
+		$description = preg_replace( '~(?:https?://|www\.)[^\s<]+~i', '', $original_description );
+
+		if ( null === $description ) {
+			$description = $original_description;
+		} elseif ( $description !== $original_description ) {
+			$description = str_replace( array( "\r\n", "\r" ), "\n", $description );
+			$description = preg_replace( '/[ \t]+/', ' ', $description );
+			$description = preg_replace( '/ *\n */', "\n", $description );
+			$description = preg_replace( '/\n{3,}/', "\n\n", $description );
+			$description = trim( $description );
+		}
+
+		$description = apply_filters(
+			'wprm_video_metadata_description',
+			$description,
+			$original_description,
+			$video_metadata,
+			$recipe
+		);
+
+		if ( is_string( $description ) && '' !== trim( $description ) ) {
+			$video_metadata['description'] = $description;
+		} else {
+			unset( $video_metadata['description'] );
+		}
+
+		return $video_metadata;
+	}
+
+	/**
+	 * Get the metadata for a recipe.
+	 *
+	 * @since    1.0.0
+	 * @param		 object $recipe Recipe to get the metadata for.
+	 */
+	public static function get_metadata( $recipe ) {
+		if ( ! $recipe ) {
+			return false;
+		}
+
+		// Prevent Jetpack Photon from replacing image URLs in metadata.
+		// Source: https://git.ethitter.com/snippets/1
+		$photon_removed = false;
+		if ( class_exists( 'Jetpack') && class_exists( '\Automattic\Jetpack\Image_CDN\Image_CDN' ) && Jetpack::is_module_active( 'photon' ) ) {
+			$photon_removed = remove_filter( 'image_downsize', array( Automattic\Jetpack\Image_CDN\Image_CDN::instance(), 'filter_image_downsize' ) );
+		}
+
+		// Get the correct metadata for each recipe type.
+		if ( 'food' === $recipe->type() || 'howto' === $recipe->type() ) {
+			$metadata = self::get_metadata_details( $recipe );
+		} else {
+			$metadata = array();
+		}
+
+		// Restore Jetpack Photon if we removed it.
+		if ( $photon_removed ) {
+			add_filter( 'image_downsize', array( Automattic\Jetpack\Image_CDN\Image_CDN::instance(), 'filter_image_downsize' ), 10, 3 );
+		}
+
+		// Allow external filtering of metadata.
+		return apply_filters( 'wprm_recipe_metadata', $metadata, $recipe );
+	}
+
+	/**
+	 * Get the metadata details.
+	 *
+	 * @since	5.11.0
+	 * @param	object $recipe Recipe to get the metadata for.
+	 */
+	public static function get_metadata_details( $recipe ) {
+		// Essentials.
+		$metadata = array(
+			'@context' => 'http://schema.org/',
+			'@type' => 'food' === $recipe->type() ? 'Recipe' : 'HowTo',
+			'name' => $recipe->name(),
+			'author' => array(
+				'@type' => 'Person',
+				'name' => $recipe->author_meta(),
+			),
+			'description' => wp_strip_all_tags( $recipe->summary() ),
+		);
+
+		// Dates.
+		$date_published = date( 'c', strtotime( $recipe->date() ) );
+		$metadata['datePublished'] = $date_published;
+
+		$date_modified = date( 'c', strtotime( $recipe->date_modified() ) );
+		if ( $date_modified !== $date_published ) {
+			// Removed again on 2018-11-16 to see if this was causing rich snippet problems.
+			// $metadata['dateModified'] = $date_modified;
+		}
+
+		// Recipe image.
+		if ( $recipe->image_id() ) {
+			if ( 'food' === $recipe->type() ) {
+				$image_sizes = array(
+					$recipe->image_url( 'full' ),
+					$recipe->image_url( 'wprm-metadata-1_1' ),
+					$recipe->image_url( 'wprm-metadata-4_3' ),
+					$recipe->image_url( 'wprm-metadata-16_9' ),
+				);
+	
+				$metadata['image'] = array_values( array_unique( $image_sizes ) );
+			} else {
+				$metadata['image'] = $recipe->image_url( 'full' );
+			}
+		}
+
+		// Recipe video.
+		$check_video_parts = false;
+		if ( $recipe->video_metadata() ) {
+			$metadata['video'] = self::sanitize_video_metadata_description( $recipe->video_metadata(), $recipe );
+			$metadata['video']['@type'] = 'VideoObject';
+			$check_video_parts = true;
+		}
+
+		// Yield.
+		if ( $recipe->servings() ) {
+			if ( 'food' === $recipe->type() ) {
+				$yield = array(
+					$recipe->servings(),
+				);
+
+				if ( $recipe->servings_unit() ) {
+					$yield[] = $recipe->servings() . ' ' . $recipe->servings_unit();
+				}
+
+				$metadata['recipeYield'] = $yield;
+			} else {
+				$metadata['yield'] = $recipe->servings() . ' ' . $recipe->servings_unit();
+			}
+		}
+
+		// Cost.
+		if ( 'howto' === $recipe->type() ) {
+			if ( $recipe->cost() ) {
+				$metadata['estimatedCost'] = $recipe->cost();
+			}
+		}
+
+		// Times.
+		if ( 'food' === $recipe->type() ) {
+			if ( $recipe->prep_time() ) {
+				$metadata['prepTime'] = 'PT' . $recipe->prep_time() . 'M';
+			}
+			if ( $recipe->cook_time() ) {
+				$metadata['cookTime'] = 'PT' . $recipe->cook_time() . 'M';
+			}
+		}
+		if ( $recipe->total_time() ) {
+			$metadata['totalTime'] = 'PT' . $recipe->total_time() . 'M';
+		}
+
+		// Equipment.
+		if ( 'howto' === $recipe->type() ) {
+			$equipment = $recipe->equipment();
+			if ( count( $equipment ) > 0 ) {
+				$metadata_equipment = array();
+
+				foreach ( $equipment as $equipment_item ) {
+					$name = $equipment_item['name'];
+					if ( $name ) {
+						if ( isset( $equipment_item['amount'] ) && $equipment_item['amount'] ) {
+							$name = $equipment_item['amount'] . ' ' . $name;
+						}
+						if ( isset( $equipment_item['notes'] ) && $equipment_item['notes'] ) {
+							$name = $name . ' ' . $equipment_item['notes'];
+						}
+						$metadata_equipment[] = array(
+							'@type' => 'HowToTool',
+							'name' => $name,
+						);
+					}
+				}
+
+				$metadata['tool'] = $metadata_equipment;
+			}
+		}
+
+		// Ingredients/Materials.
+		$ingredients = $recipe->ingredients_without_groups();
+		if ( $ingredients && count( $ingredients ) > 0 ) {
+			$metadata_ingredients = array();
+
+			foreach ( $ingredients as $ingredient ) {
+				if ( 'food' === $recipe->type() ) {
+					$metadata_ingredient = $ingredient['amount'] . ' ' . $ingredient['unit'] . ' ' . $ingredient['name'];
+					if ( WPRM_Settings::get( 'metadata_include_ingredient_notes' ) && trim( $ingredient['notes'] ) !== '' ) {
+						$ingredient_notes = ' (' . $ingredient['notes'] . ')';
+
+						// Only add notes if it doesn't put ingredient over the 135 limit.
+						if ( WPRM_Settings::get( 'metadata_restrict_ingredient_length' ) ) {
+							if ( 135 >= strlen( $metadata_ingredient . $ingredient_notes ) ) { 
+								$metadata_ingredient .= $ingredient_notes;
+							}
+						} else {
+							$metadata_ingredient .= $ingredient_notes;
+						}
+					}
+
+					$metadata_ingredients[] = $metadata_ingredient;
+				} else {
+					$metadata_material = array(
+						'@type' => 'HowToSupply',
+					);
+	
+					$quantity = trim( $ingredient['amount'] . ' ' . $ingredient['unit'] );
+					if ( $quantity ) {
+						$metadata_material['requiredQuantity'] = $quantity;
+					}
+					
+					$name = $ingredient['name'];
+					if ( WPRM_Settings::get( 'metadata_include_ingredient_notes' ) && trim( $ingredient['notes'] ) !== '' ) {
+						$name .= ' (' . $ingredient['notes'] . ')';
+					}
+					$metadata_material['name'] = $name;
+
+					if ( $name ) {
+						$metadata_ingredients[] = $metadata_material;
+					}
+				}
+			}
+
+			if ( 'food' === $recipe->type() ) {
+				$metadata['recipeIngredient'] = $metadata_ingredients;
+			} else {
+				$metadata['supply'] = $metadata_ingredients;
+			}
+		}
+
+		// Instructions.
+		$videos_metadata = $recipe->videos_metadata();
+		$instruction_video_parts = array();
+		$url = $recipe->permalink();
+
+		$step_id = '#wprm-recipe-' . $recipe->id() . '-step';
+		if ( $url ) {
+			$url .= $step_id;
+		}
+
+		$instruction_groups = $recipe->instructions();
+		if ( count( $instruction_groups ) > 0 ) {
+			$metadata_instruction_groups = array();
+			$metadata_all_instructions = array();
+			$has_unnamed_group = false;
+
+			foreach ( $instruction_groups as $group_index => $instruction_group ) {
+				$metadata_instructions = array();
+
+				foreach ( $instruction_group['instructions'] as $index => $instruction ) {
+					$instruction_type = isset( $instruction['type'] ) ? $instruction['type'] : 'instruction';
+					if ( 'tip' === $instruction_type ) {
+						continue;
+					}
+
+					$metadata_instruction = array(
+						'@type' => 'HowToStep',
+						'text' => wp_strip_all_tags( self::expand_instruction_metadata_shortcodes( $instruction['text'] ) ),
+					);
+
+					// Handle instruction step name field.
+					if ( 'ignore' !== WPRM_Settings::get( 'metadata_instruction_name' ) ) {
+						$metadata_instruction['name'] = isset( $instruction['name'] ) ? wp_strip_all_tags( $instruction['name'] ) : '';
+
+						if ( ! $metadata_instruction['name']  && 'reuse' === WPRM_Settings::get( 'metadata_instruction_name' ) ) {
+							$metadata_instruction['name'] = $metadata_instruction['text'];
+						}
+					}
+
+					// Link to instruction directly if parent post is set.
+					if ( $url ) {
+						$metadata_instruction['url'] = $url . '-' . $group_index . '-' . $index;
+					}
+
+					// Add instruction image.
+					if ( isset( $instruction['image'] ) && $instruction['image'] ) {
+						$thumb = wp_get_attachment_image_src( $instruction['image'], 'full' );
+
+						if ( $thumb && isset( $thumb[0] ) ) {
+							$metadata_instruction['image'] = $thumb[0];
+						}
+					}
+
+					// Check video type for this instructions.
+					$video_type = isset( $instruction['video'] ) && isset( $instruction['video']['type'] ) ? $instruction['video']['type'] : 'part'; // Default to part for backward compatibility.
+
+					// Add video if no image is set.
+					if ( ! isset( $metadata_instruction['image'] ) ) {
+						$video_metadata = false;
+
+						if ( isset( $videos_metadata['instructions'] ) && isset( $videos_metadata['instructions'][ $group_index ] ) && isset( $videos_metadata['instructions'][ $group_index ][ $index ] ) ) {
+							$video_metadata = $videos_metadata['instructions'][ $group_index ][ $index ];
+						}
+
+						if ( $video_metadata ) {
+							$metadata_instruction['video'] = self::sanitize_video_metadata_description( $video_metadata, $recipe );
+							$metadata_instruction['video']['@type'] = 'VideoObject';
+						}
+					}
+
+					// Maybe add video clip as part of main video.
+					if ( $check_video_parts && isset( $instruction['video'] ) && 'part' === $video_type ) {
+						$start = self::video_time_to_seconds( $instruction['video']['start'] );
+						$end = self::video_time_to_seconds( $instruction['video']['end'] );
+
+						if ( $end > $start ) {
+							$video_step_id = $step_id . '-' . $group_index . '-' . $index;
+							$clip_id = $video_step_id;
+
+							$video_part_metadata = array(
+								'@type' => 'Clip',
+								'@id' => $clip_id,
+								'name' => $instruction['video']['name'],
+								'startOffset' => $start,
+								'endOffset' => $end,
+							);
+
+							$video_part_url = self::video_get_url_to_time( $recipe, $metadata['video']['contentUrl'], $start );
+							if ( $video_part_url ) {
+								$video_part_metadata['url'] = $video_part_url;
+							}
+
+							$instruction_video_parts[] = $video_part_metadata;
+
+							$metadata_instruction['video'] = array(
+								'@id' => $video_step_id,
+							);
+						}
+					}
+
+					$metadata_instructions[] = $metadata_instruction;
+				}
+
+				if ( count( $metadata_instructions ) > 0 ) {
+					if ( $instruction_group['name'] ) {
+						$metadata_instruction_groups[] = array(
+							'@type' => 'HowToSection',
+							'name' => wp_strip_all_tags( $instruction_group['name'] ),
+							'itemListElement' => $metadata_instructions,
+						);
+					} else {
+						$has_unnamed_group = true;
+						$metadata_instruction_groups = array_merge( $metadata_instruction_groups, $metadata_instructions );
+					}
+
+					$metadata_all_instructions = array_merge( $metadata_all_instructions, $metadata_instructions );
+				}
+			}
+
+			if ( count( $metadata_instruction_groups ) > 0 ) {
+				if ( 'food' === $recipe->type() ) {
+					$metadata['recipeInstructions'] = $metadata_instruction_groups;
+				} else {
+					if ( $has_unnamed_group ) {
+						// Google complains when mixing HowToStep and HowToSection for step metadata.
+						$metadata['step'] = $metadata_all_instructions;
+					} else {
+						$metadata['step'] = $metadata_instruction_groups;
+					}
+				}
+			}
+		}
+
+		// Video clips.
+		if ( 0 < count( $instruction_video_parts ) ) {
+			$metadata['video']['hasPart'] = $instruction_video_parts;
+		}
+
+		// Rating.
+		$rating = $recipe->rating();
+		if ( $rating['count'] > 0 ) {
+			$metadata['aggregateRating'] = array(
+				'@type' => 'AggregateRating',
+				'ratingValue' => $rating['average'],
+				'ratingCount' => $rating['count'],
+			);
+
+			// Check if Review metadata should be included.
+			if ( 'never' !== WPRM_Settings::get( 'metadata_review_include' ) ) {
+				// Get comments given to parent post.
+				if ( $recipe->parent_post_id() ) {
+					// Get featured comments.
+					$args = array(
+						'post_id' => $recipe->parent_post_id(),
+						'status' => 'approve',
+						'meta_query' => array(
+							array(
+								'key'     => 'wprm-comment-review',
+								'value'   => 'featured',
+							),
+						),
+					);
+
+					$comments_query = new WP_Comment_Query;
+					$comments = $comments_query->query( $args );
+					$nbr_featured_comments = count( $comments );
+					$featured_comment_ids = wp_list_pluck( $comments, 'comment_ID' );
+
+					// Maybe append with other comments, if not set to use featured only.
+					if ( 'featured_only' !== WPRM_Settings::get( 'metadata_review_include' ) ) {
+						if (
+								( 'no' === WPRM_Settings::get( 'metadata_review_append_featured' ) && $nbr_featured_comments < 1 )
+								|| ( 'yes_5' === WPRM_Settings::get( 'metadata_review_append_featured' ) && $nbr_featured_comments < 5 )
+								|| ( 'yes_10' === WPRM_Settings::get( 'metadata_review_append_featured' ) && $nbr_featured_comments < 10 )
+							) {
+							// Get other comments with ratings, excluding featured comments and excluded comments.
+							$args = array(
+								'post_id' => $recipe->parent_post_id(),
+								'status' => 'approve',
+								'number' => 20,
+								'comment__not_in' => $featured_comment_ids,
+								'meta_query' => array(
+									'relation' => 'AND',
+									array(
+										'key'     => 'wprm-comment-rating',
+										'compare' => '!=',
+										'value'   => '',
+									),
+									array(
+										'relation' => 'OR',
+										array(
+											'key'     => 'wprm-comment-review',
+											'compare' => 'NOT EXISTS',
+										),
+										array(
+											'key'     => 'wprm-comment-review',
+											'compare' => '!=',
+											'value'   => 'excluded',
+										),
+									),
+								),
+							);
+
+							$comments_query = new WP_Comment_Query;
+							$non_featured_comments = $comments_query->query( $args );
+
+							$comments = array_merge( $comments, $non_featured_comments );
+						}
+					}
+
+					if ( $comments ) {
+						$reviews = array();
+
+						foreach ( $comments as $comment ) {
+							$author = $comment->comment_author;
+							$body = $comment->comment_content;
+				
+							if ( $author && $body ) {
+								$rating = intval( get_comment_meta( $comment->comment_ID, 'wprm-comment-rating', true ) );
+							
+								if ( $rating ) {
+									$reviews[] = array(
+										'@type' => 'Review',
+										'reviewRating' => array(
+											'@type' => 'Rating',
+											'ratingValue' => $rating,
+										),
+										'reviewBody' => $body,
+										'author' => array(
+											'@type' => 'Person',
+											'name' => $author,
+										),
+										'datePublished' => gmdate( 'Y-m-d', strtotime( $comment->comment_date ) ),
+									);
+								}
+							}
+						}
+
+						if ( $reviews ) {
+							$metadata['review'] = $reviews;
+							$metadata['aggregateRating']['reviewCount'] = count( $reviews );
+						}
+					}
+				}
+			}
+		}
+
+		// Food Recipe only metadata.
+		if ( 'food' === $recipe->type() ) {
+			// Category & Cuisine.
+			$courses = $recipe->tags( 'course' );
+			if ( count( $courses ) > 0 ) {
+				$metadata['recipeCategory'] = wp_list_pluck( $courses, 'name' );
+			}
+			$cuisines = $recipe->tags( 'cuisine' );
+			if ( count( $cuisines ) > 0 ) {
+				$metadata['recipeCuisine'] = wp_list_pluck( $cuisines, 'name' );
+			}
+
+			// Diets.
+			$diets = $recipe->tags( 'suitablefordiet' );
+			if ( count( $diets ) > 0 ) {
+				$diet_names = array();
+
+				foreach( $diets as $diet ) {
+					if ( isset( $diet->actual_name ) ) {
+						$diet_names[] = $diet->actual_name;
+					} else {
+						$diet_names[] = $diet->name;
+					}
+				}
+
+				$metadata['suitableForDiet'] = array_map( function( $diet ) {
+					return 'https://schema.org/' . $diet;
+				}, $diet_names );
+			}
+
+			// Keywords.
+			$keywords = $recipe->tags( 'keyword' );
+			if ( count( $keywords ) > 0 ) {
+				$keyword_names = wp_list_pluck( $keywords, 'name' );
+				$metadata['keywords'] = implode( ', ', $keyword_names );
+			}
+
+			// Nutrition.
+			$nutrition_mapping = array(
+				'serving_size' => 'servingSize',
+				'calories' => 'calories',
+				'fat' => 'fatContent',
+				'saturated_fat' => 'saturatedFatContent',
+				'unsaturated_fat' => 'unsaturatedFatContent',
+				'trans_fat' => 'transFatContent',
+				'carbohydrates' => 'carbohydrateContent',
+				'sugar' => 'sugarContent',
+				'fiber' => 'fiberContent',
+				'protein' => 'proteinContent',
+				'cholesterol' => 'cholesterolContent',
+				'sodium' => 'sodiumContent',
+			);
+			$nutrition_metadata = array();
+			$nutrition = $recipe->nutrition();
+
+			// Calculate unsaturated fat.
+			if ( isset( $nutrition['polyunsaturated_fat'] ) && isset( $nutrition['monounsaturated_fat'] ) ) {
+				$nutrition['unsaturated_fat'] = $nutrition['polyunsaturated_fat'] + $nutrition['monounsaturated_fat'];
+			} elseif ( isset( $nutrition['polyunsaturated_fat'] ) ) {
+				$nutrition['unsaturated_fat'] = $nutrition['polyunsaturated_fat'];
+			} elseif ( isset( $nutrition['monounsaturated_fat'] ) ) {
+				$nutrition['unsaturated_fat'] = $nutrition['monounsaturated_fat'];
+			}
+
+			foreach ( $nutrition as $field => $value ) {
+				if ( $value && array_key_exists( $field, $nutrition_mapping ) ) {
+					$unit = 'g';
+
+					if ( 'serving_size' === $field ) {
+						if ( isset( $nutrition['serving_unit'] ) && $nutrition['serving_unit'] ) {
+							$unit = $nutrition['serving_unit'];
+						} else {
+							$unit = WPRM_Settings::get( 'nutrition_default_serving_unit' );
+						}
+					} elseif ( 'calories' === $field ) {
+						$unit = esc_html__( 'kcal', 'wp-recipe-maker' );
+					} elseif ( 'cholesterol' === $field || 'sodium' === $field ) {
+						$unit = esc_html__( 'mg', 'wp-recipe-maker' );
+					}
+
+					$nutrition_metadata[ $nutrition_mapping[ $field ] ] = trim( $value . ' ' . $unit );
+				}
+			}
+
+			if ( count( $nutrition_metadata ) > 0 ) {
+				if ( ! isset( $nutrition_metadata['servingSize'] ) ) {
+					$nutrition_metadata['servingSize'] = esc_html__( '1 serving', 'wp-recipe-maker' );
+				}
+
+				$metadata['nutrition'] = array_merge( array(
+					'@type' => 'NutritionInformation',
+				), $nutrition_metadata );
+			}
+		}
+
+		return $metadata;
+	}
+
+	/**
+	 * Get the metadata for a food recipe.
+	 *
+	 * @since	5.2.0
+	 * @param	object $recipe Recipe to get the metadata for.
+	 */
+	public static function get_food_metadata( $recipe ) {
+		return self::get_metadata_details( $recipe );
+	}
+
+	/**
+	 * Get the metadata for a how-to recipe.
+	 *
+	 * @since	5.2.0
+	 * @param	object $recipe Recipe to get the metadata for.
+	 */
+	public static function get_howto_metadata( $recipe ) {
+		return self::get_metadata_details( $recipe );
+	}
+
+	/**
+	 * Get seconds from video time string.
+	 *
+	 * @since	5.7.0
+	 * @param	mixed $time Time to convert.
+	 */
+	public static function video_time_to_seconds( $time ) {
+		if ( ! $time ) {
+			return 0;
+		}
+
+		$time_parts = explode( ':', $time, 2 );
+
+		if ( 2 === count( $time_parts ) ) {
+			$seconds = 60 * intval( $time_parts[0] ) + intval( $time_parts[1] );
+		} else {
+			$seconds = intval( $time_parts[0] );
+		}
+
+		return $seconds;
+	}
+
+	/**
+	 * Get direct URL to video start time.
+	 *
+	 * @since	5.7.0
+	 * @param	mixed $recipe	Recipe we're getting the video for.
+	 * @param	mixed $url		Video contentUrl.
+	 * @param	mixed $time		Time to get the URL for.
+	 */
+	public static function video_get_url_to_time( $recipe, $url, $time ) {
+		if ( $url ) {
+			if ( stripos( $url, 'youtube.com' ) || stripos( $url, 'youtu.be' ) ) {
+				if ( false !== strpos( $url, '?' ) ) {
+					return $url . '&t=' . $time;
+				} else {
+					return $url . '?t=' . $time;
+				}
+			}
+			if ( stripos( $url, 'vimeo.com' ) ) {
+				return $url . '#t=' . $time;
+			}
+			if ( stripos( $url, 'mediavine' ) ) {
+				$permalink = $recipe->permalink();
+
+				if ( $permalink ) {
+					if ( false !== strpos( $permalink, '?' ) ) {
+						return $permalink . '&mvs=' . $time . '#mv-first-video';
+					} else {
+						return $permalink . '?mvs=' . $time . '#mv-first-video';
+					}
+				}
+			}
+		}
+
+		return false;
+	}
+}
+
+WPRM_Metadata::init();

@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+# Block attachment and unwanted image pages
+Disallow: /*?attachment_id=
+Disallow: */hqdefault-*/
+
+Sitemap: https://www.quickfixwithbindu.com/sitemap.xml
+Sitemap: https://www.quickfixwithbindu.com/sitemap.rss

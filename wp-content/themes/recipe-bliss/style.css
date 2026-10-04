@@ -1,0 +1,46 @@
+/*
+Theme Name: Recipe Bliss
+Theme URI: https://wpdelicious.com/wordpress-themes/recipe-bliss/
+Description: Recipe Bliss is a free recipe WordPress theme designed to help build elegant food blogs and recipe websites. This theme is SEO-ready and speed-optimized from the start, helping your site load faster and rank higher in search results. The theme also helps improve your recipe rankings in search results due to its mobile-responsive features. The theme also includes a pre-designed Instagram section, allowing you to present your feed on your website with ease. It integrates seamlessly with the WP Delicious plugin, which enhances your site with new features. With access to 1600+ Google Fonts and limitless color choices, you can customize your website to reflect your brand's identity. If you ever need it, detailed documentation and support are readily available to help you along the way. Recipe Bliss makes your website accessible worldwide with support for both translation and RTL languages. Check out the demo at https://demo.wpdelicious.com/recipe-bliss/, and get support at https://wpdelicious.com/support-ticket/.
+Author: WP Delicious
+Author URI: https://wpdelicious.com/
+Template: yummy-bites
+Version: 1.0.0
+Requires at least: 6.2
+Requires PHP: 7.3
+Tested up to: 6.6
+License: GNU General Public License v3 or later
+License URI: https://www.gnu.org/licenses/gpl-3.0.html
+Tags: blog, one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-header, custom-menu, custom-logo, featured-images, threaded-comments, full-width-template, rtl-language-support, translation-ready, theme-options, e-commerce, food-and-drink
+Text Domain: recipe-bliss
+*/
+.site-header.style-three .menu-wrapper {
+  display: flex;
+  align-items: center;
+  grid-gap: 32px;
+}
+.site-header.style-three > .header-top {
+  display: none;
+}
+.site-header.style-three > .header-top .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+}
+@media screen and (min-width: 1200px) {
+  .site-header.style-three > .header-top .container {
+    padding-top: 15px;
+    padding-bottom: 15px;
+  }
+}
+.site-header.style-three > .header-top .container .header-right {
+  grid-gap: 0;
+}
+@media screen and (min-width: 1200px) {
+  .site-header.style-three > .header-top {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
