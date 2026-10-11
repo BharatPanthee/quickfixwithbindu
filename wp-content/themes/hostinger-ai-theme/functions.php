@@ -19,8 +19,11 @@ if ( file_exists( HOSTINGER_AI_WEBSITES_WP_CONFIG_PATH ) ) {
 }
 
 if ( ! defined( 'HOSTINGER_AI_WEBSITES_WP_TOKEN' ) ) {
-    $hostinger_dir_parts        = explode( '/', __DIR__ );
-    $hostinger_server_root_path = '/' . $hostinger_dir_parts[1] . '/' . $hostinger_dir_parts[2];
+    $hostinger_theme_path       = wp_normalize_path( __DIR__ );
+    $hostinger_dir_parts        = explode( '/', $hostinger_theme_path );
+    $hostinger_server_root_path = str_starts_with( $hostinger_theme_path, '/' ) && count( $hostinger_dir_parts ) >= 3
+        ? '/' . $hostinger_dir_parts[1] . '/' . $hostinger_dir_parts[2]
+        : wp_normalize_path( dirname( untrailingslashit( ABSPATH ) ) );
     define( 'HOSTINGER_AI_WEBSITES_WP_TOKEN', $hostinger_server_root_path . '/.api_token' );
 }
 

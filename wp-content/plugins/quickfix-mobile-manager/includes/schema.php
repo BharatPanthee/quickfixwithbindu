@@ -1,0 +1,50 @@
+<?php
+namespace QuickFix;
+defined('ABSPATH') || exit;
+final class Schema {
+    public const VERSION = '1.0.0';
+    public const CAPS = ['quickfix_manage_catalog', 'quickfix_moderate', 'quickfix_manage_notifications', 'quickfix_manage_users', 'quickfix_manage_settings', 'quickfix_view_audit'];
+    public static function definitions(): array { return [
+        'mobile_recipes' => "recipe_id bigint unsigned NOT NULL, state varchar(20) NOT NULL DEFAULT 'excluded', available_from datetime DEFAULT NULL, available_to datetime DEFAULT NULL, published_at datetime DEFAULT NULL, summary_override text NOT NULL, image_override varchar(1000) NOT NULL DEFAULT '', dietary_tags text NOT NULL, comments_enabled tinyint NOT NULL DEFAULT 1, ratings_enabled tinyint NOT NULL DEFAULT 1, revision bigint unsigned NOT NULL DEFAULT 1, updated_by bigint unsigned NOT NULL DEFAULT 0, updated_at datetime NOT NULL, orphaned tinyint NOT NULL DEFAULT 0, PRIMARY KEY (recipe_id), KEY publication (state,available_from,available_to)",
+        'app_categories' => "id bigint unsigned NOT NULL AUTO_INCREMENT, name varchar(100) NOT NULL, slug varchar(100) NOT NULL, description text NOT NULL, image_ref varchar(1000) NOT NULL DEFAULT '', enabled tinyint NOT NULL DEFAULT 1, sort_order int NOT NULL DEFAULT 0, revision bigint unsigned NOT NULL DEFAULT 1, PRIMARY KEY (id), UNIQUE KEY slug (slug)",
+        'recipe_categories' => "recipe_id bigint unsigned NOT NULL, category_id bigint unsigned NOT NULL, PRIMARY KEY (recipe_id,category_id), KEY category (category_id,recipe_id)",
+        'home_placements' => "id bigint unsigned NOT NULL AUTO_INCREMENT, recipe_id bigint unsigned NOT NULL, section varchar(20) NOT NULL DEFAULT 'featured', position int NOT NULL DEFAULT 0, starts_at datetime DEFAULT NULL, ends_at datetime DEFAULT NULL, revision bigint unsigned NOT NULL DEFAULT 1, PRIMARY KEY (id), UNIQUE KEY placement (recipe_id,section)",
+        'users' => "id bigint unsigned NOT NULL AUTO_INCREMENT, firebase_uid varchar(128) CHARACTER SET ascii COLLATE ascii_bin NOT NULL, display_name varchar(100) NOT NULL, email varchar(254) DEFAULT NULL, providers text NOT NULL, verified tinyint NOT NULL DEFAULT 0, status varchar(30) NOT NULL DEFAULT 'active', first_seen datetime NOT NULL, last_seen datetime NOT NULL, deletion_requested_at datetime DEFAULT NULL, revision bigint unsigned NOT NULL DEFAULT 1, PRIMARY KEY (id), UNIQUE KEY firebase_uid (firebase_uid), KEY status (status)",
+        'comments' => "id bigint unsigned NOT NULL AUTO_INCREMENT, recipe_id bigint unsigned NOT NULL, user_id bigint unsigned DEFAULT NULL, parent_comment_id bigint unsigned DEFAULT NULL, author_type varchar(20) NOT NULL DEFAULT 'consumer', body text NOT NULL, status varchar(20) NOT NULL DEFAULT 'pending', source_channel varchar(20) NOT NULL, revision bigint unsigned NOT NULL DEFAULT 1, created_at datetime NOT NULL, updated_at datetime NOT NULL, moderation_reason varchar(500) NOT NULL DEFAULT '', assigned_to bigint unsigned DEFAULT NULL, PRIMARY KEY (id), KEY discussion (recipe_id,status,created_at,id), KEY owner (user_id), UNIQUE KEY brand_reply (parent_comment_id)",
+        'ratings' => "id bigint unsigned NOT NULL AUTO_INCREMENT, recipe_id bigint unsigned NOT NULL, user_id bigint unsigned NOT NULL, stars tinyint unsigned NOT NULL, status varchar(20) NOT NULL DEFAULT 'active', source_channel varchar(20) NOT NULL, revision bigint unsigned NOT NULL DEFAULT 1, created_at datetime NOT NULL, updated_at datetime NOT NULL, moderation_reason varchar(500) NOT NULL DEFAULT '', PRIMARY KEY (id), UNIQUE KEY ownership (recipe_id,user_id), KEY aggregate (recipe_id,status)",
+        'rating_stats' => "recipe_id bigint unsigned NOT NULL, total int unsigned NOT NULL DEFAULT 0, count int unsigned NOT NULL DEFAULT 0, star1 int unsigned NOT NULL DEFAULT 0, star2 int unsigned NOT NULL DEFAULT 0, star3 int unsigned NOT NULL DEFAULT 0, star4 int unsigned NOT NULL DEFAULT 0, star5 int unsigned NOT NULL DEFAULT 0, calculated_at datetime NOT NULL, PRIMARY KEY (recipe_id)",
+        'reports' => "id bigint unsigned NOT NULL AUTO_INCREMENT, reporter_id bigint unsigned NOT NULL, target_type varchar(20) NOT NULL, target_id bigint unsigned NOT NULL, reason varchar(30) NOT NULL, details varchar(500) NOT NULL DEFAULT '', status varchar(20) NOT NULL DEFAULT 'open', unresolved_key varchar(100) DEFAULT NULL, assigned_to bigint unsigned DEFAULT NULL, resolution varchar(500) NOT NULL DEFAULT '', created_at datetime NOT NULL, updated_at datetime NOT NULL, revision bigint unsigned NOT NULL DEFAULT 1, PRIMARY KEY (id), UNIQUE KEY unresolved (unresolved_key), KEY moderation (status,created_at)",
+        'user_blocks' => "blocker_user_id bigint unsigned NOT NULL, blocked_user_id bigint unsigned NOT NULL, created_at datetime NOT NULL, PRIMARY KEY (blocker_user_id,blocked_user_id)",
+        'devices' => "id bigint unsigned NOT NULL AUTO_INCREMENT, installation_id varchar(128) CHARACTER SET ascii COLLATE ascii_bin NOT NULL, credential_hash varchar(64) NOT NULL, user_id bigint unsigned DEFAULT NULL, token_cipher text NOT NULL, token_hash varchar(64) NOT NULL, platform varchar(20) NOT NULL, app_version varchar(30) NOT NULL, consent tinyint NOT NULL DEFAULT 0, is_test tinyint NOT NULL DEFAULT 0, last_seen datetime NOT NULL, PRIMARY KEY (id), UNIQUE KEY installation (installation_id), UNIQUE KEY token (token_hash), KEY audience (consent,is_test,id)",
+        'campaigns' => "id bigint unsigned NOT NULL AUTO_INCREMENT, title varchar(80) NOT NULL, body varchar(180) NOT NULL, target varchar(30) NOT NULL DEFAULT 'home', audience varchar(20) NOT NULL DEFAULT 'all', scheduled_at datetime DEFAULT NULL, status varchar(30) NOT NULL DEFAULT 'draft', created_by bigint unsigned NOT NULL, eligible int NOT NULL DEFAULT 0, attempted int NOT NULL DEFAULT 0, accepted int NOT NULL DEFAULT 0, permanent_failures int NOT NULL DEFAULT 0, retries int NOT NULL DEFAULT 0, revision bigint unsigned NOT NULL DEFAULT 1, created_at datetime NOT NULL, updated_at datetime NOT NULL, PRIMARY KEY (id), KEY schedule (status,scheduled_at)",
+        'jobs' => "id bigint unsigned NOT NULL AUTO_INCREMENT, kind varchar(30) NOT NULL, dedupe_key varchar(191) NOT NULL, payload text NOT NULL, attempts int NOT NULL DEFAULT 0, available_at datetime NOT NULL, lock_until datetime DEFAULT NULL, lock_owner varchar(36) DEFAULT NULL, status varchar(20) NOT NULL DEFAULT 'queued', safe_error varchar(100) NOT NULL DEFAULT '', created_at datetime NOT NULL, updated_at datetime NOT NULL, PRIMARY KEY (id), UNIQUE KEY dedupe (dedupe_key), KEY queue (status,available_at)",
+        'audit' => "id bigint unsigned NOT NULL AUTO_INCREMENT, actor_type varchar(20) NOT NULL, actor_id bigint unsigned NOT NULL, action varchar(60) NOT NULL, target varchar(100) NOT NULL, metadata text NOT NULL, request_id varchar(36) NOT NULL, created_at datetime NOT NULL, PRIMARY KEY (id), KEY retention (created_at)",
+        'idempotency' => "dedupe_key varchar(64) NOT NULL, request_hash varchar(64) NOT NULL, response longtext DEFAULT NULL, expires_at datetime NOT NULL, PRIMARY KEY (dedupe_key), KEY expiry (expires_at)",
+        'deletion_tombstones' => "identity_hash varchar(64) NOT NULL, deleted_at datetime NOT NULL, replay_state varchar(20) NOT NULL DEFAULT 'pending', PRIMARY KEY (identity_hash)",
+        'rate_limits' => "bucket varchar(64) NOT NULL, hits int NOT NULL DEFAULT 0, expires_at datetime NOT NULL, PRIMARY KEY (bucket), KEY expiry (expires_at)",
+        'campaign_deliveries' => "campaign_id bigint unsigned NOT NULL, device_id bigint unsigned NOT NULL, status varchar(20) NOT NULL DEFAULT 'pending', attempts int NOT NULL DEFAULT 0, PRIMARY KEY (campaign_id,device_id), KEY progress (campaign_id,status)",
+        'provider_tokens' => "user_id bigint unsigned NOT NULL, provider varchar(30) NOT NULL, token_cipher text NOT NULL, revoked tinyint NOT NULL DEFAULT 0, updated_at datetime NOT NULL, PRIMARY KEY (user_id,provider)"
+    ]; }
+    public static function activate(): void {
+        global $wpdb;
+        try {
+            if (PHP_VERSION_ID < 80100 || !extension_loaded('openssl') || !extension_loaded('mbstring')) { throw new Fault('runtime_incompatible', 'PHP 8.1+, OpenSSL and mbstring are required.', 503); }
+            require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+            foreach (self::definitions() as $name => $definition) {
+                // dbDelta expects one definition per line, and two spaces after PRIMARY KEY.
+                $definition = preg_replace('/, (?=(?:[a-z_][a-z0-9_]* [a-z]|PRIMARY KEY|UNIQUE KEY|KEY ))/', ",\n", $definition);
+                $definition = str_replace('PRIMARY KEY (', 'PRIMARY KEY  (', $definition);
+                $table = Store::table($name);
+                dbDelta("CREATE TABLE $table (\n$definition\n) ENGINE=InnoDB " . $wpdb->get_charset_collate() . ';');
+                if ($wpdb->get_var($wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table))) !== $table) { throw new Fault('migration_failed', 'Schema setup failed; inspect hosting diagnostics.', 503); }
+                preg_match_all('/^([a-z_][a-z0-9_]*) [a-z]/m', $definition, $expected);
+                if (array_diff($expected[1], $wpdb->get_col("SHOW COLUMNS FROM $table"))) { throw new Fault('migration_failed', 'Schema columns are incomplete.', 503); }
+            }
+            $role = get_role('administrator'); if ($role) { foreach (self::CAPS as $cap) { $role->add_cap($cap); } }
+            add_option('quickfix_settings', Settings::defaults(), '', false);
+            add_option('quickfix_catalog_revision', 1, '', false);
+            update_option('quickfix_schema_version', self::VERSION, false); delete_option('quickfix_migration_error');
+            if (!wp_next_scheduled('quickfix_worker')) { wp_schedule_event(time() + 60, 'quickfix_minute', 'quickfix_worker'); }
+        } catch (\Throwable $e) { update_option('quickfix_migration_error', $e instanceof Fault ? $e->slug : 'migration_failed', false); }
+    }
+}
