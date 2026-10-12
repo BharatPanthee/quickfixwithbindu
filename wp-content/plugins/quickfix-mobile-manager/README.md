@@ -17,6 +17,8 @@ Activation adds new prefixed tables and grants plugin capabilities to Administra
 
 Excluded, withdrawn, private, expired and orphaned recipes do not pass the mobile availability predicate. Website discussion uses website availability independently. Source withdrawal retains app metadata; restoring a source does not automatically publish it. Revision checks protect concurrent edits and bulk actions return per-item failures.
 
+For selected recipes, choose **Publish → Review bulk action**, check the confirmation box, then click **Confirm**. Confirmed bulk publication prepares eligible excluded recipes as Draft before publishing, with both changes in one transaction per recipe. An incomplete or stale recipe remains unchanged; the result shows how many succeeded and the individual failures. The individual curation editor still saves Draft first.
+
 ## Authentication and notifications
 
 Public browsing works without Firebase credentials. Protected consumer routes reject requests until a correctly configured project and outside-web-root service account exist. Firebase consumers never become WordPress users. See [configuration](docs/configuration.md) for the exact configuration, least-privilege permissions, App Check, encryption keys, Apple code exchange and scheduler setup.

@@ -11278,7 +11278,8 @@
                             "withdraw",
                             "assign_category",
                             "clear_featured"
-                        ]
+                        ],
+                        "description": "Confirmed publish prepares eligible excluded recipes as Draft before publishing, atomically per recipe. Invalid or stale items remain unchanged and return per-item errors."
                     },
                     "category": {
                         "type": "string",

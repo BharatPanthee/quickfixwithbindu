@@ -57,7 +57,7 @@
   function confirmation(title, names, action) {
     const node = form(title); node.classList.add('qf-confirm'); node.append(el('p', `${names.length} item(s) will be affected:`)); const list=el('ul'); names.forEach(name=>list.append(el('li',name)));node.append(list);
     const confirm=field(node,'confirm','I reviewed the items and confirm this action.',0,'checkbox');
-    const go=button('Confirm',async()=>{if(!confirm.checked)throw new Error('Select the confirmation checkbox.');go.disabled=true;try{await action();node.remove();await load();success('Action completed.');}catch(e){go.disabled=false;throw e;}},true);
+    const go=button('Confirm',async()=>{if(!confirm.checked)throw new Error('Select the confirmation checkbox.');go.disabled=true;try{const result=await action();node.remove();await load();if(result?.warning)error(new Error(`${result.message} ${result.warning}`));else success(result?.message||'Action completed.');}catch(e){go.disabled=false;throw e;}},true);
     node.append(go,button('Cancel',()=>node.remove())); confirm.focus();
   }
   function preview(node, data) {
@@ -113,7 +113,7 @@
   }
   function bulk() {
     const node=el('div',null,{class:'qf-actions'}),select=el('select',null,{'aria-label':'Bulk recipe action'});['draft','publish','withdraw','assign_category','clear_featured'].forEach(value=>select.append(el('option',human(value),{value})));node.append(select);
-    const category=el('input',null,{type:'number',placeholder:'Category ID','aria-label':'Category ID for bulk assignment'});node.append(category,button('Review bulk action',()=>{const selected=[...root.querySelectorAll('[data-select]:checked')].map(x=>currentItems.find(item=>item.id===x.dataset.select));if(!selected.length)throw new Error('Select at least one recipe.');confirmation(`Bulk ${human(select.value)}`,selected.map(x=>`${x.title} (#${x.id})`),async()=>{const result=await api('recipes/bulk','POST',{items:selected.map(x=>({id:x.id,revision:Number(x.metadata.revision)})),action:select.value,...(select.value==='assign_category'?{category:category.value}:{}),confirm:true});const failed=result.results.filter(x=>!x.ok);if(failed.length)throw new Error(failed.map(x=>`#${x.id}: ${x.error.message}`).join(' '));});}));root.append(node);
+    const category=el('input',null,{type:'number',placeholder:'Category ID','aria-label':'Category ID for bulk assignment'});node.append(category,button('Review bulk action',()=>{const selected=[...root.querySelectorAll('[data-select]:checked')].map(x=>currentItems.find(item=>item.id===x.dataset.select));if(!selected.length)throw new Error('Select at least one recipe.');const action=select.value;confirmation(`Bulk ${human(action)}${action==='publish'?' — eligible excluded recipes will enter Draft before publication':''}`,selected.map(x=>`${x.title} (#${x.id})`),async()=>{const result=await api('recipes/bulk','POST',{items:selected.map(x=>({id:x.id,revision:Number(x.metadata.revision)})),action,...(action==='assign_category'?{category:category.value}:{}),confirm:true});const failed=result.results.filter(x=>!x.ok);return{message:`${result.results.length-failed.length} of ${result.results.length} recipes updated.`,warning:failed.map(x=>`#${x.id}: ${x.error.message}`).join(' ')};});}));root.append(node);
   }
   async function load() {
     root.setAttribute('aria-busy','true');root.replaceChildren();activeForm=null;

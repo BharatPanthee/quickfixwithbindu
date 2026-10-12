@@ -48,7 +48,7 @@ $schemas['Confirmation']=$object(['revision'=>$integer,'confirm'=>['type'=>'bool
 $schemas['PasswordReset']=$object(['confirm'=>['type'=>'boolean','const'=>true]],['confirm']);
 $schemas['ModerationWrite']=$object(['revision'=>$integer,'status'=>$string,'reason'=>['type'=>'string','maxLength'=>500],'assigned_to'=>$integer],['revision','status']);
 $schemas['BrandReply']=$object(['revision'=>$integer,'reply'=>['type'=>'string','minLength'=>1,'maxLength'=>2000]],['revision','reply']);
-$schemas['BulkWrite']=$object(['items'=>['type'=>'array','maxItems'=>100,'items'=>$object(['id'=>$id,'revision'=>$integer],['id','revision'])],'action'=>['type'=>'string','enum'=>['draft','publish','withdraw','assign_category','clear_featured']],'category'=>$id,'confirm'=>['type'=>'boolean','const'=>true]],['items','action','confirm']);
+$schemas['BulkWrite']=$object(['items'=>['type'=>'array','maxItems'=>100,'items'=>$object(['id'=>$id,'revision'=>$integer],['id','revision'])],'action'=>['type'=>'string','enum'=>['draft','publish','withdraw','assign_category','clear_featured'],'description'=>'Confirmed publish prepares eligible excluded recipes as Draft before publishing, atomically per recipe. Invalid or stale items remain unchanged and return per-item errors.'],'category'=>$id,'confirm'=>['type'=>'boolean','const'=>true]],['items','action','confirm']);
 $schemas['HomeLayout']=$object(['revision'=>$integer,'home_sections'=>['type'=>'array','maxItems'=>3,'uniqueItems'=>true,'items'=>['type'=>'string','enum'=>['featured','categories','latest']]]],['revision','home_sections']);
 $settings=QuickFix\Settings::defaults();$properties=[];
 foreach($settings as $name=>$value){$properties[$name]=is_bool($value)?$boolean:(is_int($value)?$integer:$string);}

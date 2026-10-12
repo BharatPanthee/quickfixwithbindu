@@ -4,7 +4,7 @@ The plugin is installed and active in the local WordPress site. No production de
 
 ## Verified locally
 
-**102 acceptance assertions passed** in the local WordPress/MySQL environment. The executable suite creates/removes fixtures and intercepts the fixed Firebase/FCM endpoints locally with ephemeral RSA keys; it verifies real JWT signatures rather than bypassing the verifier.
+**109 acceptance assertions passed** in the local WordPress/MySQL environment, rerun on 12 October 2026. The executable suite creates/removes fixtures and intercepts the fixed Firebase/FCM endpoints locally with ephemeral RSA keys; it verifies real JWT signatures rather than bypassing the verifier.
 
 | Area | Evidence |
 | --- | --- |
@@ -19,6 +19,8 @@ The plugin is installed and active in the local WordPress site. No production de
 | Security | Admin capability and nonce independently required; prepared search SQL; unsafe HTML/links/schemes rejected; public payload excludes emails/UIDs/tokens; durable throttling. |
 
 PHP syntax checks and JavaScript parse checks pass. OpenAPI publishes **47 paths, 71 operations and 37 schemas**; reference resolution, method declarations, required ID parameters and unique operation IDs are checked by `tests/validate-contract.py`.
+
+Bulk publication regression checks cover explicit confirmation, stale revisions, mixed success/failure, excluded-to-draft-to-published preparation, rollback for incomplete recipes, and mobile availability after success. A separate temporary fixture also passed real local HTTP checks using an Administrator cookie and REST nonce: inspection, confirmed bulk publication from excluded, and unauthenticated public detail afterward. The fixture and temporary session were removed. Interactive browser verification remains unavailable as described below.
 
 The normal local HTTP stack returned valid JSON for config, home, categories and recipe listings, a safe 404 for an excluded recipe, and a 403 for anonymous admin access. Public cache headers declare a 60-second TTL. An existing Hostinger theme Windows path bug initially printed warnings before JSON; the separate theme fix removes those warnings while preserving the Linux path behavior.
 

@@ -85,7 +85,19 @@ final class API {
                 try { Input::only($item, ['id','revision']); $id = Input::id($item['id']); $meta = Catalog::metadata($id); $payload = ['revision' => $item['revision'] ?? null];
                     if ($action === 'assign_category') { $category = Input::id($data['category'] ?? ''); $inspect = Catalog::inspect($id); $payload['categories'] = array_values(array_unique(array_merge($inspect['metadata']['categories'], [$category]))); }
                     elseif ($action === 'clear_featured') { Store::transaction(static function () use ($id, $payload) { global $wpdb; Store::revision(Catalog::metadata($id, true), $payload['revision']); Store::query($wpdb->prepare('DELETE FROM ' . Store::table('home_placements') . ' WHERE recipe_id=%s', $id)); Store::audit('featured.cleared', 'recipe:' . $id); Store::bump(); }); $results[] = ['id' => $id, 'ok' => true]; continue; }
-                    else { $payload['state'] = ['draft' => 'draft', 'publish' => 'published', 'withdraw' => 'withdrawn'][$action]; }
+                    elseif ($action === 'publish') {
+                        Store::transaction(static function () use ($id, $payload) {
+                            // A confirmed bulk publication includes draft preparation; both steps succeed or neither does.
+                            $current = Catalog::metadata($id);
+                            if ($current['state'] === 'excluded') {
+                                $draft = Catalog::save($id, $payload + ['state' => 'draft']);
+                                $payload['revision'] = (int) $draft['metadata']['revision'];
+                            }
+                            Catalog::save($id, $payload + ['state' => 'published']);
+                        });
+                        $results[] = ['id' => $id, 'ok' => true]; continue;
+                    }
+                    else { $payload['state'] = ['draft' => 'draft', 'withdraw' => 'withdrawn'][$action]; }
                     Catalog::save($id, $payload); $results[] = ['id' => $id, 'ok' => true];
                 } catch (Fault $e) { $results[] = ['id' => (string) ($item['id'] ?? ''), 'ok' => false, 'error' => ['code' => $e->slug, 'message' => $e->getMessage()]]; }
             } return ['results' => $results];
