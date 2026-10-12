@@ -33,6 +33,7 @@ The discussion widget offers Firebase email/Google/Apple sign-in, verification, 
 
 ## Contracts and handover
 
+- [Local Android emulator and Firebase testing](docs/mobile-testing.md)
 - [OpenAPI](docs/openapi.json)
 - [Deployment, rollback and release gates](docs/deployment.md)
 - [Moderation, notification and deletion runbooks](docs/runbooks.md)
