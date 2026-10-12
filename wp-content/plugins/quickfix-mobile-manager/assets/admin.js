@@ -17,7 +17,7 @@
     const node = el('button', text, { type: 'button', class: `button ${primary ? 'button-primary' : ''}` });
     node.addEventListener('click', () => Promise.resolve(action()).catch(error)); return node;
   };
-  const error = (e) => { feedback.replaceChildren(el('div', e.message || 'Request failed. Please retry.', { class: 'notice notice-error', role: 'alert' })); };
+  const error = (e) => { feedback.replaceChildren(el('div', e.message || 'Request failed. Please retry.', { class: 'notice notice-error', role: 'alert' })); feedback.scrollIntoView({block:'start',behavior:'smooth'}); };
   const success = (text) => { feedback.replaceChildren(el('div', text, { class: 'notice notice-success' })); };
   async function api(path = '', method = 'GET', body) {
     const response = await fetch(cfg.api + path, { method, credentials: 'same-origin', headers: { 'X-WP-Nonce': cfg.nonce, 'Content-Type': 'application/json', 'Idempotency-Key': uuid() }, ...(body ? { body: JSON.stringify(body) } : {}) });
@@ -52,7 +52,7 @@
     activeForm?.remove(); const node = el('form', null, { class:'qf-form', 'aria-label': title }); node.append(el('h2',title));
     node.addEventListener('submit', e => e.preventDefault()); root.append(node); activeForm=node; node.scrollIntoView({block:'start',behavior:'smooth'}); return node;
   }
-  function values(node) { const data={}; new FormData(node).forEach((v,k) => data[k]=v); node.querySelectorAll('input[type=checkbox]').forEach(c => data[c.name]=c.checked); return data; }
+  function values(node) { const data={}; new FormData(node).forEach((v,k) => data[k]=v); node.querySelectorAll('input[type=checkbox]').forEach(c => { if(c.name && !c.disabled)data[c.name]=c.checked; }); return data; }
   const json = (data) => el('pre', JSON.stringify(data,null,2), { class:'qf-json' });
   function confirmation(title, names, action) {
     const node = form(title); node.classList.add('qf-confirm'); node.append(el('p', `${names.length} item(s) will be affected:`)); const list=el('ul'); names.forEach(name=>list.append(el('li',name)));node.append(list);
@@ -67,15 +67,16 @@
   }
   async function editRecipe(item) {
     const latest=await api(`recipes/${item.id}`),meta=latest.metadata;const node=form(`Curate: ${latest.title}`);
-    node.append(el('p','These settings affect the app only. Excluded recipes must enter Draft before publication.'));
-    field(node,'state','App state',meta.state,'text',['excluded','draft','scheduled','published','withdrawn']);
+    node.append(el('p',meta.state==='excluded'?'First select Draft and save. Then reopen this recipe, select Published, and save again. These settings affect the app only.':'Choose Published and save to make an eligible recipe available in the app. These settings affect the app only.'));
+    const transitions={excluded:['excluded','draft'],draft:['draft','excluded','published','scheduled'],scheduled:['scheduled','draft','published','withdrawn'],published:['published','withdrawn'],withdrawn:['withdrawn','draft','published','scheduled']};
+    field(node,'state','App state',meta.state,'text',transitions[meta.state]);
     field(node,'available_from',`Available from (${cfg.timezone})`,meta.available_from,'datetime-local');field(node,'available_to',`Available until (${cfg.timezone})`,meta.available_to,'datetime-local');
     field(node,'summary_override','App summary override',meta.summary_override,'textarea');field(node,'image_override','App thumbnail override (approved HTTPS host)',meta.image_override,'url');
     field(node,'dietary_tags','Explicitly curated dietary tags (comma-separated; do not infer allergy safety)',meta.dietary_tags.join(', '));
     const categories=await api('categories?limit=100'); const options=el('fieldset');options.append(el('legend','Categories'));categories.items.forEach(category=>{const label=el('label',category.name);const check=el('input',null,{type:'checkbox',value:category.id});check.dataset.category=category.id;check.checked=meta.categories.includes(String(category.id));label.append(check);options.append(label);});node.append(options);
     field(node,'comments_enabled','Allow new comments',meta.comments_enabled,'checkbox');field(node,'ratings_enabled','Allow ratings',meta.ratings_enabled,'checkbox');
     if(latest.validation.length)node.append(el('p',latest.validation.join(' '),{class:'qf-warning'}));preview(node,latest.preview);
-    const save=button('Save curation',async()=>{const data=values(node);data.categories=[...node.querySelectorAll('[data-category]:checked')].map(x=>x.value);data.dietary_tags=data.dietary_tags.split(',').map(x=>x.trim()).filter(Boolean);data.available_from=utcTime(data.available_from);data.available_to=utcTime(data.available_to);data.revision=Number(meta.revision);save.disabled=true;try{await api(`recipes/${item.id}`,'PATCH',data);await load();success('Curation saved.');}catch(e){save.disabled=false;throw e;}},true);
+    const save=button('Save curation',async()=>{const data=values(node);data.categories=[...node.querySelectorAll('[data-category]:checked')].map(x=>x.value);data.dietary_tags=data.dietary_tags.split(',').map(x=>x.trim()).filter(Boolean);data.available_from=utcTime(data.available_from);data.available_to=utcTime(data.available_to);data.revision=Number(meta.revision);save.disabled=true;try{const saved=await api(`recipes/${item.id}`,'PATCH',data);await load();if(saved.metadata.state==='draft'){await editRecipe(item);success('Draft saved. Select Published and save to publish this recipe.');}else success(saved.metadata.state==='published'?'Recipe published to the app.':'Curation saved.');}catch(e){save.disabled=false;throw e;}},true);
     node.append(save,button('Close',()=>node.remove()));node.querySelector('select').focus();
   }
   async function editResource(item) {

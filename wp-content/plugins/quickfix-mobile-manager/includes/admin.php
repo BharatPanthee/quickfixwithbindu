@@ -11,7 +11,7 @@ final class Admin {
     public static function assets(string $hook): void {
         if (!str_contains($hook, 'quickfix-')) { return; }
         wp_enqueue_style('quickfix-admin', plugins_url('assets/admin.css', QUICKFIX_MANAGER_FILE), [], '1.0.0');
-        wp_enqueue_script('quickfix-admin', plugins_url('assets/admin.js', QUICKFIX_MANAGER_FILE), [], '1.0.0', true);
+        wp_enqueue_script('quickfix-admin', plugins_url('assets/admin.js', QUICKFIX_MANAGER_FILE), [], (string) filemtime(QUICKFIX_MANAGER_DIR . '/assets/admin.js'), true);
         $caps = []; foreach (Schema::CAPS as $cap) { $caps[$cap] = current_user_can($cap); }
         wp_localize_script('quickfix-admin', 'QuickFixAdmin', ['api' => rest_url('quickfix/v1/admin/'), 'nonce' => wp_create_nonce('wp_rest'), 'timezone' => wp_timezone_string(), 'capabilities' => $caps]);
     }
